@@ -34,6 +34,7 @@ for (key, value) in count.items():
     total += value
 print('{0} total staff'.format(total))
 
+# test comment
 app = dash.Dash(__name__)
 
 app.layout = html.Div([
