@@ -28,12 +28,13 @@ This project will serve to host as a data visualization and access point to the 
     a. If there are any prerequisites needed there will be an error message stating the missing dependency, just download that archive from pypi.org and install it first
 
 #Things remaining to do
-1. Figure out how to run the Dash server non local host
-2. Create "modules" for running individual pages on the Dash server so they can be updated without changing the entire page (also this will keep it from becoming one huge file to maintain)
-3. Finish designing the SQL table structure for program data captures
-4. Create some sort of authentication system to allow authorized people to edit necessary information (ie. HR authorized to edit the personnel table)
-5. Finish layout for employee roster table page
-6. Create chart that outlines over a -3 to +12 month line chart of employee count
+1. Create an index/home page that will allow navigation to individual pages as they are created
+2. Figure out how to run the Dash server non local host
+3. Create "modules" for running individual pages on the Dash server so they can be updated without changing the entire page (also this will keep it from becoming one huge file to maintain)
+4. Finish designing the SQL table structure for program data captures
+5. Create some sort of authentication system to allow authorized people to edit necessary information (ie. HR authorized to edit the personnel table)
+6. Finish layout for employee roster table page
+7. Create chart that outlines over a -3 to +12 month line chart of employee count
     1. This should be filterable by department (Finance Function)
 
 
