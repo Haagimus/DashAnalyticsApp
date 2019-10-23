@@ -3,25 +3,25 @@ This project will serve to host as a data visualization and access point to the 
 
 #Getting Started
 1.	Installation process
-    a. If you do not have Python installed I recommend downloading and installing Anaconda 3 as it has most of the dependencies included
-    b. 
+    1. If you do not have Python installed I recommend downloading and installing Anaconda 3 as it has most of the dependencies included
+    2. 
 2.	Software dependencies
-    a. Dash w/ plot.ly
-    b. Python 3.7
-    c. Numpy
-    d. Pandas
-    e. SQL Server Management Studio (not required but allows direct SQL access)
+    1. Dash w/ plot.ly
+    2. Python 3.7
+    3. Numpy
+    4. Pandas
+    5. SQL Server Management Studio (not required but allows direct SQL access)
 3.	Latest releases
 4.	API references
-    a. [Dash Reference](https://dash.plot.ly/)
-    b. [Anaconda Reference](https://docs.conda.io/projects/conda/en/latest/user-guide/index.html)
+    1. [Dash Reference](https://dash.plot.ly/)
+    2. [Anaconda Reference](https://docs.conda.io/projects/conda/en/latest/user-guide/index.html)
 
 #Installing Python packages manually with our company proxy
 1. Install anaconda
 2. Add the anaconda installation path to your environmental variables
-    a. This should be in "[User Folder]\AppData\Local\Continuum\anaconda3" by default
+    1. This should be in "[User Folder]\AppData\Local\Continuum\anaconda3" by default
 3. Add the anaconda scripts path to your enviornmental variables
-    a. This should be in the "\Scripts" folder of the above filepath
+    1. This should be in the "\Scripts" folder of the above filepath
 4. Launch the command prompt, powershell or the conda terminal
 5. Change to your download directory where the tar.gz archives were downloaded
 6. type "pip install 'archive name.tar.gz'
