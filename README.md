@@ -16,6 +16,17 @@ This project will serve to host as a data visualization and access point to the 
     - [Dash Reference](https://dash.plot.ly/)
     - [Anaconda Reference](https://docs.conda.io/projects/conda/en/latest/user-guide/index.html)
 
+#Things remaining to do
+- [ ] Create an index/home page that will allow navigation to individual pages as they are created
+- [ ] Figure out how to run the Dash server non local host
+- [ ] Create "modules" for running individual pages on the Dash server so they can be updated without changing the entire page (also this will keep it from becoming one huge file to maintain)
+    - [ ] Started this structure, simply create the file for the page then import the .py file to use its stuff
+- [ ] Finish designing the SQL table structure for program data captures
+- [ ] Create some sort of authentication system to allow authorized people to edit necessary information (ie. HR authorized to edit the personnel table)
+- [ ] Finish layout for employee roster table page
+- [ ] Create chart that outlines over a -3 to +12 month line chart of employee count
+    - [ ] This should be filterable by department (Finance Function)
+
 #Installing Python packages manually with our company proxy
 1. Install anaconda
 2. Add the anaconda installation path to your environmental variables
@@ -26,18 +37,6 @@ This project will serve to host as a data visualization and access point to the 
 5. Change to your download directory where the tar.gz archives were downloaded
 6. type "pip install 'archive name.tar.gz'
     - If there are any prerequisites needed there will be an error message stating the missing dependency, just download that archive from pypi.org and install it first
-
-#Things remaining to do
-[] Create an index/home page that will allow navigation to individual pages as they are created
-[] Figure out how to run the Dash server non local host
-[] Create "modules" for running individual pages on the Dash server so they can be updated without changing the entire page (also this will keep it from becoming one huge file to maintain)
-    [] Started this structure, simply create the file for the page then import the .py file to use its stuff
-[] Finish designing the SQL table structure for program data captures
-[] Create some sort of authentication system to allow authorized people to edit necessary information (ie. HR authorized to edit the personnel table)
-[] Finish layout for employee roster table page
-[] Create chart that outlines over a -3 to +12 month line chart of employee count
-    [] This should be filterable by department (Finance Function)
-
 
 #Useful Links
 1. [Anaconda](https://www.anaconda.com/distribution/#download-section)
