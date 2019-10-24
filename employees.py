@@ -24,7 +24,8 @@ for title in finDF.values:
     idx += 1
 
 total = 0
-for (key, value) in count.items():
-    print(key, '::', value)
-    total += value
-print('{0} total staff'.format(total))
+
+# for (key, value) in count.items():
+#     print(key, '::', value)
+#     total += value
+# print('{0} total staff'.format(total))
