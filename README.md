@@ -31,6 +31,7 @@ This project will serve to host as a data visualization and access point to the 
 1. Create an index/home page that will allow navigation to individual pages as they are created
 2. Figure out how to run the Dash server non local host
 3. Create "modules" for running individual pages on the Dash server so they can be updated without changing the entire page (also this will keep it from becoming one huge file to maintain)
+    1. Started this structure, simply create the file for the page then import the .py file to use its stuff
 4. Finish designing the SQL table structure for program data captures
 5. Create some sort of authentication system to allow authorized people to edit necessary information (ie. HR authorized to edit the personnel table)
 6. Finish layout for employee roster table page
