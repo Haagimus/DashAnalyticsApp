@@ -5,30 +5,12 @@ import dash_html_components as html
 
 import employees
 
+empTable = employees.EmployeeTable()
+
 app = dash.Dash(__name__)
 
 app.layout = html.Div([
-    dt.DataTable(
-        style_data={
-            'whitespace': 'normal',
-            'height': 'auto',
-            'overflow': 'hidden',
-            'textOverflow': 'ellipses',
-            'maxWidth': 0,
-        },
-        id='Employees',
-        columns=[
-            {'name': i, 'id': i, 'selectable': True} for i in employees.empDF.columns
-        ],
-        data=employees.empDF.to_dict('records'),
-        editable=True,
-        filter_action='native',
-        sort_action='native',
-        sort_mode='multi',
-        row_deletable=False,
-        hidden_columns=['Long_Text', 'Name_Full'],
-    ),
-    html.Div(id='employee-container')
+    empTable
 ])
 
 if __name__ == '__main__':

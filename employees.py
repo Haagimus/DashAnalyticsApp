@@ -1,3 +1,5 @@
+# this file will serve as the host for the employee data page
+
 from sqlalchemy.connectors import pyodbc
 from sqlalchemy.inspection import inspect
 import pyodbc
@@ -24,6 +26,30 @@ for title in finDF.values:
     idx += 1
 
 total = 0
+
+def EmployeeTable():
+    empTable = dt.DataTable(
+        style_data={
+            'whitespace': 'normal',
+            'height': 'auto',
+            'overflow': 'hidden',
+            'textOverflow': 'ellipses',
+            'maxWidth': 0,
+        },
+        id='Employees',
+        columns=[
+            {'name': i, 'id': i, 'selectable': True} for i in employees.empDF.columns
+        ],
+        data=employees.empDF.to_dict('records'),
+        editable=True,
+        filter_action='native',
+        sort_action='native',
+        sort_mode='multi',
+        row_deletable=False,
+        hidden_columns=['Long_Text', 'Name_Full'],
+    ),
+    html.Div(id='employee-container')
+    return empTable
 
 # for (key, value) in count.items():
 #     print(key, '::', value)
