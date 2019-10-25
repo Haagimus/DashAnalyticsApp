@@ -8,9 +8,9 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div([
     html.Ul([
-        html.Li([html.A(['Home'])]),
-        html.Li([html.A(['Page 2'])]),
-        html.Li([html.A(['Page 3'])])
+        html.Li([dcc.Link('Home', href='#')]),
+        html.Li([dcc.Link('Employee')]),
+        html.Li([])
     ])
 ])
 
