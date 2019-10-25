@@ -4,6 +4,10 @@ from sqlalchemy.connectors import pyodbc
 from sqlalchemy.inspection import inspect
 import pyodbc
 import pandas
+import numpy
+import dash_table as dt
+import dash_core_components as dcc
+import dash_html_components as html
 
 EmpTblSQL = 'SELECT * FROM dbo.Employees'
 FinTblSql = 'SELECT * FROM dbo.Finance_Functions'
@@ -27,6 +31,7 @@ for title in finDF.values:
 
 total = 0
 
+
 def EmployeeTable():
     empTable = dt.DataTable(
         style_data={
@@ -38,9 +43,9 @@ def EmployeeTable():
         },
         id='Employees',
         columns=[
-            {'name': i, 'id': i, 'selectable': True} for i in employees.empDF.columns
+            {'name': i, 'id': i, 'selectable': True} for i in empDF.columns
         ],
-        data=employees.empDF.to_dict('records'),
+        data=empDF.to_dict('records'),
         editable=True,
         filter_action='native',
         sort_action='native',
