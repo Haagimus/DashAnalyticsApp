@@ -1,3 +1,5 @@
 .ionide
 .vscode
 __pycache__
+.vs
+~.gitcredential
