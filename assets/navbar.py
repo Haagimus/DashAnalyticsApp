@@ -3,7 +3,7 @@ import dash_core_components as dcc
 import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output
 
-
+# When new pages are added, update list with href to location
 def Navbar():
     navbar = html.Ul([
         html.Li([dcc.Link('Home', id='homeLink', href='/')]),
