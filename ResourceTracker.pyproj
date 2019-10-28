@@ -22,6 +22,9 @@
     <Compile Include="app.py" />
     <Compile Include="employees.py" />
     <Compile Include="index.py" />
+    <Compile Include="programs.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="navbar.py" />
   </ItemGroup>
   <ItemGroup>
