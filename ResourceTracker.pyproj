@@ -20,17 +20,23 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.py" />
-    <Compile Include="employees.py" />
+    <Compile Include="assets\navbar.py" />
     <Compile Include="index.py" />
-    <Compile Include="programs.py">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="pages\employees.py" />
+    <Compile Include="pages\programs.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".gitignore" />
+    <Content Include="assets\Files\Sector_DevOps_Status_FX.xlsx" />
     <Content Include="assets\index.css" />
+    <Content Include="assets\programs.css" />
+    <Content Include="README.md" />
+    <Content Include="TODO.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="assets" />
+    <Folder Include="assets\Files\" />
+    <Folder Include="pages\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
 </Project>

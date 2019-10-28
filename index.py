@@ -13,7 +13,6 @@ nav = Navbar()
 
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
-    # When new pages are added, update list with href to location
     nav,
     html.Div(id='page-content')
 ])
@@ -30,4 +29,4 @@ def display_page(pathname):
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True, host='166.20.119.32', port='8080')
+    app.run_server(debug=True)
