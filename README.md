@@ -10,7 +10,6 @@ This project will serve to host as a data visualization and access point to the 
     - [Dash](https://pypi.org/project/dash/#files)
     - [Dash Core Components](https://pypi.org/project/dash-core-components/#files)
     - [Dash HTML Components](https://pypi.org/project/dash-html-components/#files)
-    - [Dash Bootstrap Components] (https://pypi.org/project/dash-bootstrap-components/#files)
     - [Dash Renderer](https://pypi.org/project/dash-renderer/#files)
     - [Dash Table](https://pypi.org/project/dash-table/#files)
     - [Flask Compress](https://pypi.org/project/Flask-Compress/#files)
