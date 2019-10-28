@@ -1,5 +1,7 @@
 #TODO List
-- [ ] Create an index/home page that will allow navigation to individual pages as they are created
+- [x] Create an index/home page that will allow navigation to individual pages as they are created
+- [ ] Setup the app to run from a server and not localhost
+- [ ] Restructure file layout like the bottom of [this page](https://dash.plot.ly/urls)
 - [ ] Figure out how to run the Dash server non local host
 - [ ] Create "modules" for running individual pages on the Dash server so they can be updated without changing the entire page (also this will keep it from becoming one huge file to maintain)
     - Started this structure, simply create the file for the page then import the .py file to use its stuff
