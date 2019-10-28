@@ -25,7 +25,6 @@
     <Compile Include="programs.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="navbar.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="assets\index.css" />
