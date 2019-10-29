@@ -28,6 +28,7 @@
   <ItemGroup>
     <Content Include=".gitignore" />
     <Content Include="assets\Files\Sector_DevOps_Status_FX.xlsx" />
+    <Content Include="assets\Images\dog.jpg" />
     <Content Include="assets\index.css" />
     <Content Include="assets\programs.css" />
     <Content Include="README.md" />
@@ -36,6 +37,7 @@
   <ItemGroup>
     <Folder Include="assets" />
     <Folder Include="assets\Files\" />
+    <Folder Include="assets\Images\" />
     <Folder Include="pages\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />

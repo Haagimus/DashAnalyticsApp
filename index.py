@@ -25,6 +25,8 @@ def display_page(pathname):
         return EmployeeTable()
     if pathname == '/programs':
         return Programs()
+    if pathname == '/':
+        return html.Img(src='./assets/Images/dog.jpg', className ='center')
 
 
 @app.callback(Output('homeLink', 'className'), [Input('url', 'pathname')])
