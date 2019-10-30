@@ -9,7 +9,7 @@
 - [ ] Finish layout for employee roster table page
 - [ ] Create chart that outlines over a -3 to +12 month line chart of employee count
     - [ ] This should be filterable by department (Finance Function)
-
+---
 #App TODO
 - [ ] Create the login page
 - [ ] Create the AuthAccess.py for LDAP authentication with active directory through [Flask](https://code.tutsplus.com/tutorials/flask-authentication-with-ldap--cms-23101)
@@ -17,15 +17,16 @@
     - Use SQL table name and department for page access
 - [ ] Separate app.py and contain site core callbacks within it
 - [ ] Make navbar contain callbacks for formatting active pages
+---
 #Home TODO
-- [ ] Doge pics
+-[ ] Doge pics
 - [ ] Contact form
     - [ ] Reason selection (feature request, issue report, admin request)
     - [ ] Submitter info (maybe this can be automatic with the LDAP)
 - [ ] Change Log
 - [ ] Features in development
 - [ ] Add an IsAdmin boolean variable so admin only controls will or wont show
-
+---
 #Employees TODO
 - [ ] User / Manager view based on LDAP credential check for admin in SQL
 - [ ] Employee table
@@ -37,7 +38,7 @@
     - [ ] Quick change level / position button to quickly prompt with end date picker that when submitted will add new entry with selected date as start and all other information populated
 - [ ] Add New Employee button
     - Likely the same form as edit but not pre populated
-
+---
 #Programs TODO
 - [ ] Add data filter dropdowns at top of page
     - [ ] Charge #
