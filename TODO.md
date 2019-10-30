@@ -19,7 +19,7 @@
 - [ ] Make navbar contain callbacks for formatting active pages
 ---
 #Home TODO
--[ ] Doge pics
+[ ] Doge pics
 - [ ] Contact form
     - [ ] Reason selection (feature request, issue report, admin request)
     - [ ] Submitter info (maybe this can be automatic with the LDAP)
