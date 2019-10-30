@@ -13,6 +13,15 @@ ul {
     margin-top: 5%;
     width: 25%;
 }
+
+#page-content {
+	background: rgb(85, 121, 135);
+	background-repeat: no-repeat;
+	background-position-x: right;
+	background-position-y: top;
+	height: 90vh;
+}
+
 li {
     float: left;
 }
