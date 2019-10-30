@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{f9939fc0-8b83-4454-9707-1364ed719dec}</ProjectGuid>
     <ProjectHome />
-    <StartupFile>index.py</StartupFile>
+    <StartupFile>app.py</StartupFile>
     <SearchPath />
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
@@ -21,15 +21,16 @@
   <ItemGroup>
     <Compile Include="app.py" />
     <Compile Include="assets\navbar.py" />
-    <Compile Include="index.py" />
+    <Compile Include="pages\home.py" />
     <Compile Include="pages\employees.py" />
     <Compile Include="pages\programs.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
     <Content Include="assets\Files\Sector_DevOps_Status_FX.xlsx" />
+    <Content Include="assets\home.css" />
+    <Content Include="assets\Images\cat_peel.jpg" />
     <Content Include="assets\Images\dog.jpg" />
-    <Content Include="assets\index.css" />
     <Content Include="assets\programs.css" />
     <Content Include="README.md" />
     <Content Include="TODO.md" />

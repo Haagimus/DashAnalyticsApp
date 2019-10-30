@@ -1,7 +1,4 @@
-import dash
-import dash_core_components as dcc
 import dash_html_components as html
-from dash.dependencies import Input, Output
 import pandas as pd
 import dash_table as dt
 
@@ -31,7 +28,7 @@ def color_cells(str):
 def Programs():
     content = html.Div([
         html.H2('Under Construction'),
-        html.Div(id='programs-content'),
+        html.Div(id='programs-table'),
         html.Table(make_dash_table(df_excel))
                    ])
     return content
