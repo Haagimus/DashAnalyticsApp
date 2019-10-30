@@ -26,7 +26,7 @@ def display_page(pathname):
     if pathname == '/programs':
         return Programs()
     if pathname == '/':
-        return html.Img(src='./assets/Images/dog.jpg', className='center')
+        return html.Img(src='./assets/Images/cat_peel.jpg', className='center')
 
 # These callbacks just set the active class for the navbar so it colors properly
 @app.callback(Output('homeLink', 'className'), [Input('url', 'pathname')])
