@@ -26,7 +26,7 @@ def display_page(pathname):
     if pathname == '/programs':
         return Programs()
     if pathname == '/':
-        return html.Img(src='./assets/Images/dog.jpg', className ='center')
+        return html.Img(src='./assets/Images/dog.jpg', className='center')
 
 # These callbacks just set the active class for the navbar so it colors properly
 @app.callback(Output('homeLink', 'className'), [Input('url', 'pathname')])
@@ -50,6 +50,6 @@ def PgmLink(pathname):
 if __name__ == '__main__':
     # Uncomment this line to run the actual server
     #app.run_server(debug=False, host='166.20.109.188', port='8080')
-    
+
     # Uncomment this line to debug locally
     app.run_server(debug=True, host='127.0.0.1', port='8080')

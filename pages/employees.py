@@ -51,7 +51,7 @@ def EmployeeTable():
         sort_action='native',
         sort_mode='multi',
         row_deletable=False,
-        hidden_columns=['Long_Text', 'Name_Full'],
+        hidden_columns=['Name_Full'],
     ),
     html.Div(id='employee-container')
     return empTable
