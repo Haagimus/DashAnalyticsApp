@@ -17,7 +17,6 @@ conn = pyodbc.connect(
 
 empDF = pandas.read_sql(EmpTblSQL, conn)
 finDF = pandas.read_sql(FinTblSql, conn)
-hrDF = pandas.read_sql(HRTblSQL, conn)
 
 count = {}
 idx = 0
