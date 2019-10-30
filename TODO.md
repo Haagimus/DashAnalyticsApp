@@ -4,8 +4,51 @@
 - [x] Restructure file layout like the bottom of [this page](https://dash.plot.ly/urls)
 - [x] Create "modules" for running individual pages on the Dash server so they can be updated without changing the entire page (also this will keep it from becoming one huge file to maintain)
     - Started this structure, simply create the file for the page then import the .py file to use its stuff
-- [ ] Finish designing the SQL table structure for program data captures
+- [x] Finish designing the SQL table structure for program data captures
 - [ ] Create some sort of authentication system to allow authorized people to edit necessary information (ie. HR authorized to edit the personnel table)
 - [ ] Finish layout for employee roster table page
 - [ ] Create chart that outlines over a -3 to +12 month line chart of employee count
     - [ ] This should be filterable by department (Finance Function)
+
+#App TODO
+- [ ] Create the login page
+- [ ] Create the AuthAccess.py for LDAP authentication with active directory through [Flask](https://code.tutsplus.com/tutorials/flask-authentication-with-ldap--cms-23101)
+    - Our LDAP uses port 389
+    - Use SQL table name and department for page access
+- [ ] Separate app.py and contain site core callbacks within it
+- [ ] Make navbar contain callbacks for formatting active pages
+#Home TODO
+- [ ] Doge pics
+- [ ] Contact form
+    - [ ] Reason selection (feature request, issue report, admin request)
+    - [ ] Submitter info (maybe this can be automatic with the LDAP)
+- [ ] Change Log
+- [ ] Features in development
+- [ ] Add an IsAdmin boolean variable so admin only controls will or wont show
+
+#Employees TODO
+- [ ] User / Manager view based on LDAP credential check for admin in SQL
+- [ ] Employee table
+    - [ ] Search by field (doesn't currently work in IE but does in FF)
+    - [ ] Sort by field
+    - [ ] Option to toggle employees with end date listed
+- [ ] Edit employees button
+    - [ ] Modal to edit all fields in entry
+    - [ ] Quick change level / position button to quickly prompt with end date picker that when submitted will add new entry with selected date as start and all other information populated
+- [ ] Add New Employee button
+    - Likely the same form as edit but not pre populated
+
+#Programs TODO
+- [ ] Add data filter dropdowns at top of page
+    - [ ] Charge #
+    - [ ] Program Name
+    - [ ] Project Name
+    - [ ] Start Date (figure out a toggle option for range date)
+    - [ ] End Date (same as above)
+    - [ ] Charge year
+    - [ ] Charge period
+    - [ ] Charge Quarter
+- [ ] Fetch Data button with filter criteria
+- [ ] Data table for filtered data
+    - [ ] Support inline editing
+- [ ] Add new entry
