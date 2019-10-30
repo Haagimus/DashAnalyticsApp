@@ -9,9 +9,8 @@ import dash_table as dt
 import dash_core_components as dcc
 import dash_html_components as html
 
-EmpTblSQL = 'SELECT * FROM dbo.Employees'
+EmpTblSQL = 'SELECT * FROM dbo.EmployeeData'
 FinTblSql = 'SELECT * FROM dbo.Finance_Functions'
-HRTblSQL = 'SELECT * FROM dbo.HR_Functions'
 
 conn = pyodbc.connect(
     'DRIVER={SQL Server};SERVER=FRXSV-DAUPHIN;DATABASE=FRXResourceDemand')
