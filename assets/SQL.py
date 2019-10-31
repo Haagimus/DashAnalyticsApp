@@ -1,5 +1,6 @@
 from sqlalchemy.connectors import pyodbc
 import pyodbc
+import pandas
 
 conn = pyodbc.connect(
     'DRIVER={SQL Server};SERVER=FRXSV-DAUPHIN;DATABASE=FRXResourceDemand')
