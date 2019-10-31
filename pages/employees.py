@@ -1,22 +1,20 @@
-# this file will serve as the host for the employee data page
-
+# database imports
 from sqlalchemy.connectors import pyodbc
 from sqlalchemy.inspection import inspect
 import pyodbc
+# analysis imports
 import pandas
 import numpy
+# Dash
 import dash_table as dt
 import dash_core_components as dcc
 import dash_html_components as html
 
-EmpTblSQL = 'SELECT * FROM dbo.EmployeeData'
-FinTblSql = 'SELECT * FROM dbo.Finance_Functions'
+# Local assets import
+import assets.SQL as sql
 
-conn = pyodbc.connect(
-    'DRIVER={SQL Server};SERVER=FRXSV-DAUPHIN;DATABASE=FRXResourceDemand')
-
-empDF = pandas.read_sql(EmpTblSQL, conn)
-finDF = pandas.read_sql(FinTblSql, conn)
+empDF = sql.GetTable('dbo.EmployeeData')
+finDF = sql.GetTable('dbo.Finance_Functions')
 
 count = {}
 idx = 0
@@ -54,6 +52,7 @@ def EmployeeTable():
     html.Div(id='employee-container')
     return empTable
 
+# For debugging
 # for (key, value) in count.items():
 #     print(key, '::', value)
 #     total += value
