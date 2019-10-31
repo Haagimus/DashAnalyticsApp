@@ -12,11 +12,12 @@
 ---
 #App TODO
 - [ ] Create the login page
-- [ ] Create the AuthAccess.py for LDAP authentication with active directory through [Flask](https://code.tutsplus.com/tutorials/flask-authentication-with-ldap--cms-23101)
+- [ ] Create the `AuthAccess.py` for LDAP authentication with active directory through [Flask](https://code.tutsplus.com/tutorials/flask-authentication-with-ldap--cms-23101)
     - Our LDAP uses port 389
     - Use SQL table name and department for page access
-- [ ] Separate app.py and contain site core callbacks within it
+- [ ] Separate `app.py` and contain site core callbacks within it
 - [ ] Make navbar contain callbacks for formatting active pages
+- [ ] Create `SQL.py` to control all SQL database read/write requests
 ---
 #Home TODO
 - [ ] Doge pics
