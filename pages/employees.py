@@ -20,12 +20,12 @@ test = sql.GetTable('EmployeeData')
 
 count = {}
 idx = 0
-# for title in finDF.values:
-#     count.update({title[0]: 0})
-#     for label, row in empDF.iterrows():
-#         if row['Function_Finance'] == title and row['Date_End'] == None:
-#             count[title[0]] += 1
-#     idx += 1
+for title in finDF.values:
+    count.update({title[0]: 0})
+    for label, row in empDF.iterrows():
+        if row['Function_Finance'] == title and row['Date_End'] == None:
+            count[title[0]] += 1
+    idx += 1
 
 total = 0
 

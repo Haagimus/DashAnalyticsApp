@@ -11,7 +11,7 @@
     - [ ] This should be filterable by department (Finance Function)
 ---
 #App TODO
-- [ ] Create the login page
+- [x] Create the login page
 - [ ] Create the `AuthAccess.py` for LDAP authentication with active directory through [Flask](https://code.tutsplus.com/tutorials/flask-authentication-with-ldap--cms-23101)
     - Our LDAP uses port 389
     - Use SQL table name and department for page access

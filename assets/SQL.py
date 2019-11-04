@@ -10,13 +10,12 @@ conn = pyodbc.connect(
 
 # This function returns an entire table. If the table requested is not found the 'None' value is returned.
 def GetTable(name):
-    # try:
-    #     t = table('dbo.' + name)
-    #     results = conn.execute(t)
-    # except:
-    #     results = None
-    # return results
-    pass
+    try:
+        t = table('dbo.' + name)
+        results = conn.execute(t)
+    except:
+        results = None
+    return results
 
 
 # This function returns a table filtered by specified column and criteria.
