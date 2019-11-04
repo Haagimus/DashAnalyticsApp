@@ -13,17 +13,19 @@ import dash_html_components as html
 # Local assets import
 import assets.SQL as sql
 
-empDF = sql.GetTable('dbo.EmployeeData')
-finDF = sql.GetTable('dbo.Finance_Functions')
+empDF = sql.GetTable('EmployeeData')
+finDF = sql.GetTable('Finance_Functions')
+
+test = sql.GetTable('EmployeeData')
 
 count = {}
 idx = 0
-for title in finDF.values:
-    count.update({title[0]: 0})
-    for label, row in empDF.iterrows():
-        if row['Function_Finance'] == title and row['Date_End'] == None:
-            count[title[0]] += 1
-    idx += 1
+# for title in finDF.values:
+#     count.update({title[0]: 0})
+#     for label, row in empDF.iterrows():
+#         if row['Function_Finance'] == title and row['Date_End'] == None:
+#             count[title[0]] += 1
+#     idx += 1
 
 total = 0
 

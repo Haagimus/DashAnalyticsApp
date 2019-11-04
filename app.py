@@ -1,5 +1,6 @@
 # Dash
 import dash
+import dash_auth
 import dash_core_components as dcc
 import dash_html_components as html
 import dash_bootstrap_components as dbc
@@ -7,6 +8,7 @@ from dash.dependencies import Output, Input  # Used for callbacks
 
 # Import assets
 import assets.navbar as nb
+import assets.SQL as sql
 
 # Import pages
 from pages.home import Home
@@ -17,10 +19,18 @@ from pages.employees import EmployeeTable
 # the department variable is used in conjuction to determine which pages get admin access.
 isAdmin = False
 adminDpt = None
+VALID_USERNAME_PASSWORD_PAIRS = {
+    'username': 'password'
+}
 
 nav = nb.Navbar()
 
 app = dash.Dash(__name__)
+
+auth = dash_auth.BasicAuth(
+    app,
+    VALID_USERNAME_PASSWORD_PAIRS
+)
 
 # Layout
 app.layout = html.Div([
@@ -38,6 +48,8 @@ def display_page(pathname):
         return Programs()
     if pathname == '/':
         return Home()
+    # if pathname == '/':
+    #     return Login(app)
 
 # These callbacks just set the active class for the navbar so it colors properly
 @app.callback(Output('homeLink', 'className'), [Input('url', 'pathname')])
