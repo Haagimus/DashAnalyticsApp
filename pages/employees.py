@@ -1,33 +1,29 @@
-# database imports
-from sqlalchemy.connectors import pyodbc
-from sqlalchemy.inspection import inspect
-import pyodbc
 # analysis imports
 import pandas
 import numpy
 # Dash
 import dash_table as dt
-import dash_core_components as dcc
 import dash_html_components as html
 
 # Local assets import
 import assets.SQL as sql
 
 empDF = sql.GetTable('EmployeeData')
-finDF = sql.GetTable('Finance_Functions')
+finTbl = sql.GetTable('Finance_Functions')
 
-test = sql.GetTable('EmployeeData')
 
-count = {}
-idx = 0
-for title in finDF.values:
-    count.update({title[0]: 0})
-    for label, row in empDF.iterrows():
-        if row['Function_Finance'] == title and row['Date_End'] == None:
-            count[title[0]] += 1
-    idx += 1
+def funcTotals():
+    count = {}
+    idx = 0
+    for item in finTbl:
+        count.update({item[0]: 0})
+        for row in empDF.values:
+            if row[0][5] == item[0] and row[0][9] == None:
+                count[item[0]] += 1
+        idx += 1
 
-total = 0
+    total = 0
+    return count, total
 
 
 def EmployeeTable():
@@ -38,18 +34,24 @@ def EmployeeTable():
             'overflow': 'hidden',
             'textOverflow': 'ellipses',
             'maxWidth': 0,
+            'back'
         },
         id='Employees',
-        columns=[
-            {'name': i, 'id': i, 'selectable': True} for i in empDF.columns
-        ],
+        columns=[{'name': i, 'id': i} for i in empDF.columns],
         data=empDF.to_dict('records'),
         editable=True,
         filter_action='native',
         sort_action='native',
         sort_mode='multi',
         row_deletable=False,
-        hidden_columns=['Name_Full'],
+        hidden_columns=[
+            'Name_Full',
+            'IsAdmin',
+            'Level',
+            'Employee_Number',
+            'Job_Title',
+            'Date_End',
+            'Acting'],
     ),
     html.Div(id='employee-container')
     return empTable

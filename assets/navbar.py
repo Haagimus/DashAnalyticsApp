@@ -6,7 +6,7 @@ import dash_core_components as dcc
 
 def Navbar():
     navbar = html.Ul([
-        html.Li([dcc.Link('Home', id='homeLink', href='/home')]),
+        html.Li([dcc.Link('Home', id='homeLink', href='/')]),
         html.Li([dcc.Link('Employee', id='empLink', href='/employees')]),
         html.Li([dcc.Link('Programs', id='pgmLink', href='/programs')])
     ])

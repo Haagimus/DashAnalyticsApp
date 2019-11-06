@@ -1,18 +1,26 @@
 import pyodbc
 import pandas
+import urllib
 
 # sqlalchemy imports
 from sqlalchemy.sql import table, select
 
+driver = 'SQL Server'
+server = 'FRXSV-DAUPHIN'
+database = 'FRXResourceDemand'
+
 conn = pyodbc.connect(
-    'DRIVER={SQL Server};SERVER=FRXSV-DAUPHIN;DATABASE=FRXResourceDemand')
+    'DRIVER={'+driver+'};SERVER='+server+';DATABASE='+database+';')
 
-
+cursor = conn.cursor()
 # This function returns an entire table. If the table requested is not found the 'None' value is returned.
+
+
 def GetTable(name):
     try:
-        t = table('dbo.' + name)
-        results = conn.execute(t)
+        results = pandas.read_sql('SELECT * FROM '+name,conn)
+        # cursor.execute('SELECT * FROM '+name)
+        # results = cursor.fetchall()
     except:
         results = None
     return results
