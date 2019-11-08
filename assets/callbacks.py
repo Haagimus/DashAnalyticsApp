@@ -3,11 +3,12 @@ from pages.employees import empDF, operators, split_filter_part
 from dash.dependencies import Output, Input
 
 # Import pages
-from pages.home import Home
-from pages.programs import Programs
-from pages.employees import EmployeeTable
+# from pages.home import Home
+# from pages.programs import Programs
+# from pages.employees import EmployeeTable
 
 
+# TODO: Need to figure out how to get this callback working
 @app.callback(
     Output('employee-container', "data"),
     [Input('employee-container', "filter_query")])
@@ -28,14 +29,14 @@ def update_table(filter):
 
 
 # These callbacks handle main page functionality like content loading
-@app.callback(Output('page-content', 'children'), [Input('url', 'pathname')])
-def display_page(pathname):
-    if pathname == '/employees':
-        return EmployeeTable()
-    if pathname == '/programs':
-        return Programs()
-    if pathname == '/':
-        return Home()
+# @app.callback(Output('page-content', 'children'), [Input('url', 'pathname')])
+# def display_page(pathname):
+#     if pathname == '/employees':
+#         return EmployeeTable()
+#     if pathname == '/programs':
+#         return Programs()
+#     if pathname == '/':
+#         return Home()
     # if pathname == '/':
     #     return Login(app)
 

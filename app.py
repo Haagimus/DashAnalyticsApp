@@ -8,9 +8,9 @@ import dash_html_components as html
 # Import assets
 import assets.navbar as nb
 
-
-# This variable is used throughout the application to determine whether the logged in user is admin or not, if they are
-# the department variable is used in conjuction to determine which pages get admin access.
+# This variable is used throughout the application to determine whether the
+# logged in user is admin or not, if they are the department variable is used
+# in conjuction to determine which pages get admin access.
 isAdmin = False
 adminDpt = None
 VALID_USERNAME_PASSWORD_PAIRS = {

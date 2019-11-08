@@ -13,12 +13,13 @@ conn = pyodbc.connect(
     'DRIVER={'+driver+'};SERVER='+server+';DATABASE='+database+';')
 
 cursor = conn.cursor()
-# This function returns an entire table. If the table requested is not found the 'None' value is returned.
 
 
+# This function returns an entire table. If the table requested is not found
+# the 'None' value is returned.
 def GetTable(name):
     try:
-        results = pandas.read_sql('SELECT * FROM '+name,conn)
+        results = pandas.read_sql('SELECT * FROM '+name, conn)
         # cursor.execute('SELECT * FROM '+name)
         # results = cursor.fetchall()
     except:
@@ -28,7 +29,8 @@ def GetTable(name):
 
 # This function returns a table filtered by specified column and criteria.
 # Len(results) == 0 if no matches are found.
-def SelectQuery(columns=None, whereclause=None, from_obj=None, distinct=False, having=None, correlate=True, prefixes=None, suffixes=None):
+def SelectQuery(columns=None, whereclause=None, from_obj=None, distinct=False,
+                having=None, correlate=True, prefixes=None, suffixes=None):
 
     # results = pandas.read_sql(query, conn)
     # return results

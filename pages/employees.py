@@ -19,7 +19,7 @@ def funcTotals():
     for item in finTbl:
         count.update({item[0]: 0})
         for row in empDF.values:
-            if row[0][5] == item[0] and row[0][9] == None:
+            if row[0][5] == item[0] and row[0][9] is None:
                 count[item[0]] += 1
         idx += 1
 
@@ -27,40 +27,38 @@ def funcTotals():
     return count, total
 
 
-def EmployeeTable():
-    empTable = dt.DataTable(
-        style_data={
-            'whitespace': 'normal',
-            'height': 'auto',
-            'overflow': 'hidden',
-            'textOverflow': 'ellipses',
-            'maxWidth': 0
-        },
-        id='Employees',
-        columns=[{'name': i, 'id': i} for i in empDF.columns],
-        data=empDF.to_dict('records'),
-        editable=False,
-        filter_action='custom',
-        sort_action='native',
-        sort_mode='single',
-        row_deletable=False,
-        hidden_columns=[
-            'Name_Full',
-            'IsAdmin',
-            'Level',
-            'Employee_Number',
-            'Job_Title',
-            'Date_End',
-            'Acting'],
-        style_as_list_view=True,
-        style_header={
-            'backgroundColor': 'white',
-            'fontWeight': 'bold'
-        },
-        row_selectable='single'
-    ),
-    html.Div(id='employee-container')
-    return empTable
+layout = dt.DataTable(
+    style_data={
+        'whitespace': 'normal',
+        'height': 'auto',
+        'overflow': 'hidden',
+        'textOverflow': 'ellipses',
+        'maxWidth': 0
+    },
+    id='Employees',
+    columns=[{'name': i, 'id': i} for i in empDF.columns],
+    data=empDF.to_dict('records'),
+    editable=False,
+    filter_action='custom',
+    sort_action='native',
+    sort_mode='single',
+    row_deletable=False,
+    hidden_columns=[
+        'Name_Full',
+        'IsAdmin',
+        'Level',
+        'Employee_Number',
+        'Job_Title',
+        'Date_End',
+        'Acting'],
+    style_as_list_view=True,
+    style_header={
+        'backgroundColor': 'white',
+        'fontWeight': 'bold'
+    },
+    row_selectable='single'
+),
+html.Div(id='employee-container')
 
 
 operators = [['ge ', '>='],

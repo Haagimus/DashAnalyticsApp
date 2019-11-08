@@ -17,7 +17,7 @@
     - Use SQL table name and department for page access
 - [ ] Separate `app.py` and contain site core callbacks within it
 - [ ] Make navbar contain callbacks for formatting active pages
-- [ ] Create `SQL.py` to control all SQL database read/write requests
+- [x] Create `SQL.py` to control all SQL database read/write requests
 ---
 #Home TODO
 - [ ] Doge pics
