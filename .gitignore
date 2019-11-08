@@ -1,7 +1,5 @@
 .ionide
-.vscode
 __pycache__
 .vs
 ~.gitcredential
 *.pyproj.user
-venv
