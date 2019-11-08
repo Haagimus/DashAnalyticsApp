@@ -40,7 +40,8 @@ def update_table(filter):
     # if pathname == '/':
     #     return Login(app)
 
-# These callbacks just set the active class for the navbar so it colors properly
+# These callbacks just set the active class for the navbar so it colors
+# properly
 @app.callback(Output('homeLink', 'className'), [Input('url', 'pathname')])
 def HomeLink(pathname):
     if pathname == '/':
