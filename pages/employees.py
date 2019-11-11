@@ -5,6 +5,7 @@ import numpy
 import dash_table as dt
 import dash_html_components as html
 from dash.dependencies import Output, Input
+from app import app
 
 # Local assets import
 import assets.SQL as sql
@@ -27,38 +28,39 @@ def funcTotals():
     return count, total
 
 
-layout = dt.DataTable(
-    style_data={
-        'whitespace': 'normal',
-        'height': 'auto',
-        'overflow': 'hidden',
-        'textOverflow': 'ellipses',
-        'maxWidth': 0
-    },
-    id='Employees',
-    columns=[{'name': i, 'id': i} for i in empDF.columns],
-    data=empDF.to_dict('records'),
-    editable=False,
-    filter_action='custom',
-    sort_action='native',
-    sort_mode='single',
-    row_deletable=False,
-    hidden_columns=[
-        'Name_Full',
-        'IsAdmin',
-        'Level',
-        'Employee_Number',
-        'Job_Title',
-        'Date_End',
-        'Acting'],
-    style_as_list_view=True,
-    style_header={
-        'backgroundColor': 'white',
-        'fontWeight': 'bold'
-    },
-    row_selectable='single'
-),
-html.Div(id='employee-container')
+def Employees():
+    layout = dt.DataTable(
+        style_data={
+            'whitespace': 'normal',
+            'height': 'auto',
+            'overflow': 'hidden',
+            'textOverflow': 'ellipses',
+            'maxWidth': 0
+        },
+        id='Employees',
+        columns=[{'name': i, 'id': i} for i in empDF.columns],
+        data=empDF.to_dict('records'),
+        editable=False,
+        filter_action='custom',
+        sort_action='native',
+        sort_mode='single',
+        row_deletable=False,
+        hidden_columns=[
+            'Name_Full',
+            'IsAdmin',
+            'Level',
+            'Employee_Number',
+            'Job_Title',
+            'Date_End',
+            'Acting'],
+        style_as_list_view=True,
+        style_header={
+            'backgroundColor': 'white',
+            'fontWeight': 'bold'
+        },
+        row_selectable='single'
+    ),
+    html.Div(id='employee-container')
 
 
 operators = [['ge ', '>='],

@@ -1,11 +1,11 @@
-from server import app
+from app import app
 from pages.employees import empDF, operators, split_filter_part
 from dash.dependencies import Output, Input
 
 # Import pages
-# from pages.home import Home
-# from pages.programs import Programs
-# from pages.employees import EmployeeTable
+from pages.home import Home
+from pages.programs import Programs
+from pages.employees import Employees
 
 
 # TODO: Need to figure out how to get this callback working
@@ -29,32 +29,41 @@ def update_table(filter):
 
 
 # These callbacks handle main page functionality like content loading
-# @app.callback(Output('page-content', 'children'), [Input('url', 'pathname')])
-# def display_page(pathname):
-#     if pathname == '/employees':
-#         return EmployeeTable()
-#     if pathname == '/programs':
-#         return Programs()
-#     if pathname == '/':
-#         return Home()
-    # if pathname == '/':
-    #     return Login(app)
+@app.callback(
+    Output('page-content', 'children'),
+    [Input('url', 'pathname')])
+def display_page(pathname):
+    if pathname == '/employees':
+        return Employees()
+    if pathname == '/programs':
+        return Programs()
+    if pathname == '/':
+        return Home()
+    if pathname == '/':
+        return Login(app)
+
 
 # These callbacks just set the active class for the navbar so it colors
 # properly
-@app.callback(Output('homeLink', 'className'), [Input('url', 'pathname')])
+@app.callback(
+    Output('homeLink', 'className'),
+    [Input('url', 'pathname')])
 def HomeLink(pathname):
     if pathname == '/':
         return 'active'
 
 
-@app.callback(Output('empLink', 'className'), [Input('url', 'pathname')])
+@app.callback(
+    Output('empLink', 'className'),
+    [Input('url', 'pathname')])
 def EmpLink(pathname):
     if pathname == '/employees':
         return 'active'
 
 
-@app.callback(Output('pgmLink', 'className'), [Input('url', 'pathname')])
+@app.callback(
+    Output('pgmLink', 'className'),
+    [Input('url', 'pathname')])
 def PgmLink(pathname):
     if pathname == '/programs':
         return 'active'

@@ -31,8 +31,9 @@ def color_cells(str):
     return fmt[str]
 
 
-layout = html.Div([
-    html.H2('Under Construction'),
-    html.Div(id='programs-table'),
-    html.Table(make_dash_table(df_excel))
-])
+def Programs():
+    layout = html.Div([
+        html.H2('Under Construction'),
+        html.Div(id='programs-table'),
+        html.Table(make_dash_table(df_excel))
+    ])

@@ -1,6 +1,6 @@
 # Dash
 from assets import callbacks
-from server import app, server
+import dash
 import dash_auth
 import dash_core_components as dcc
 import dash_html_components as html
@@ -17,6 +17,9 @@ VALID_USERNAME_PASSWORD_PAIRS = {
     'username': 'password'
 }
 
+app = dash.Dash('Resources and Data Analysis')
+app.config.suppress_callback_exceptions = True
+
 nav = nb.Navbar()
 
 auth = dash_auth.BasicAuth(
@@ -30,3 +33,11 @@ app.layout = html.Div([
     nav,
     html.Div(id='page-content')
 ])
+
+# Main application loop
+if __name__ == '__main__':
+    # Uncomment this line to run the actual server
+    # app.run_server(debug=False, host='166.20.109.188', port='8080')
+
+    # Uncomment this line to debug locally
+    app.run_server(debug=True, host='127.0.0.1', port='8080')
