@@ -1,31 +1,8 @@
-from app import app
-from pages.employees import empDF, operators, split_filter_part
+from server import app
 from dash.dependencies import Output, Input
-
-# Import pages
-from pages.home import Home
-from pages.programs import Programs
-from pages.employees import Employees
-
-
-# TODO: Need to figure out how to get this callback working
-@app.callback(
-    Output('employee-container', "data"),
-    [Input('employee-container', "filter_query")])
-def update_table(filter):
-    filtering_expressions = filter.split(' && ')
-    dff = empDF
-    for filter_part in filtering_expressions:
-        col_name, operator, filter_value = split_filter_part(filter_part)
-
-        if operator in ('eq', 'ne', 'lt', 'le', 'gt', 'ge'):
-            dff = dff.loc[getattr(dff[col_name], operator)(filter_value)]
-        elif operator == 'contains':
-            dff = dff.loc[dff[col_name].str.contains(filter_value)]
-        elif operator == 'datestartswith':
-            dff = dff.loc[dff[col_name].str.startswith(filter_value)]
-
-    return dff.to_dict('records')
+import pages.employees as emp
+import pages.programs as pgm
+import pages.home as home
 
 
 # These callbacks handle main page functionality like content loading
@@ -34,11 +11,11 @@ def update_table(filter):
     [Input('url', 'pathname')])
 def display_page(pathname):
     if pathname == '/employees':
-        return Employees()
+        return emp.Employees()
     if pathname == '/programs':
-        return Programs()
+        return pgm.Programs()
     if pathname == '/':
-        return Home()
+        return home.Home()
     if pathname == '/':
         return Login(app)
 

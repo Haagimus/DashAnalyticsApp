@@ -5,7 +5,7 @@ import numpy
 import dash_table as dt
 import dash_html_components as html
 from dash.dependencies import Output, Input
-from app import app
+from server import app
 
 # Local assets import
 import assets.SQL as sql
@@ -61,6 +61,7 @@ def Employees():
         row_selectable='single'
     ),
     html.Div(id='employee-container')
+    return layout
 
 
 operators = [['ge ', '>='],
@@ -97,3 +98,22 @@ def split_filter_part(filter_part):
 #     print(key, '::', value)
 #     total += value
 # print('{0} total staff'.format(total))
+
+
+@app.callback(
+    Output('employee-container', "data"),
+    [Input('employee-container', "filter_query")])
+def update_table(filter):
+    filtering_expressions = filter.split(' && ')
+    dff = empDF
+    for filter_part in filtering_expressions:
+        col_name, operator, filter_value = split_filter_part(filter_part)
+
+        if operator in ('eq', 'ne', 'lt', 'le', 'gt', 'ge'):
+            dff = dff.loc[getattr(dff[col_name], operator)(filter_value)]
+        elif operator == 'contains':
+            dff = dff.loc[dff[col_name].str.contains(filter_value)]
+        elif operator == 'datestartswith':
+            dff = dff.loc[dff[col_name].str.startswith(filter_value)]
+
+    return dff.to_dict('records')

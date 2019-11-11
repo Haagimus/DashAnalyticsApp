@@ -37,3 +37,4 @@ def Programs():
         html.Div(id='programs-table'),
         html.Table(make_dash_table(df_excel))
     ])
+    return layout
