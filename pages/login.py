@@ -3,6 +3,7 @@ import dash_core_components as dcc
 from server import app
 from dash.dependencies import State, Output, Input
 from flask import session
+import datetime as dt
 
 
 def Login():
@@ -37,10 +38,12 @@ def Login():
     return layout
 
 
-@app.callback(Output('login_form', 'submit'),
+@app.callback(Output('login_button', 'n_clicks_timestamp'),
               [Input('page_header', 'value')])
-def checkLogin(username, password):
-    if username == 'username' and password == 'password':
-        return 'You have successfully logged in.'
-    else:
-        return 'Login failed.'
+def checkLogin(n_clicks_timestamp, username, password):
+    if n_clicks_timestamp > (dt.datetime.now().timestamp() - 1):
+        
+        if username == 'username' and password == 'password':
+            return 'You have successfully logged in.'
+        else:
+            return 'Login failed.'
