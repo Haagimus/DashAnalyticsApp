@@ -38,11 +38,10 @@ def Login():
     return layout
 
 
-@app.callback(Output('login_button', 'n_clicks_timestamp'),
+@app.callback(Output('login_button', 'n_clicks'),
               [Input('page_header', 'value')])
 def checkLogin(n_clicks_timestamp, username, password):
-    if n_clicks_timestamp > (dt.datetime.now().timestamp() - 1):
-        
+    if n_clicks > 1:
         if username == 'username' and password == 'password':
             return 'You have successfully logged in.'
         else:
