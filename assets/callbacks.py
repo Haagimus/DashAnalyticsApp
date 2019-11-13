@@ -20,10 +20,10 @@ def display_page(pathname):
         return pgm.Programs()
     if pathname == '/capacity':
         return cap.Capacity()
+    if pathname == '/login':
+        return log.Login()
     if pathname == '/home':
         return home.Home()
-    if pathname == '/':
-        return log.Login()
 
 
 # These callbacks just set the active class for the navbar so it colors
@@ -58,6 +58,17 @@ def PgmLink(pathname):
 def CapLink(pathname):
     if pathname == '/capacity':
         return 'active'
+
+
+@app.callback(Output('myModal', 'style'),
+              [Input('login', 'n_clicks'),
+               Input('close', 'n_clicks')])
+def show(n1, n2):
+    if (n1 + n2) % 2 == 0:
+        return {'display': 'none'}
+    else:
+        return {'display': 'block'}
+
 
 # class Output(dependencies.Output):
 #     """Output of a callback."""

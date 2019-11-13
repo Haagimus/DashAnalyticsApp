@@ -9,14 +9,18 @@ driver = 'SQL Server'
 server = 'FRXSV-DAUPHIN'
 database = 'FRXResourceDemand'
 
-conn = pyodbc.connect(
-    'DRIVER={'+driver+'};SERVER='+server+';DATABASE='+database+';')
+try:
+    conn = pyodbc.connect(
+        'DRIVER={'+driver+'};SERVER='+server+';DATABASE='+database+';')
 
-cursor = conn.cursor()
-
+    cursor = conn.cursor()
+except:
+    pass
 
 # This function returns an entire table. If the table requested is not found
 # the 'None' value is returned.
+
+
 def GetTable(name):
     try:
         results = pandas.read_sql('SELECT * FROM '+name, conn)
