@@ -5,25 +5,22 @@ import dash_core_components as dcc
 import dash_auth
 import dash
 from server import app, server
+from dash.dependencies import Output, Input
+from flask import Flask, render_template, redirect, url_for, request
 
-
-# Import assets
 
 # This variable is used throughout the application to determine whether the
 # logged in user is admin or not, if they are the department variable is used
 # in conjuction to determine which pages get admin access.
 isAdmin = False
 adminDpt = None
-VALID_USERNAME_PASSWORD_PAIRS = {
-    'username': 'password'
-}
 
 nav = nb.Navbar()
 
-auth = dash_auth.BasicAuth(
-    app,
-    VALID_USERNAME_PASSWORD_PAIRS
-)
+# auth = dash_auth.BasicAuth(
+#     app,
+#     VALID_USERNAME_PASSWORD_PAIRS
+# )
 
 # Layout
 app.layout = html.Div([

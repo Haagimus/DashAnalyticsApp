@@ -20,7 +20,7 @@ def funcTotals():
     for item in finTbl:
         count.update({item[0]: 0})
         for row in empDF.values:
-            if row[0][5] == item[0] and row[0][9] is None:
+            if row[5] == item[0] and row[9] is None:
                 count[item[0]] += 1
         idx += 1
 
