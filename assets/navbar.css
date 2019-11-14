@@ -85,9 +85,10 @@ li a:hover {
 #loginMessage {
     display: block;
     margin: -5px 0px;
+    position: absolute;
     color: red;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 18px;
 }
 
 #loginHead {
