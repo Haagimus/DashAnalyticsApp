@@ -20,9 +20,7 @@ def display_page(pathname):
         return pgm.Programs()
     if pathname == '/capacity':
         return cap.Capacity()
-    if pathname == '/login':
-        return log.Login()
-    if pathname == '/home':
+    if pathname == '/':
         return home.Home()
 
 
@@ -32,7 +30,7 @@ def display_page(pathname):
     Output('homeLink', 'className'),
     [Input('url', 'pathname')])
 def HomeLink(pathname):
-    if pathname == '/home':
+    if pathname == '/':
         return 'active'
 
 

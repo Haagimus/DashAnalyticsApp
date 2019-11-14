@@ -22,7 +22,7 @@ form = dbc.Form(children=[
     dbc.FormGroup([
         dbc.Label("Choose one", style={'color': 'white'}),
         dbc.RadioItems(options=[
-            {"label": "Report a Bug", "value": "1"},
+            {"label": "Report a Bug", "value": "1", "checked": ""},
             {"label": "Feature Request", "value": "2"},
             {"label": "Request Admin", "value": "3"}
         ],
@@ -56,19 +56,16 @@ def send_mail(orig_from, subject, body, msgType):
     port = 25
     smtp_server = "frxsv-globemaster"
     sender_email = "FRX.DevOps@L3Harris.com"
-    user = orig_from
     receiver_email = ['stephen.french@l3harris.com',
                       'gary.haag@l3harris.com', orig_from]
-    message = """"\
+    message = """
     Subject: {0} has submitted a {1}
-
-
-    Submission: {2}. """.format(subject, msgType, body)
+    Submission: {2}. """.format(sender_email, msgType, body)
     try:
         server = smtplib.SMTP(smtp_server, port)
         server.login("FRX.EmailRelay@iss.l3t.com", "N)QQH3hppTrthKQN")
         for email in receiver_email:
-            server.sendmail(sender_email, email, message)
+            server.sendmail(from_addr=sender_email, to_addr=email, msg=message)
         server.quit()
         return True
     except Exception as e:
@@ -90,7 +87,7 @@ def send_submission(msgType_value, comment_value, n_clicks, email_value):
             elif msgType_value == "2":
                 msgType = "Feature Request"
             elif msgType_value == "3":
-                msgType = "Request Admin"
+                msgType = "Admin Request"
             subject = "A new " + msgType + " was submtited."
             body = comment_value
             if send_mail(email_value, subject, body, msgType):
