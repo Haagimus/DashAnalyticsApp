@@ -77,7 +77,8 @@ registation_modal = html.Div([
                              dcc.Dropdown(id='emp-num-drowpdown',
                                           options=[{'label': i, 'value': i}
                                                    for i in empNumList.values[0]],
-                                          multi=False)]),
+                                          multi=False,
+                                          searchable=True)]),
             html.P(children=['Password: ',
                              dcc.Input(type='password',
                                        id='registerPassword',
