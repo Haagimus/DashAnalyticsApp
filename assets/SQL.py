@@ -86,8 +86,8 @@ def hash_password(password):
 def verify_password(Username, provided_password):
     """Verify a stored password against one provided by user"""
     userRecord = pandas.read_sql(
-        "SELECT * FROM [dbo].[RegisteredUsers] "
-        "WHERE [Username] = '" + Username + "'", conn)
+        """SELECT * FROM [dbo].[RegisteredUsers]
+        WHERE [Username] = '""" + Username + "'", conn)
     if len(userRecord) == 0:
         return 'User not found'
     stored_password = userRecord['Password'][0]
@@ -99,6 +99,6 @@ def verify_password(Username, provided_password):
                                   100000)
     pwdhash = binascii.hexlify(pwdhash).decode('ascii')
     if pwdhash == stored_password:
-        return 'Authenticated'
+        return 'Logged in as {0}'.format(userRecord['Username'][0])
     else:
         return 'Invalid Password'

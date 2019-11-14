@@ -10,6 +10,7 @@ import pages.programs as pgm
 import pages.home as home
 import pages.capacity as cap
 import pages.login as log
+import assets.SQL as sql
 
 
 # These callbacks handle main page functionality like content loading
@@ -78,10 +79,10 @@ def show(openLogin, closeLogin):
                Input('close', 'n_clicks')],
               [State('username', 'value'),
                State('password', 'value')])
-def loginMessage(loginClick, closeClick, unm, pwd):
+def loginMessage(loginClick, closeClick, username, password):
     # Prevent updates from happening if the login button is not clicked
-    if loginClick is None:
+    if not loginClick:
         raise exceptions.PreventUpdate
-    
     # TODO: Create a method inside the SQL.py to authenticate users
-    return [unm, '', '']
+    result = sql.verify_password(username, password)
+    return [result, '', '']
