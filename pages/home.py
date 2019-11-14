@@ -14,6 +14,7 @@ form = dbc.Form(children=[
                   type="email",
                   placeholder="Enter your email address",
                   required=True,
+                  className='required',
                   style={'width': '400px', 'marginTop': '3%'}
                   )
     ],
