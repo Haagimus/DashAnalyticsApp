@@ -12,6 +12,16 @@
             "console": "integratedTerminal"
         },
         {
+            "name": "Python: run.py",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/run.py",
+            "args": [
+                "debug"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
             "name": "Python: Flask",
             "type": "python",
             "request": "launch",
