@@ -42,8 +42,8 @@ li a:hover {
     float: right;
 }
 
-#login,
-#register {
+#loginOpen,
+#registerOpen {
     background-color: transparent;
     color: white;
     border: none;
@@ -82,6 +82,18 @@ li a:hover {
     height: 210px;
 }
 
+/* Modal Content */
+.register-modal {
+    background-color: whitesmoke;
+    float: right;
+    margin-right:30px;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 8px;
+    width: 350px;
+    height: 300px;
+}
+
 #loginMessage {
     display: block;
     margin: -5px 0px;
@@ -95,8 +107,12 @@ li a:hover {
     padding-top: 10px;
 }
 
-#username,
-#password {
+#emp-num-drowpdown {
+    max-width: 90%;
+}
+
+.username,
+.password {
     width:150px;
     float: right;
     border-top: none;
@@ -113,7 +129,8 @@ li a:hover {
 }
 
 /* The Login Button */
-#login-modal {
+#loginSubmit,
+#registerSubmit {
     color: #1f1f1f;
     float: left;
     width: 80px;
@@ -126,13 +143,16 @@ li a:hover {
     border-radius: 4px;
 }
   
-#login-modal:hover,
-#login-modal:focus {
+#loginSubmit:hover,
+#loginSubmit:focus,
+#registerSubmit:hover,
+#registerSubmit:focus {
     cursor: pointer;
 }
 
-/* The Close Button */
-#close {
+/* The login view Close Button */
+#loginClose,
+#registerClose {
     color: #1f1f1f;
     float: right;
     width: 80px;
@@ -144,7 +164,9 @@ li a:hover {
     border-radius: 4px;
 }
   
-#close:hover,
-#close:focus {
+#loginClose:hover,
+#loginClose:focus,
+#registerClose:hover,
+#registerClose:focus {
     cursor: pointer;
 }

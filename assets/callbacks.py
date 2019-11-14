@@ -62,10 +62,10 @@ def CapLink(pathname):
         return 'active'
 
 
-@app.callback(Output('myModal', 'style'),
-              [Input('login', 'n_clicks'),
-               Input('close', 'n_clicks')])
-def show(openLogin, closeLogin):
+@app.callback(Output('loginView', 'style'),
+              [Input('loginOpen', 'n_clicks'),
+               Input('loginClose', 'n_clicks')])
+def showLogin(openLogin, closeLogin):
     if (openLogin + closeLogin) % 2 == 0:
         return {'display': 'none'}
     else:
@@ -73,12 +73,12 @@ def show(openLogin, closeLogin):
 
 
 @app.callback([Output('loginMessage', 'children'),
-               Output('username', 'value'),
-               Output('password', 'value')],
-              [Input('login-modal', 'n_clicks'),
-               Input('close', 'n_clicks')],
-              [State('username', 'value'),
-               State('password', 'value')])
+               Output('loginUsername', 'value'),
+               Output('loginPassword', 'value')],
+              [Input('loginOpen', 'n_clicks'),
+               Input('loginClose', 'n_clicks')],
+              [State('loginUsername', 'value'),
+               State('loginPassword', 'value')])
 def loginMessage(loginClick, closeClick, username, password):
     # Prevent updates from happening if the login button is not clicked
     if not loginClick:
@@ -86,3 +86,13 @@ def loginMessage(loginClick, closeClick, username, password):
     # TODO: Create a method inside the SQL.py to authenticate users
     result = sql.verify_password(username, password)
     return [result, '', '']
+
+
+@app.callback(Output('registerModal', 'style'),
+              [Input('registerOpen', 'n_clicks'),
+               Input('registerClose', 'n_clicks')])
+def showRegistration(openRegister, closeRegister):
+    if (openRegister + closeRegister) % 2 == 0:
+        return {'display': 'none'}
+    else:
+        return {'display': 'block'}

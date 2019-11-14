@@ -24,6 +24,7 @@ except:
 # This function returns an entire table. If the table requested is not found
 # the 'None' value is returned.
 def GetTable(name):
+    """Returns an entire table from the database"""
     try:
         results = pandas.read_sql('SELECT * FROM '+name, conn)
         # cursor.execute('SELECT * FROM '+name)
@@ -70,7 +71,10 @@ def UpdateQuery():
     pass
 
 
-def AuthenticateUser(username, password):
+def RegisterUser(Username, Password):
+    """This will add a user to the registered user database table
+       after name validation and password hash occurs"""
+    pwdhash = hash_password(password)
     pass
 
 
@@ -86,7 +90,7 @@ def hash_password(password):
 def verify_password(Username, provided_password):
     """Verify a stored password against one provided by user"""
     userRecord = pandas.read_sql(
-        """SELECT * FROM [dbo].[RegisteredUsers]
+        """SELECT * FROM [dbo].[RegisteredUsers] 
         WHERE [Username] = '""" + Username + "'", conn)
     if len(userRecord) == 0:
         return 'User not found'
