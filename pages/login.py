@@ -24,7 +24,9 @@ def Login():
                 html.Button(children='Login',
                             id='submit',
                             n_clicks=0)
-            ], style={'display': 'block', 'text-align': 'center', 'padding': 2}),
+            ], style={'display': 'block',
+                      'text-align': 'center',
+                      'padding': 2}),
             html.Br(),
             html.Hr(style={'width': '30%'})
             # footer
