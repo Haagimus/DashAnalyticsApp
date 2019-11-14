@@ -60,12 +60,16 @@ def CapLink(pathname):
 
 @app.callback(Output('myModal', 'style'),
               [Input('login', 'n_clicks'),
-               Input('close', 'n_clicks')])
-def show(n1, n2):
+               Input('close', 'n_clicks'),
+               Input('myModal', 'clicks')])
+def show(n1, n2, n3):
     if (n1 + n2) % 2 == 0:
         return {'display': 'none'}
     else:
         return {'display': 'block'}
+
+    if n3 is clicked:
+        return {'display': 'none'}
 
 
 # class Output(dependencies.Output):

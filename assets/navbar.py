@@ -22,8 +22,7 @@ def Navbar():
         ]),
         html.Div([
             html.Div([
-
-                html.H2('Please log in:',
+                html.H3('Please log in:',
                         hidden=False,
                         id='login-header'),
                 html.P(children=['Username: ',
