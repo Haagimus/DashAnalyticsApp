@@ -1,12 +1,16 @@
 from server import app
-from dash.dependencies import Output, Input
+from dash.dependencies import Output, Input, State
 from dash import dependencies
 from dash.development.base_component import Component
+from dash import exceptions
+
+# Import pages
 import pages.employees as emp
 import pages.programs as pgm
 import pages.home as home
 import pages.capacity as cap
 import pages.login as log
+import assets.SQL as sql
 
 
 # These callbacks handle main page functionality like content loading
@@ -60,18 +64,25 @@ def CapLink(pathname):
 
 @app.callback(Output('myModal', 'style'),
               [Input('login', 'n_clicks'),
-               Input('close', 'n_clicks'),
-               Input('myModal', 'clicks')])
-def show(n1, n2, n3):
-    if (n1 + n2) % 2 == 0:
+               Input('close', 'n_clicks')])
+def show(openLogin, closeLogin):
+    if (openLogin + closeLogin) % 2 == 0:
         return {'display': 'none'}
     else:
         return {'display': 'block'}
 
-    if n3 is clicked:
-        return {'display': 'none'}
 
-
-# class Output(dependencies.Output):
-#     """Output of a callback."""
-#     def __init__(self,component: Component)
+@app.callback([Output('loginMessage', 'children'),
+               Output('username', 'value'),
+               Output('password', 'value')],
+              [Input('login-modal', 'n_clicks'),
+               Input('close', 'n_clicks')],
+              [State('username', 'value'),
+               State('password', 'value')])
+def loginMessage(loginClick, closeClick, username, password):
+    # Prevent updates from happening if the login button is not clicked
+    if not loginClick:
+        raise exceptions.PreventUpdate
+    # TODO: Create a method inside the SQL.py to authenticate users
+    result = sql.verify_password(username, password)
+    return [result, '', '']

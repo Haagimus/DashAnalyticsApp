@@ -2,6 +2,7 @@
 #logo {
     margin: 7px 10px 0px 5px;
     width: 150px;
+    height: 32px;
 }
 
 /* navbar formatting */
@@ -50,7 +51,7 @@ li a:hover {
     text-align: center;
     display: block;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 16px;
     font-family: inherit;
 }
 
@@ -80,47 +81,70 @@ li a:hover {
     width: 300px;
     height: 210px;
 }
-  
+
+#loginMessage {
+    display: block;
+    margin: -5px 0px;
+    position: absolute;
+    color: red;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#loginHead {
+    padding-top: 10px;
+}
+
 #username,
 #password {
     width:150px;
     float: right;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid black;
+    background-color: whitesmoke;
 }
 
+.required:invalid {
+    box-shadow: none;
+    outline: none;
+    background-color: lightpink;
+}
 
 /* The Login Button */
 #login-modal {
-    color: #aaaaaa;
+    color: #1f1f1f;
     float: left;
     width: 80px;
     height: 40px;
     margin: auto;
-    background-color: rgba(136, 136, 136, 0);
+    background-color: rgb(107, 143, 74);
     font-size: 16px;
     font-weight: bold;
+    border: none;
+    border-radius: 4px;
 }
   
-#submit:hover,
-#submit:focus {
-    color: #000;
-    text-decoration: none;
+#login-modal:hover,
+#login-modal:focus {
     cursor: pointer;
 }
 
-  /* The Close Button */
+/* The Close Button */
 #close {
-    color: #aaaaaa;
+    color: #1f1f1f;
     float: right;
     width: 80px;
     height: 40px;
-    background-color: rgba(136, 136, 136, 0);
+    background-color: rgb(173, 134, 134);
     font-size: 16px;
     font-weight: bold;
+    border: none;
+    border-radius: 4px;
 }
   
 #close:hover,
 #close:focus {
-    color: #000;
-    text-decoration: none;
     cursor: pointer;
 }
