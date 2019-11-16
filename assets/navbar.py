@@ -66,7 +66,7 @@ empNumList = GetTable('EmployeeNumbers')
 registation_modal = html.Div([
     html.Div([
         html.H1('Register new user:'),
-        html.Form([
+        html.Div([
             html.P(children=['Username: ',
                              dcc.Input(type='text',
                                        id='registerUsername',
@@ -78,7 +78,8 @@ registation_modal = html.Div([
                                           options=[{'label': i, 'value': i}
                                                    for i in empNumList.values[0]],
                                           multi=False,
-                                          searchable=True)]),
+                                          searchable=True)],
+                   id='dropdown'),
             html.P(children=['Password: ',
                              dcc.Input(type='password',
                                        id='registerPassword',
@@ -93,7 +94,8 @@ registation_modal = html.Div([
                                        placeholder='Re-enter password')]),
             html.Button('Register', id='registerSubmit', n_clicks=0),
             html.Button('Close', id='registerClose', n_clicks=0)
-        ])
+        ],
+            id='register-form')
     ],
         className='register-modal')
 ],
