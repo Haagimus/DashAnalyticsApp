@@ -106,3 +106,7 @@ def verify_password(Username, provided_password):
         return 'Logged in as {0}'.format(userRecord['Username'][0])
     else:
         return 'Invalid Password'
+
+# TODO: Create a method to register a user in the authorized user table
+# TODO: Add username validation
+# TODO: Add password validation rules
