@@ -12,18 +12,18 @@
 ---
 #App TODO
 - [x] Create the login page
-- [ ] Create the `AuthAccess.py` for LDAP authentication with active directory through [Flask](https://code.tutsplus.com/tutorials/flask-authentication-with-ldap--cms-23101)
+- [x] Create the `AuthAccess.py` for LDAP authentication with active directory through [Flask](https://code.tutsplus.com/tutorials/flask-authentication-with-ldap--cms-23101)
     - Our LDAP uses port 389
     - Use SQL table name and department for page access
-- [ ] Separate `app.py` and contain site core callbacks within it
-- [ ] Make navbar contain callbacks for formatting active pages
+- [x] Separate `app.py` and contain site core callbacks within it
+- x] Make navbar contain callbacks for formatting active pages
 - [x] Create `SQL.py` to control all SQL database read/write requests
 ---
 #Home TODO
 - [ ] Doge pics
-- [ ] Contact form
-    - [ ] Reason selection (feature request, issue report, admin request)
-    - [ ] Submitter info (maybe this can be automatic with the LDAP)
+- [x] Contact form
+    - [x] Reason selection (feature request, issue report, admin request)
+    - [x] Submitter info (maybe this can be automatic with the LDAP)
 - [ ] Change Log
 - [ ] Features in development
 - [ ] Add an IsAdmin boolean variable so admin only controls will or wont show
