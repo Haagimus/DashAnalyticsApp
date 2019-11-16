@@ -83,16 +83,22 @@ def loginMessage(loginClick, closeClick, username, password):
     # Prevent updates from happening if the login button is not clicked
     if not loginClick:
         raise exceptions.PreventUpdate
-    # TODO: Create a method inside the SQL.py to authenticate users
     result = sql.verify_password(username, password)
     return [result, '', '']
 
 
-@app.callback(Output('registerModal', 'style'),
+@app.callback([Output('registerModal', 'style'),
+               Output('registerUsername', 'value'),
+               Output('emp-num-drowpdown', 'value'),
+               Output('registerPassword', 'value'),
+               Output('registerPassword2', 'value')],
               [Input('registerOpen', 'n_clicks'),
-               Input('registerClose', 'n_clicks')])
-def showRegistration(openRegister, closeRegister):
+               Input('registerClose', 'n_clicks'),
+               Input('registerSubmit', 'n_clicks')],
+              [State('registerUsername', 'value')])
+def showRegistration(openRegister, closeRegister, registerSubmit, username):
     if (openRegister + closeRegister) % 2 == 0:
-        return {'display': 'none'}
+        return [{'display': 'none'}, '', '', '', '']
     else:
-        return {'display': 'block'}
+        return [{'display': 'block'}, username, '', '', '']
+    # TODO:  call the registration method from SQL.py
