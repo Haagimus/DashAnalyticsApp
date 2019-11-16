@@ -79,7 +79,7 @@ li a:hover {
     border: 1px solid #888;
     border-radius: 8px;
     width: 300px;
-    height: 210px;
+    height: 175px;
 }
 
 /* Modal Content */
@@ -91,7 +91,18 @@ li a:hover {
     border: 1px solid #888;
     border-radius: 8px;
     width: 350px;
-    height: 325px;
+    height: 305px;
+}
+
+#register-form {
+    line-height: 30px;
+}
+
+#emp-num-drowpdown {
+    width: 200px;
+    float: right;
+    height: 30px;
+    font-size: 20px;
 }
 
 #loginMessage {
@@ -109,13 +120,15 @@ li a:hover {
 
 .username,
 .password {
-    width:150px;
+    width:200px;
     float: right;
     border-top: none;
     border-left: none;
     border-right: none;
     border-bottom: 1px solid black;
     background-color: whitesmoke;
+    line-height: 24px;
+    font-size: 20px;
 }
 
 .required:invalid {
