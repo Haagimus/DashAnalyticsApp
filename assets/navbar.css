@@ -5,6 +5,10 @@
     height: 32px;
 }
 
+h1 {
+    margin: 0px;
+}
+
 /* navbar formatting */
 ul {
     list-style-type: none;
@@ -79,7 +83,7 @@ li a:hover {
     border: 1px solid #888;
     border-radius: 8px;
     width: 300px;
-    height: 175px;
+    height: auto;
 }
 
 /* Modal Content */
@@ -87,35 +91,31 @@ li a:hover {
     background-color: whitesmoke;
     float: right;
     margin-right:30px;
-    padding: 20px;
+    padding: 15px 15px 10px 15px;
     border: 1px solid #888;
     border-radius: 8px;
     width: 350px;
-    height: 305px;
+    height: auto;
 }
 
 #register-form {
     line-height: 30px;
 }
 
-#emp-num-drowpdown {
+#emp-num-dropdown {
     width: 200px;
     float: right;
-    height: 30px;
     font-size: 20px;
 }
 
-#loginMessage {
+#loginMessage,
+#registerMessage {
     display: block;
-    margin: -5px 0px;
-    position: absolute;
+    margin: 5px 0px auto 0px;
+    /* position: absolute; */
     color: red;
     font-weight: bold;
     font-size: 18px;
-}
-
-#loginHead {
-    padding-top: 10px;
 }
 
 .username,
@@ -141,7 +141,8 @@ li a:hover {
 #loginSubmit,
 #registerSubmit {
     color: #1f1f1f;
-    float: left;
+    /* float: left; */
+    display: inline-block;
     width: 80px;
     height: 40px;
     margin: auto;

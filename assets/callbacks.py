@@ -77,8 +77,7 @@ def showLogin(openLogin, closeLogin):
     """This controls the display of the login modal"""
     if (openLogin + closeLogin) % 2 == 0:
         return {'display': 'none'}
-    else:
-        return {'display': 'block'}
+    return {'display': 'block'}
 
 
 @app.callback([Output('loginMessage', 'children'),
@@ -99,19 +98,27 @@ def loginMessage(loginClick, closeClick, username, password):
     return [result, '', '']
 
 
-@app.callback([Output('registerModal', 'style'),
-               Output('registerUsername', 'value'),
-               Output('emp-num-drowpdown', 'value'),
-               Output('registerPassword', 'value'),
-               Output('registerPassword2', 'value')],
+@app.callback(Output('registerModal', 'style'),
               [Input('registerOpen', 'n_clicks'),
-               Input('registerClose', 'n_clicks'),
-               Input('registerSubmit', 'n_clicks')],
-              [State('registerUsername', 'value')])
-def showRegistration(openRegister, closeRegister, registerSubmit, username):
+               Input('registerClose', 'n_clicks')])
+def showRegistration(openRegister, closeRegister):
     """This controls the display of the register user modal"""
     if (openRegister + closeRegister) % 2 == 0:
-        return [{'display': 'none'}, '', '', '', '']
-    else:
-        return [{'display': 'block'}, username, '', '', '']
-    # TODO:  call the registration method from SQL.py
+        return {'display': 'none'}
+    return {'display': 'block'}
+
+
+@app.callback([Output('registerMessage', 'children'),
+               Output('emp-num-dropdown', 'value'),
+               Output('registerPassword', 'value'),
+               Output('registerPassword2', 'value')],
+              [Input('registerSubmit', 'n_clicks')],
+              [State('registerUsername', 'value'),
+               State('emp-num-dropdown', 'value'),
+               State('registerPassword', 'value'),
+               State('registerPassword2', 'value')])
+def submitRegistration(SubmitClicks, Username, EmpNum, Password, Password2):
+    if not SubmitClicks:
+        raise exceptions.PreventUpdate
+    msg = sql.RegisterUser(Username, EmpNum, Password, Password2)
+    return [msg, EmpNum, '', '']
