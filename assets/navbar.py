@@ -76,7 +76,8 @@ registation_modal = html.Div([
             html.P(children=['Employee #: ',
                              dcc.Dropdown(id='emp-num-drowpdown',
                                           options=[{'label': num, 'value': num}
-                                                   for row, num in empNumList.items()],
+                                                   for row, num in
+                                                   empNumList.items()],
                                           multi=False,
                                           searchable=True)],
                    id='dropdown'),

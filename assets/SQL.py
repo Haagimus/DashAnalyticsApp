@@ -90,7 +90,7 @@ def hash_password(password):
 def verify_password(Username, provided_password):
     """Verify a stored password against one provided by user"""
     userRecord = pandas.read_sql(
-        """SELECT * FROM [dbo].[RegisteredUsers] 
+        """SELECT * FROM [dbo].[RegisteredUsers]
         WHERE [Username] = '""" + Username + "'", conn)
     if len(userRecord) == 0:
         return 'User not found'
