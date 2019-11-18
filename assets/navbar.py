@@ -60,7 +60,7 @@ login_modal = html.Div([
     id='loginView',
     className='modal')
 
-empNumList = GetTable('EmployeeNumbers')
+empNumList = GetTable('EmployeeNumbers').squeeze().to_dict()
 
 # The registration modal page layout
 registation_modal = html.Div([
@@ -75,8 +75,8 @@ registation_modal = html.Div([
                                        placeholder='username')]),
             html.P(children=['Employee #: ',
                              dcc.Dropdown(id='emp-num-drowpdown',
-                                          options=[{'label': i, 'value': i}
-                                                   for i in empNumList.values[0]],
+                                          options=[{'label': num, 'value': num}
+                                                   for row, num in empNumList.items()],
                                           multi=False,
                                           searchable=True)],
                    id='dropdown'),
