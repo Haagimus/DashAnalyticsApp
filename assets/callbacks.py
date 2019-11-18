@@ -75,7 +75,7 @@ def showLogin(openLogin, closeLogin):
 @app.callback([Output('loginMessage', 'children'),
                Output('loginUsername', 'value'),
                Output('loginPassword', 'value')],
-              [Input('loginOpen', 'n_clicks'),
+              [Input('loginSubmit', 'n_clicks'),
                Input('loginClose', 'n_clicks')],
               [State('loginUsername', 'value'),
                State('loginPassword', 'value')])
