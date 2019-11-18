@@ -34,6 +34,8 @@ def display_page(pathname):
     Output('homeLink', 'className'),
     [Input('url', 'pathname')])
 def HomeLink(pathname):
+    """This highlights the home button on the
+    navbar if on the home page url"""
     if pathname == '/':
         return 'active'
 
@@ -42,6 +44,8 @@ def HomeLink(pathname):
     Output('empLink', 'className'),
     [Input('url', 'pathname')])
 def EmpLink(pathname):
+    """This highlights the employees button on the
+    navbar if on the employees page url"""
     if pathname == '/employees':
         return 'active'
 
@@ -50,6 +54,8 @@ def EmpLink(pathname):
     Output('pgmLink', 'className'),
     [Input('url', 'pathname')])
 def PgmLink(pathname):
+    """This highlights the programs button on the
+    navbar if on the programs page url"""
     if pathname == '/programs':
         return 'active'
 
@@ -58,6 +64,8 @@ def PgmLink(pathname):
     Output('capLink', 'className'),
     [Input('url', 'pathname')])
 def CapLink(pathname):
+    """This highlights the capacity button on the
+    navbar if on the capacity page url"""
     if pathname == '/capacity':
         return 'active'
 
@@ -66,6 +74,7 @@ def CapLink(pathname):
               [Input('loginOpen', 'n_clicks'),
                Input('loginClose', 'n_clicks')])
 def showLogin(openLogin, closeLogin):
+    """This controls the display of the login modal"""
     if (openLogin + closeLogin) % 2 == 0:
         return {'display': 'none'}
     else:
@@ -80,6 +89,9 @@ def showLogin(openLogin, closeLogin):
               [State('loginUsername', 'value'),
                State('loginPassword', 'value')])
 def loginMessage(loginClick, closeClick, username, password):
+    """This controls the login submission. It passes the entered username and
+    password to the SQL.py verify password method. This also controls the
+    closing of the login modal"""
     # Prevent updates from happening if the login button is not clicked
     if not loginClick:
         raise exceptions.PreventUpdate
@@ -97,6 +109,7 @@ def loginMessage(loginClick, closeClick, username, password):
                Input('registerSubmit', 'n_clicks')],
               [State('registerUsername', 'value')])
 def showRegistration(openRegister, closeRegister, registerSubmit, username):
+    """This controls the display of the register user modal"""
     if (openRegister + closeRegister) % 2 == 0:
         return [{'display': 'none'}, '', '', '', '']
     else:

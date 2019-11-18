@@ -59,9 +59,8 @@ def send_mail(orig_from, subject, body, msgType):
     sender_email = "FRX.DevOps@L3Harris.com"
     receiver_email = ['stephen.french@l3harris.com',
                       'gary.haag@l3harris.com', orig_from]
-    message = """
-    Subject: {0} has submitted a {1}
-    Submission: {2}. """.format(sender_email, msgType, body)
+    message = """Subject: {0} has submitted a {1}
+    Submission: {2}. """.format(orig_from, msgType, body)
     try:
         server = smtplib.SMTP(smtp_server, port)
         server.login("FRX.EmailRelay@iss.l3t.com", "N)QQH3hppTrthKQN")
@@ -92,6 +91,7 @@ def send_submission(msgType_value, comment_value, n_clicks, email_value):
             subject = "A new " + msgType + " was submtited."
             body = comment_value
             if send_mail(email_value, subject, body, msgType):
+                # TODO: reset the email submission form and click count
                 return "Message sent successfully"
             else:
                 return "Message unable to send. Try resetting form"
