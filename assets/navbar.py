@@ -38,8 +38,7 @@ def Navbar():
 # The login modal page layout
 login_modal = html.Div([
     html.Div([
-        html.P(children=[''], id='loginMessage'),
-        html.H3('Please log in:', id='loginHead'),
+        html.H1('Please log in:', id='loginHead'),
         html.P(children=['Username: ',
                          dcc.Input(type='text',
                                    id='loginUsername',
@@ -53,7 +52,8 @@ login_modal = html.Div([
                                    required=True,
                                    placeholder='password')]),
         html.Button('Login', id='loginSubmit', n_clicks=0),
-        html.Button('Close', id='loginClose', n_clicks=0)
+        html.Button('Close', id='loginClose', n_clicks=0),
+        html.P(children=[''], id='loginMessage')
     ],
         className='modal-content')
 ],
@@ -74,12 +74,13 @@ registation_modal = html.Div([
                                        required=True,
                                        placeholder='username')]),
             html.P(children=['Employee #: ',
-                             dcc.Dropdown(id='emp-num-drowpdown',
+                             dcc.Dropdown(id='emp-num-dropdown',
                                           options=[{'label': num, 'value': num}
                                                    for row, num in
                                                    empNumList.items()],
                                           multi=False,
-                                          searchable=True)],
+                                          searchable=True,
+                                          clearable=False)],
                    id='dropdown'),
             html.P(children=['Password: ',
                              dcc.Input(type='password',
@@ -87,7 +88,7 @@ registation_modal = html.Div([
                                        className='required password',
                                        required=True,
                                        placeholder='password')]),
-            html.P(children=['Re-enter Password',
+            html.P(children=['Re-enter Password:',
                              dcc.Input(type='password',
                                        id='registerPassword2',
                                        required=True,
@@ -96,7 +97,8 @@ registation_modal = html.Div([
             html.Button('Register', id='registerSubmit', n_clicks=0),
             html.Button('Close', id='registerClose', n_clicks=0)
         ],
-            id='register-form')
+            id='register-form'),
+        html.P(children=[''], id='registerMessage')
     ],
         className='register-modal')
 ],

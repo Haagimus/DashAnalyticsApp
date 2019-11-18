@@ -21,25 +21,22 @@ except:
     pass
 
 
-# This function returns an entire table. If the table requested is not found
-# the 'None' value is returned.
 def GetTable(name):
-    """Returns an entire table from the database"""
+    """Returns: Entire table from the database, or None if requested table
+    is not found"""
     try:
         results = pandas.read_sql('SELECT * FROM '+name, conn)
-        # cursor.execute('SELECT * FROM '+name)
-        # results = cursor.fetchall()
-    except:
+    except Exception as e:
         results = None
     return results
 
 
 # This function returns a table filtered by specified column and criteria.
-# Len(results) == 0 if no matches are found.
-def SelectQuery(columns=None, whereclause=None, from_obj=None, distinct=False,
-                having=None, correlate=True, prefixes=None, suffixes=None):
-
-    # results = pandas.read_sql(query, conn)
+def SelectQuery():
+    # try:
+    #     results = pandas.read_sql(query, conn, params={})
+    # except Exception as e:
+    #     results = None
     # return results
     pass
 
@@ -63,7 +60,7 @@ def MultiSelectQuery(table, columns, criteria):
     pass
 
 
-def InsertQuery():
+def InsertQuery(table, values):
     pass
 
 
@@ -71,11 +68,41 @@ def UpdateQuery():
     pass
 
 
-def RegisterUser(Username, Password):
+# TODO: Create a method to register a user in the authorized user table
+# TODO: Add password validation rules
+def RegisterUser(Username, EmpNum, Password, Password2):
     """This will add a user to the registered user database table
-       after name validation and password hash occurs"""
-    pwdhash = hash_password(password)
-    pass
+       after name validation, password match validation and
+       password hash occurs"""
+    if Username is not None and Username is not '':
+        unExists = pandas.read_sql(
+            """SELECT * FROM [dbo].[RegisteredUsers]
+            WHERE [Username] = '""" + Username + "' ", conn)
+        if len(unExists) is not 0:
+            # Username already exists in the database
+            return 'Username already exists, please try a different username.'
+        elif EmpNum is None or EmpNum == '':
+            # No employee number has been selected
+            return 'Please select an employee number to continue.'
+        elif ((Password is None or Password is '') and
+              (Password2 is None or Password2 is '')):
+                # One or both passwords are blank
+            return 'Password cannot be blank, please try again.'
+        elif Password != Password2:
+            # Password entries do not match
+            return 'Passwords do not match, please try again.'
+        else:
+            # Hash the submitted password
+            pwdhash = hash_password(Password)
+            # Insert the entry into the registered users table
+    else:
+        # Username is blank
+        return """Username can not be blank, please enter a username
+            and try again. """
+
+    # Account successfully added to database
+    return """User account {0} has been successfully created, you may now
+        log in""".format(Username)
 
 
 def hash_password(password):
@@ -89,9 +116,13 @@ def hash_password(password):
 
 def verify_password(Username, provided_password):
     """Verify a stored password against one provided by user"""
-    userRecord = pandas.read_sql(
-        """SELECT * FROM [dbo].[RegisteredUsers]
-        WHERE [Username] = '""" + Username + "'", conn)
+    if Username is not None:
+        userRecord = pandas.read_sql(
+            """SELECT * FROM [dbo].[RegisteredUsers]
+            WHERE [Username] = '""" + Username + "' ", conn)
+    else:
+        return """Username can not be blank, please enter a username
+            and try again."""
     if len(userRecord) == 0:
         return 'User not found'
     stored_password = userRecord['Password'][0]
@@ -106,7 +137,3 @@ def verify_password(Username, provided_password):
         return 'Logged in as {0}'.format(userRecord['Username'][0])
     else:
         return 'Invalid Password'
-
-# TODO: Create a method to register a user in the authorized user table
-# TODO: Add username validation
-# TODO: Add password validation rules
