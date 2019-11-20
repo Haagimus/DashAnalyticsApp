@@ -1,0 +1,3 @@
+Make sure you have the sqlacodegen package installed then run the following from a command prompt
+
+sqlacodegen mssql+pymssql://FRXSV-DAUPHIN/FRXResourceDemand > assets\FRXResourceDemand.py
