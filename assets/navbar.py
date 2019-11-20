@@ -4,7 +4,8 @@ import dash_bootstrap_components as dbc
 from dash.dependencies import Output, Input, State
 from server import app
 from .callbacks import HomeLink, EmpLink, PgmLink, CapLink
-from assets.SQL import GetTable
+import assets.SQL as sql
+import assets.FRXResourceDemand as frxrd
 
 
 # When new pages are added, update list with href to location
@@ -60,8 +61,6 @@ login_modal = html.Div([
     id='loginView',
     className='modal')
 
-empNumList = GetTable('EmployeeNumbers').squeeze().to_dict()
-
 # The registration modal page layout
 registation_modal = html.Div([
     html.Div([
@@ -75,9 +74,8 @@ registation_modal = html.Div([
                                        placeholder='username')]),
             html.P(children=['Employee #: ',
                              dcc.Dropdown(id='emp-num-dropdown',
-                                          options=[{'label': num, 'value': num}
-                                                   for row, num in
-                                                   empNumList.items()],
+                                          options=[{'label': i.Employee_Number, 'value': i.Employee_Number}
+                                                   for i in sql.GetRows('EmployeeNumbers')],
                                           multi=False,
                                           searchable=True,
                                           clearable=False)],

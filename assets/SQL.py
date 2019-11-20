@@ -6,13 +6,10 @@ import binascii
 import os
 from sqlalchemy import create_engine, MetaData, Table, select, inspect
 from sqlalchemy.orm import sessionmaker
-from assets.FRXResourceDemand import EmployeeNumber
+import assets.FRXResourceDemand as frxrd
 
 server = 'FRXSV-DAUPHIN'
 dbname = 'FRXResourceDemand'
-
-test = 'mssql://@' + server + '/' + dbname + \
-    '?trusted_connection=yes&driver=SQL+Server'
 
 
 def connectEngine():
@@ -27,65 +24,21 @@ def connectEngine():
     return engine, session, metadata
 
 
-def GetTable(tableName):
-    """Gets and returns a table"""
-    metadata = connectEngine()[2]
-    table = metadata.tables[tableName]
-    return table
+class Engine:
+    def __init__(self, engine, session, metadata):
+        self.engine = engine
+        self.session = session
+        self.metadata = metadata
+
+engine = Engine(connectEngine()[0], connectEngine()[1], connectEngine()[2])
 
 
-def GetRows(tableName, colName):
-    table = GetTable(tableName)
-    session = connectEngine()[1]
-    results = []
-    for row in session.query(colName).all():
-        results.append(row[0])
-
+def GetRows(tableName):
+    """Retruns all rows from selected columns in a table"""
+    table = engine.metadata.tables[tableName]
+    session = engine.session
+    results = session.query(table).all()
     return results
-
-
-# def GetTable(name):
-#     """Returns: Entire table from the database, or None if requested table
-#     is not found"""
-#     try:
-#         results = pandas.read_sql('SELECT * FROM '+name, conn)
-#     except Exception as e:
-#         results = None
-#     return results
-
-
-# This function returns a table filtered by specified column and criteria.
-def SelectQuery(table, filter):
-    table = GetTable(table)
-    pass
-
-
-def MultiSelectQuery(table, columns, criteria):
-    # if type(columns) == list and type(criteria) == list:
-    #     if len(columns) != len(criteria):
-    #         return None
-    #     else:
-    #         cList = 'OR'.join(columns, criteria)
-
-    # for c in criteria:
-    #     if cList == None:
-    #         cList = c
-    #     else:
-    #         cList = cList + ', {0}'.format(c)
-    # query = 'SELECT * FROM dbo.{0} WHERE {1}=\'{2}\''.format(
-    #     table, columns, cList)
-    # results = pandas.read_sql(query, conn)
-    # return results
-    pass
-
-
-def InsertQuery(table, values):
-    sa.insert(table=table, values=values)
-    pass
-
-
-def UpdateQuery():
-    pass
 
 
 # TODO: Create a method to register a user in the authorized user table
@@ -93,12 +46,16 @@ def UpdateQuery():
 def RegisterUser(Username, EmpNum, Password, Password2):
     """This will add a user to the registered user database table
        after name validation, password match validation and
-       password hash occurs"""
+       password hash occurs """
+    userList = GetRows('RegisteredUsers', frxrd.RegisteredUser.Username)
+    session = engine.session
     if Username is not None and Username is not '':
-        unExists = pandas.read_sql(
-            """SELECT * FROM [dbo].[RegisteredUsers]
-            WHERE [Username] = '""" + Username + "' ", conn)
-        if len(unExists) is not 0:
+        q = session.query(userList).filter(userList.Username == Username)
+        if session.query(q.exists()):
+            # unExists = pandas.read_sql(
+            #     """SELECT * FROM [dbo].[RegisteredUsers]
+            #     WHERE [Username] = '""" + Username + "' ", engine)
+            # if len(unExists) is not 0:
             # Username already exists in the database
             return 'Username already exists, please try a different username.'
         elif EmpNum is None or EmpNum == '':
@@ -139,7 +96,7 @@ def verify_password(Username, provided_password):
     if Username is not None:
         userRecord = pandas.read_sql(
             """SELECT * FROM [dbo].[RegisteredUsers]
-            WHERE [Username] = '""" + Username + "' ", conn)
+            WHERE [Username] = '""" + Username + "' ", engine)
     else:
         return """Username can not be blank, please enter a username
             and try again."""

@@ -9,9 +9,10 @@ from server import app
 
 # Local assets import
 import assets.SQL as sql
+import assets.FRXResourceDemand as frxrd
 
-empDF = sql.GetTable('EmployeeData')
-finTbl = sql.GetTable('Finance_Functions')
+empDF = sql.GetRows('EmployeeData')
+finTbl = sql.GetRows('Finance_Functions')
 
 
 def funcTotals():
