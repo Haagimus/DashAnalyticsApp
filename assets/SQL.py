@@ -4,40 +4,59 @@ import urllib
 import hashlib
 import binascii
 import os
+from sqlalchemy import create_engine, MetaData, Table, select, inspect
+from sqlalchemy.orm import sessionmaker
+from assets.FRXResourceDemand import EmployeeNumber
 
-# sqlalchemy imports
-from sqlalchemy.sql import table, select
-
-driver = 'SQL Server'
 server = 'FRXSV-DAUPHIN'
-database = 'FRXResourceDemand'
+dbname = 'FRXResourceDemand'
 
-try:
-    conn = pyodbc.connect(
-        'DRIVER={'+driver+'};SERVER='+server+';DATABASE='+database+';')
-
-    cursor = conn.cursor()
-except:
-    pass
+test = 'mssql://@' + server + '/' + dbname + \
+    '?trusted_connection=yes&driver=SQL+Server'
 
 
-def GetTable(name):
-    """Returns: Entire table from the database, or None if requested table
-    is not found"""
-    try:
-        results = pandas.read_sql('SELECT * FROM '+name, conn)
-    except Exception as e:
-        results = None
+def connectEngine():
+    engine = create_engine(
+        'mssql://@' + server + '/' + dbname +
+        '?trusted_connection=yes&driver=SQL+Server', echo=False)
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    metadata = MetaData()
+    metadata.reflect(bind=engine)
+
+    return engine, session, metadata
+
+
+def GetTable(tableName):
+    """Gets and returns a table"""
+    metadata = connectEngine()[2]
+    table = metadata.tables[tableName]
+    return table
+
+
+def GetRows(tableName, colName):
+    table = GetTable(tableName)
+    session = connectEngine()[1]
+    results = []
+    for row in session.query(colName).all():
+        results.append(row[0])
+
     return results
 
 
+# def GetTable(name):
+#     """Returns: Entire table from the database, or None if requested table
+#     is not found"""
+#     try:
+#         results = pandas.read_sql('SELECT * FROM '+name, conn)
+#     except Exception as e:
+#         results = None
+#     return results
+
+
 # This function returns a table filtered by specified column and criteria.
-def SelectQuery():
-    # try:
-    #     results = pandas.read_sql(query, conn, params={})
-    # except Exception as e:
-    #     results = None
-    # return results
+def SelectQuery(table, filter):
+    table = GetTable(table)
     pass
 
 
@@ -61,6 +80,7 @@ def MultiSelectQuery(table, columns, criteria):
 
 
 def InsertQuery(table, values):
+    sa.insert(table=table, values=values)
     pass
 
 
