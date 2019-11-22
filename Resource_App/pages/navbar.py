@@ -5,7 +5,7 @@ from dash.dependencies import Output, Input, State
 from server import app
 from .callbacks import HomeLink, EmpLink, PgmLink, CapLink
 import assets.SQL as sql
-import assets.FRXResourceDemand as frxrd
+import assets.dbModels as frxrd
 
 
 # When new pages are added, update list with href to location
