@@ -9,7 +9,7 @@ from server import app
 
 # Local assets import
 import assets.SQL as sql
-import assets.FRXResourceDemand as frxrd
+import assets.dbModels as frxrd
 
 empDF = sql.GetRows('EmployeeData')
 finTbl = sql.GetRows('Finance_Functions')

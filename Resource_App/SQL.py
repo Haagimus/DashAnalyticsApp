@@ -6,7 +6,7 @@ import binascii
 import os
 from sqlalchemy import create_engine, MetaData, Table, select, inspect
 from sqlalchemy.orm import sessionmaker
-import assets.FRXResourceDemand as frxrd
+from dbModels import *
 
 server = 'FRXSV-DAUPHIN'
 dbname = 'FRXResourceDemand'
@@ -43,14 +43,14 @@ def GetRows(tableName):
 
 # TODO: Create a method to register a user in the authorized user table
 # TODO: Add password validation rules
-def RegisterUser(Username, EmpNum, Password, Password2):
+def RegisterUser(Uname, EmpNum, Password, Password2):
     """This will add a user to the registered user database table
        after name validation, password match validation and
        password hash occurs """
-    userList = GetRows('RegisteredUsers', frxrd.RegisteredUser.Username)
     session = engine.session
-    if Username is not None and Username is not '':
-        q = session.query(userList).filter(userList.Username == Username)
+    if Uname is not None and Uname is not '':
+        q = session.query(RegisteredUser).filter(RegisteredUser.Username == Uname)
+        print(q)
         if session.query(q.exists()):
             # unExists = pandas.read_sql(
             #     """SELECT * FROM [dbo].[RegisteredUsers]
@@ -80,6 +80,9 @@ def RegisterUser(Username, EmpNum, Password, Password2):
     # Account successfully added to database
     return """User account {0} has been successfully created, you may now
         log in""".format(Username)
+
+
+RegisterUser('haagimus', None, None, None)
 
 
 def hash_password(password):
