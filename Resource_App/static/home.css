@@ -27,10 +27,6 @@
     float: right;
 }
 
-* {
-    box-sizing: border-box;
-  }
-  
 .col-1 {width: 8.33%;}
 .col-2 {width: 16.66%;}
 .col-3 {width: 25%;}
@@ -42,7 +38,7 @@
 .col-9 {width: 75%;}
 .col-10 {width: 83.33%;}
 .col-11 {width: 91.66%;}
-.col-12 {width: 100%;} 
+.col-12 {width: 100%;}
 
 /* The Submit Button */
 #submit {
@@ -57,7 +53,7 @@
     border: none;
     border-radius: 4px;
 }
-  
+
 #submit:hover,
 #submit:focus {
     color: #000;
@@ -77,7 +73,7 @@
     border: none;
     border-radius: 4px;
 }
-  
+
 #reset:hover,
 #reset:focus {
     cursor: pointer;

@@ -9,26 +9,27 @@ from server import app
 
 # Local assets import
 import assets.SQL as sql
+import assets.models as models
 
-empDF = sql.GetTable('EmployeeData')
-finTbl = sql.GetTable('Finance_Functions')
-
-
-def funcTotals():
-    count = {}
-    idx = 0
-    for item in finTbl:
-        count.update({item[0]: 0})
-        for row in empDF.values:
-            if row[5] == item[0] and row[9] is None:
-                count[item[0]] += 1
-        idx += 1
-
-    total = 0
-    return count, total
+employees = sql.get_rows(models.EmployeeData)
+functions = sql.get_rows(models.Functions)
 
 
-def Employees():
+def function_totals():
+    # count = {}
+    # idx = 0
+    # for item in functions:
+    #     for row in employees:
+    #         if row[5] == item[0] and row[9] is None:
+    #             count[item[0]] += 1
+    #     idx += 1
+    #
+    # total = 0
+    # return count, total
+    pass
+
+
+def employee_page_layout():
     layout = dt.DataTable(
         style_data={
             'whitespace': 'normal',
@@ -38,8 +39,8 @@ def Employees():
             'maxWidth': 0
         },
         id='Employees',
-        columns=[{'name': i, 'id': i} for i in empDF.columns],
-        data=empDF.to_dict('records'),
+        columns=[{'name': i, 'id': i} for i in employees.columns],
+        data=employees.to_dict('records'),
         editable=False,
         filter_action='custom',
         sort_action='native',
@@ -105,7 +106,7 @@ def split_filter_part(filter_part):
     [Input('employee-container', "filter_query")])
 def update_table(filter):
     filtering_expressions = filter.split(' && ')
-    dff = empDF
+    dff = employees
     for filter_part in filtering_expressions:
         col_name, operator, filter_value = split_filter_part(filter_part)
 
