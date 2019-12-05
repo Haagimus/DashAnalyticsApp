@@ -5,6 +5,7 @@ import assets.SQL as sql
 import assets.models as models
 import assets.callbacks
 
+
 # When new pages are added, update list with href to location
 def navbar():
     navbar = html.Div([
