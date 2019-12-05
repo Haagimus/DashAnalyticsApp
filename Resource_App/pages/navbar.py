@@ -1,15 +1,12 @@
-import dash_html_components as html
 import dash_core_components as dcc
-import dash_bootstrap_components as dbc
-from dash.dependencies import Output, Input, State
-from server import app
-from .callbacks import HomeLink, EmpLink, PgmLink, CapLink
-import assets.SQL as sql
-import assets.dbModels as frxrd
+import dash_html_components as html
 
+import assets.SQL as sql
+import assets.models as models
+import assets.callbacks
 
 # When new pages are added, update list with href to location
-def Navbar():
+def navbar():
     navbar = html.Div([
         html.Ul([
             html.Li(
@@ -74,8 +71,8 @@ registation_modal = html.Div([
                                        placeholder='username')]),
             html.P(children=['Employee #: ',
                              dcc.Dropdown(id='emp-num-dropdown',
-                                          options=[{'label': i.Employee_Number, 'value': i.Employee_Number}
-                                                   for i in sql.GetRows('EmployeeNumbers')],
+                                          options=[{'label': i.number, 'value': i.number}
+                                                   for i in sql.get_rows(models.EmployeeNumber)],
                                           multi=False,
                                           searchable=True,
                                           clearable=False)],

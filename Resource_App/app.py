@@ -4,7 +4,7 @@ import dash_html_components as html
 import dash_core_components as dcc
 from server import app
 
-nav = nb.Navbar()
+nav = nb.navbar()
 
 # Layout
 app.layout = html.Div([

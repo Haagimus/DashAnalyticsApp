@@ -1,77 +1,59 @@
-import pyodbc
-import pandas
-import urllib
-import hashlib
 import binascii
+import hashlib
 import os
-from sqlalchemy import create_engine, MetaData, Table, select, inspect
+
+from sqlalchemy import create_engine, MetaData, select, exists
 from sqlalchemy.orm import sessionmaker
-from dbModels import *
+
+from assets.models import EmployeeNumber, EmployeeData, RegisteredUser, ChargeNumber, Program, ProjectData, ResourceUsage
 
 server = 'FRXSV-DAUPHIN'
 dbname = 'FRXResourceDemand'
+engine = create_engine('mssql://@{0}/{1}?trusted_connection=yes&driver=SQL+Server'.format(server, dbname), echo=False)
+Session = sessionmaker(bind=engine)
+session = Session()
+metadata = MetaData()
+metadata.reflect(bind=engine)
 
 
-def connectEngine():
-    engine = create_engine(
-        'mssql://@' + server + '/' + dbname +
-        '?trusted_connection=yes&driver=SQL+Server', echo=False)
-    Session = sessionmaker(bind=engine)
-    session = Session()
-    metadata = MetaData()
-    metadata.reflect(bind=engine)
-
-    return engine, session, metadata
-
-
-class Engine:
-    def __init__(self, engine, session, metadata):
-        self.engine = engine
-        self.session = session
-        self.metadata = metadata
-
-engine = Engine(connectEngine()[0], connectEngine()[1], connectEngine()[2])
-
-
-def GetRows(tableName):
-    """Retruns all rows from selected columns in a table"""
-    table = engine.metadata.tables[tableName]
-    session = engine.session
-    results = session.query(table).all()
+def get_rows(table_name):
+    """Returns all rows from selected columns in a table"""
+    results = session.query(table_name).all()
     return results
 
 
-# TODO: Create a method to register a user in the authorized user table
-# TODO: Add password validation rules
-def RegisterUser(Uname, EmpNum, Password, Password2):
+def register_user(username, emp_num, password, password2):
     """This will add a user to the registered user database table
        after name validation, password match validation and
        password hash occurs """
-    session = engine.session
-    if Uname is not None and Uname is not '':
-        q = session.query(RegisteredUser).filter(RegisteredUser.Username == Uname)
-        print(q)
-        if session.query(q.exists()):
+    if username is not None and username is not '':
+        uname = session.query(RegisteredUser).filter(RegisteredUser.username == username).first()
+        empnum = session.query(RegisteredUser).filter(RegisteredUser.employee_number == emp_num).first()
+        if uname is not None:
             # unExists = pandas.read_sql(
             #     """SELECT * FROM [dbo].[RegisteredUsers]
             #     WHERE [Username] = '""" + Username + "' ", engine)
             # if len(unExists) is not 0:
             # Username already exists in the database
             return 'Username already exists, please try a different username.'
-        elif EmpNum is None or EmpNum == '':
+        elif emp_num is None or emp_num == '':
             # No employee number has been selected
             return 'Please select an employee number to continue.'
-        elif ((Password is None or Password is '') and
-              (Password2 is None or Password2 is '')):
+        elif empnum is not None:
+            # employee number already has an account
+            return 'Employee number already has associated account.'
+        elif ((password is None or password is '') and
+              (password2 is None or password2 is '')):
                 # One or both passwords are blank
             return 'Password cannot be blank, please try again.'
-        elif Password != Password2:
+        elif password != password2:
             # Password entries do not match
             return 'Passwords do not match, please try again.'
         else:
             # Hash the submitted password
-            pwdhash = hash_password(Password)
+            pwdhash = hash_password(password)
             # Insert the entry into the registered users table
+            add_user(username, pwdhash, emp_num)
     else:
         # Username is blank
         return """Username can not be blank, please enter a username
@@ -79,10 +61,14 @@ def RegisterUser(Uname, EmpNum, Password, Password2):
 
     # Account successfully added to database
     return """User account {0} has been successfully created, you may now
-        log in""".format(Username)
+        log in""".format(username)
 
 
-RegisterUser('haagimus', None, None, None)
+def add_user(username, password, emp_num):
+    submission = RegisteredUser(username=username, employee_number=emp_num, password=password)
+    session.add(submission)
+    session.commit()
+    pass
 
 
 def hash_password(password):
@@ -94,18 +80,20 @@ def hash_password(password):
     return (salt + pwdhash).decode('ascii')
 
 
-def verify_password(Username, provided_password):
+def verify_password(username, provided_password):
     """Verify a stored password against one provided by user"""
-    if Username is not None:
-        userRecord = pandas.read_sql(
-            """SELECT * FROM [dbo].[RegisteredUsers]
-            WHERE [Username] = '""" + Username + "' ", engine)
+    if username is not None:
+        results = session.query(RegisteredUser).filter(RegisteredUser.username == username).first()
     else:
         return """Username can not be blank, please enter a username
             and try again."""
-    if len(userRecord) == 0:
+
+    if provided_password is None:
+        return """Password can not be blank, please enter a password
+            and try again."""
+    if results is None:
         return 'User not found'
-    stored_password = userRecord['Password'][0]
+    stored_password = results.password
     salt = stored_password[:64]
     stored_password = stored_password[64:]
     pwdhash = hashlib.pbkdf2_hmac('sha512',
@@ -114,6 +102,6 @@ def verify_password(Username, provided_password):
                                   100000)
     pwdhash = binascii.hexlify(pwdhash).decode('ascii')
     if pwdhash == stored_password:
-        return 'Logged in as {0}'.format(userRecord['Username'][0])
+        return 'Logged in as {0}'.format(results.username)
     else:
         return 'Invalid Password'
