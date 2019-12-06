@@ -1,10 +1,8 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from dash import Dash
+from flask_sqlalchemy import SQLAlchemy
 
-__name__ = 'Resource and Analysis Website'
-
-server = Flask(__name__)
-app = Dash(__name__, server=server, url_base_pathname='/')
+server = Flask('Resource and Analysis Website')
+app = Dash(server=server)
+db = SQLAlchemy()
 app.config.suppress_callback_exceptions = True
-db = SQLAlchemy(server)
