@@ -24,7 +24,7 @@ def display_page(pathname):
     if pathname == '/programs':
         return pgm.Programs()
     if pathname == '/capacity':
-        return cap.Capacity()
+        return cap.capacity()
     if pathname == '/':
         return home.Home()
 

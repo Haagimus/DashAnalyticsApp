@@ -1,36 +1,12 @@
-# analysis imports
-import pandas
-import numpy
 # Dash
-import dash_table as dt
 import dash_html_components as html
-from dash.dependencies import Output, Input
-from server import app
+import dash_table as dt
 
 # Local assets import
 import assets.SQL as sql
 import assets.models as models
 
 employees = sql.get_rows(models.EmployeeData)
-functions = sql.get_rows(models.Functions)
-
-
-def function_totals():
-    count = {}
-    idx = 0
-    for item in functions:
-        count.update({item.function:0})
-        for row in employees:
-            if row.assigned_function == item.function and row.date_end is None:
-                count[item.function] += 1
-        idx += 1
-
-    results = pandas.DataFrame({
-        'Functions': list(count.keys()),
-        'Head Count': list(count.values())
-    })
-
-    return results
 
 
 def employee_page_layout():
