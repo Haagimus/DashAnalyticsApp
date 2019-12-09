@@ -5,27 +5,24 @@ from pages.employees import function_totals
 
 
 def Capacity():
-    # ft = function_totals()
+    ft = function_totals()
     content = dt.DataTable(
-        # style_data={
-        #     'whitespace': 'normal',
-        #     'height': 'auto',
-        #     'overflow': 'hidden',
-        #     'textOverflow': 'ellipses',
-        #     'maxWidth': 0
-        # },
-        # id='Capacity',
-        # columns=[{'name': i, 'id': i} for i in ft],
-        # editable=False,
-        # filter_action='custom',
-        # sort_action='native',
-        # sort_mode='single',
-        # row_deletable=False,
-        # style_as_list_view=True,
-        # style_header={
-        #     'backgroundColor': 'white',
-        #     'fontWeight': 'bold'
-        # },
-        # row_selectable='single'
+        style_data={
+            'whitespace': 'normal',
+            'height': 'auto',
+            'overflow': 'hidden',
+            'textOverflow': 'ellipses',
+            'maxWidth': 0
+        },
+        id='Capacity',
+        columns=[{'name': i, 'id': i} for i in ft],
+        data=[ft],
+        editable=False,
+        row_deletable=False,
+        style_as_list_view=True,
+        style_header={
+            'backgroundColor': 'white',
+            'fontWeight': 'bold'
+        },
     ),
     return content

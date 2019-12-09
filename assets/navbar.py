@@ -3,7 +3,6 @@ import dash_html_components as html
 
 import assets.SQL as sql
 import assets.models as models
-import assets.callbacks
 
 
 # When new pages are added, update list with href to location

@@ -54,6 +54,14 @@ def Home():
 
 
 def send_mail(orig_from, subject, body, msgType):
+    """
+
+    :param orig_from: str
+    :param subject: str
+    :param body: str
+    :param msgType: str
+    :return: bool
+    """
     port = 25
     smtp_server = "frxsv-globemaster"
     sender_email = "FRX.DevOps@L3Harris.com"

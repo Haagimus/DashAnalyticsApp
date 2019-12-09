@@ -17,24 +17,30 @@ metadata.reflect(bind=engine)
 
 
 def get_rows(table_name):
-    """Returns all rows from selected columns in a table"""
+    """
+    Returns all rows from selected columns in a table
+    :param table_name: str
+    :return: list[]
+    """
     results = session.query(table_name).all()
     return results
 
 
 def register_user(username, emp_num, password, password2):
-    """This will add a user to the registered user database table
+    """
+    This will add a user to the registered user database table
        after name validation, password match validation and
-       password hash occurs """
+       password hash occurs
+    :param username: str
+    :param emp_num: int
+    :param password: str
+    :param password2: str
+    :return: str
+    """
     if username is not None and username is not '':
         uname = session.query(RegisteredUser).filter(RegisteredUser.username == username).first()
         empnum = session.query(RegisteredUser).filter(RegisteredUser.employee_number == emp_num).first()
         if uname is not None:
-            # unExists = pandas.read_sql(
-            #     """SELECT * FROM [dbo].[RegisteredUsers]
-            #     WHERE [Username] = '""" + Username + "' ", engine)
-            # if len(unExists) is not 0:
-            # Username already exists in the database
             return 'Username already exists, please try a different username.'
         elif emp_num is None or emp_num == '':
             # No employee number has been selected
@@ -65,14 +71,24 @@ def register_user(username, emp_num, password, password2):
 
 
 def add_user(username, password, emp_num):
+    """
+    Adds a new user to the registered user table
+    :param username: str
+    :param password: str
+    :param emp_num: int
+    :return: None
+    """
     submission = RegisteredUser(username=username, employee_number=emp_num, password=password)
     session.add(submission)
     session.commit()
-    pass
 
 
 def hash_password(password):
-    """Hash a password for storing."""
+    """
+    Hash a password for storing
+    :param password: str
+    :return: str
+    """
     salt = hashlib.sha256(os.urandom(60)).hexdigest().encode('ascii')
     pwdhash = hashlib.pbkdf2_hmac('sha512', password.encode('utf-8'),
                                   salt, 100000)
@@ -81,7 +97,12 @@ def hash_password(password):
 
 
 def verify_password(username, provided_password):
-    """Verify a stored password against one provided by user"""
+    """
+    Verify a stored password against one provided by user
+    :param username: str
+    :param provided_password: str
+    :return: str
+    """
     if username is not None:
         results = session.query(RegisteredUser).filter(RegisteredUser.username == username).first()
     else:

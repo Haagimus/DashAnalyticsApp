@@ -2,6 +2,7 @@
 from sqlalchemy import Column, Date, ForeignKey, Integer, String, Boolean, Numeric
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy.ext.declarative import declarative_base
+from flask_login import UserMixin
 
 Base = declarative_base()
 metadata = Base.metadata
@@ -14,7 +15,7 @@ class EmployeeNumber(Base):
     number = Column(Integer(), unique=True)
 
 
-class RegisteredUser(Base):
+class RegisteredUser(UserMixin, Base):
     __tablename__ = 'registered_users'
 
     id = Column(Integer(), primary_key=True)
@@ -32,8 +33,8 @@ class EmployeeData(Base):
     __tablename__ = 'employee_data'
 
     id = Column(Integer(), primary_key=True)
-    name_first = Column(String(50), nullable=False, index=True)
     name_last = Column(String(50), nullable=False, index=True)
+    name_first = Column(String(50), nullable=False, index=True)
     job_title = Column(String(50), nullable=False)
     level = Column(Integer(), nullable=True)
     job_code = Column(String(10), nullable=False)
@@ -44,7 +45,7 @@ class EmployeeData(Base):
     # Foreign Keys
     employee_number = Column(Integer(), ForeignKey('employee_numbers.number'))
     assigned_programs = Column(String(50), ForeignKey('programs.name'))
-    assigned_function = Column(Integer, ForeignKey('functions.id'))
+    assigned_function = Column(String(50), ForeignKey('functions.function'))
 
     # One to One relationships
     function = relationship('Functions', backref=backref('assigned_function'))
