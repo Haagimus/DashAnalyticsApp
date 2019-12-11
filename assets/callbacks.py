@@ -82,19 +82,20 @@ def cap_link(pathname):
         return 'active'
 
 
-@app.callback(Output('loginView', 'style'),
+@app.callback(Output('loginView', 'is_open'),
               [Input('loginOpen', 'n_clicks'),
-               Input('loginClose', 'n_clicks')])
-def show_login(open_login, close_login):
+               Input('loginClose', 'n_clicks')],
+              [State('loginView', 'is_open')])
+def toggle_login(open_login, close_login, is_open):
     """
     This controls the display of the login modal
     :param open_login: int
     :param close_login: int
     :return: dict
     """
-    if (open_login + close_login) % 2 == 0:
-        return {'display': 'none'}
-    return {'display': 'block'}
+    if open_login or close_login:
+        return not is_open
+    return is_open
 
 
 @app.callback([Output('loginMessage', 'children'),
@@ -118,19 +119,20 @@ def login_message(login_click, username, password):
     return [result, '', '']
 
 
-@app.callback(Output('registerModal', 'style'),
+@app.callback(Output('registerView', 'is_open'),
               [Input('registerOpen', 'n_clicks'),
-               Input('registerClose', 'n_clicks')])
-def show_registration(open_registration, close_registration):
+               Input('registerClose', 'n_clicks')],
+              [State('registerView', 'is_open')])
+def toggle_registration(open_registration, close_registration, is_open):
     """
     This controls the display of the register user modal
     :param open_registration: int
     :param close_registration: int
     :return: dict
     """
-    if (open_registration + close_registration) % 2 == 0:
-        return {'display': 'none'}
-    return {'display': 'block'}
+    if open_registration or close_registration:
+        return not is_open
+    return is_open
 
 
 @app.callback([Output('registerMessage', 'children'),

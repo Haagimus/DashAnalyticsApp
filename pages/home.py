@@ -7,49 +7,97 @@ import smtplib
 
 #  inProgress =
 
-form = dbc.Form(children=[
-    html.H1("User Submission Form", style={'color': 'white'}),
-    dbc.FormGroup([
-        dcc.Input(id='email',
-                  type="email",
-                  placeholder="Enter your email address",
-                  required=True,
-                  className='required',
-                  style={'width': '400px', 'marginTop': '3%'}
-                  )
-    ],
-        className="mr-2",
-    ),
-    dbc.FormGroup([
-        dbc.Label("Choose one", style={'color': 'white'}),
-        dbc.RadioItems(options=[
-            {"label": "Report a Bug", "value": "1", "checked": ""},
-            {"label": "Feature Request", "value": "2"},
-            {"label": "Request Admin", "value": "3"}
-        ],
-            id='msgType',
-            style={'color': 'white'}
-        ),
-    ], className="mr-2"
-    ),
-    dbc.FormGroup([
-        dbc.Textarea(id="comment", className="mr-2", bs_size="lg",
-                     placeholder="Enter comments/suggestions",
-                     style={'width': '400px', 'height': '200px'},
-                     value='')],
-                  className="mr-2"),
-    dbc.Button("Submit", id='submit', n_clicks=0),
-    dbc.Button("Reset", id='reset', n_clicks=0),
-    html.Div(id='output-state', children=[''])],
-    inline=True,
-    id='submission-form'
-)
+form = dbc.Row([
+    # Features in Development Column
+    dbc.Col([html.H1('Features in Development',
+                     style={'color': 'white',
+                            'text-align': 'center'}),
+             dbc.Card(
+                 dbc.CardBody([
+                     html.P('''This is where the in development feature list will go. Probably add
+                some descriptive text for the items as well.''')
+                 ])
+             )],
+            width=4),
+    # Change Log Column
+    dbc.Col([html.H1('Change Log',
+                     style={'color': 'white',
+                            'text-align': 'center'}),
+             dbc.Card(
+                 dbc.CardBody([
+                     html.P('''This is where the in development feature list will go. Probably add
+                            some descriptive text for the items as well.''')
+                 ])
+             )],
+            width=4),
+    # User Submission Form Column
+    dbc.Col([
+        html.Div([
+            dbc.Form(children=[
+                html.H1("User Submission Form",
+                        style={'color': 'white',
+                               'text-align': 'center'}),
+                # Email input field
+                dbc.FormGroup([
+                    dbc.Input(id='email',
+                              type="email",
+                              placeholder="Enter your email address",
+                              style={'width': '100%', 'marginTop': '3%'},
+                              value=''),
+                    dbc.FormText('Please enter your L3Harris email'),
+                    dbc.FormFeedback(valid=True),
+                    dbc.FormFeedback(valid=False)
+                ]),
+                dbc.Row([
+                    dbc.Col(
+                        html.H4("Choose one", style={'color': 'white'}),
+                        width=3
+                    ),
+                    dbc.Col(
+                        dbc.Select(options=[
+                            {"label": "Report a Bug", "value": "1"},
+                            {"label": "Feature Request", "value": "2"},
+                            {"label": "Request Admin", "value": "3"}
+                        ],
+                            id='msgType',
+                            # style={'color': 'white'}
+                        ),
+                        width=9
+                    )]
+                ),
+                html.Br(),
+                dbc.FormGroup([
+                    dbc.Textarea(id="comment", bs_size="lg",
+                                 placeholder="Enter comments/suggestions",
+                                 style={'height': '200px'},
+                                 value='')
+                ]),
+                dbc.Button("Submit",
+                           id='submit',
+                           n_clicks=0,
+                           size='lg',
+                           color='success',
+                           style={'width': '100px'}),
+                dbc.Button("Reset",
+                           id='reset',
+                           n_clicks=0,
+                           size='lg',
+                           color='danger',
+                           style={'width': '100px',
+                                  'float': 'right'})
+            ]),
+            html.Div(id='output-state', children=[''])],
+            id='submission-form'
+        )],
+        width=4
+    )
+])
 
 
 def Home():
-    content = html.Div(className=".col-12", children=[
+    content = html.Div(
         form,
-    ])
+    )
     return content
 
 
@@ -110,3 +158,14 @@ def send_submission(msgType_value, comment_value, n_clicks, email_value):
               [Input('reset', 'n_clicks')])
 def update(reset):
     return 0
+
+
+@app.callback([Output('email', 'valid'),
+               Output('email', 'invalid')],
+              [Input('email', 'value')],
+              )
+def check_email(text):
+    if text:
+        is_l3harris = str.lower(text).endswith('@l3harris.com')
+        return is_l3harris, not is_l3harris
+    return False, False
