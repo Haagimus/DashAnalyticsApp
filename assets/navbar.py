@@ -10,18 +10,22 @@ import assets.models as models
 def navbar():
     navbar = html.Div([
         dbc.Nav([
-            dbc.NavItem(html.Img(id='logo', src='..\\assets\images\L3Harris.svg')),
+            dbc.NavItem(dbc.NavLink(html.Img(id='logo', src='..\\assets\images\L3Harris.svg'),
+                                    href='https://nexus.l3harris.com/SitePages/Welcome.aspx',
+                                    style={'padding': '0px'})),
             dbc.NavItem(dbc.NavLink('Home', id='homeLink', href='/')),
             dbc.NavItem(dbc.NavLink('Employees', id='empLink', href='/employees')),
             dbc.NavItem(dbc.NavLink('Programs', id='pgmLink', href='/programs')),
             dbc.NavItem(dbc.NavLink('Capacity', id='capLink', href='/capacity')),
-            dbc.NavItem(dbc.Button('Register', id='registerOpen', n_clicks=0,
-                                   style={'width': '120px', 'margin': '0px 5px'})),
-            dbc.NavItem(dbc.Button('Login', id='loginOpen', n_clicks=0,
-                                   style={'width': '120px', 'margin': '0px 5px'}))
+            dbc.NavItem([
+                dbc.Button('Register', id='registerOpen', n_clicks=0,
+                           style={'width': '120px', 'margin': '0px 5px'}),
+                dbc.Button('Login', id='loginOpen', n_clicks=0,
+                           style={'width': '120px', 'margin': '0px 5px'})],
+                className='ml-auto')
         ],
             pills=True,
-            justified=True,
+            # justified=True,
         ),
         # The login modal page layout
         dbc.Modal([

@@ -19,14 +19,13 @@ form = dbc.Row([
                  ])
              )],
             width=4),
-    # Change Log Column
-    dbc.Col([html.H1('Change Log',
+    # Implemented Features Column
+    dbc.Col([html.H1('Implemented Features',
                      style={'color': 'white',
                             'text-align': 'center'}),
              dbc.Card(
                  dbc.CardBody([
-                     html.P('''This is where the in development feature list will go. Probably add
-                            some descriptive text for the items as well.''')
+                     html.P('Employee roster page')
                  ])
              )],
             width=4),
@@ -134,24 +133,37 @@ def send_mail(orig_from, subject, body, msgType):
                Input('comment', 'value'),
                Input('submit', 'n_clicks'),
                Input('email', 'value')])
-def send_submission(msgType_value, comment_value, n_clicks, email_value):
-    count = 0
-    if n_clicks > 0 and n_clicks < 2:
-        while count < 1:
-            if msgType_value == "1":
-                msgType = "Bug Report"
-            elif msgType_value == "2":
-                msgType = "Feature Request"
-            elif msgType_value == "3":
-                msgType = "Admin Request"
-            subject = "A new " + msgType + " was submtited."
-            body = comment_value
-            if send_mail(email_value, subject, body, msgType):
-                # TODO: reset the email submission form and click count
-                return "Message sent successfully"
-            else:
-                return "Message unable to send. Try resetting form"
-            count = 1
+def send_submission(msgType_value, comment_value, send, email_value):
+    if send:
+        if msgType_value == "1":
+            msgType = "Bug Report"
+        elif msgType_value == "2":
+            msgType = "Feature Request"
+        elif msgType_value == "3":
+            msgType = "Admin Request"
+        subject = "A new " + msgType + " was submtited."
+        body = comment_value
+        if send_mail(email_value, subject, body, msgType):
+            # TODO: reset the email submission form and click count
+            return "Message sent successfully"
+        else:
+            return "Message unable to send. Try resetting form"
+
+#
+# @app.callback(Output('loginView', 'is_open'),
+#               [Input('loginOpen', 'n_clicks'),
+#                Input('loginClose', 'n_clicks')],
+#               [State('loginView', 'is_open')])
+# def toggle_login(open_login, close_login, is_open):
+#     """
+#     This controls the display of the login modal
+#     :param open_login: int
+#     :param close_login: int
+#     :return: dict
+#     """
+#     if open_login or close_login:
+#         return not is_open
+#     return is_open
 
 
 @app.callback(Output('submit', 'n_clicks'),
