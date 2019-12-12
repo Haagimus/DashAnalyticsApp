@@ -1,8 +1,14 @@
 from flask import Flask
 from dash import Dash
+from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
+import dash_bootstrap_components as dbc
+
+db = SQLAlchemy()
+login_manager = LoginManager()
+external_stylesheets = ['dbc.themes.BOOTSTRAP']
 
 server = Flask('Resource and Analysis Website')
-app = Dash(server=server)
-db = SQLAlchemy()
+app = Dash(server=server, external_stylesheets=external_stylesheets)
 app.config.suppress_callback_exceptions = True
+login_manager.init_app(server)
