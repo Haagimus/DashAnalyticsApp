@@ -1,0 +1,71 @@
+/* Main Application Styling*/
+body {
+	background-color: #f4f3ef;
+}
+
+H2 {
+    color: #66615B;
+}
+
+#page-content {
+	padding: 0px 30px 30px;
+	margin-top: 15px;
+}
+
+
+/* Home Page Styling*/
+.card {
+    border-radius:12px;
+    box-shadow:0 6px 10px -4px rgba(0,0,0,.15);
+}
+
+.form-control,
+.custom-select {
+    box-shadow:0 6px 10px -4px rgba(0,0,0,.15);
+}
+
+.card-header {
+    background-color: transparent;
+    color: #252422;
+}
+
+/* Navbar Styling*/
+#logo {
+    margin: 5px 10px;
+    width: 150px;
+    height: 32px;
+}
+
+#navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0.1rem;
+    background-color: transparent !important;
+    box-shadow: none;
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+    z-index: 1000;
+}
+
+#loginMessage,
+#registerMessage {
+    display: block;
+    margin: 5px 0px auto 0px;
+    color: red;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Capacity Page Styling*/
+#functions-graph,
+#capacity {
+    border-radius:12px;
+    box-shadow:0 6px 10px -4px rgba(0,0,0,.15);
+}
+
+/* Programs Page Styling*/
+table, th, td
+{
+    border: .2px solid black;
+    padding: 5px;
+}

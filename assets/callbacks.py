@@ -1,10 +1,8 @@
 from dash import exceptions
 from dash.dependencies import Output, Input, State
-from flask_login import current_user, login_user
 
 import assets.SQL as sql
 import pages.capacity as cap
-# Import pages
 import pages.employees as emp
 import pages.home as home
 import pages.programs as pgm
@@ -17,16 +15,13 @@ from server import app
     [Input('url', 'pathname')])
 def display_page(pathname):
     if pathname == '/employees':
-        # if current_user.is_authenticated:
-        #     return emp.admin_employee_page()
-        # else:
         return emp.employee_page_layout()
     if pathname == '/programs':
         return pgm.Programs()
     if pathname == '/capacity':
         return cap.capacity()
     if pathname == '/':
-        return home.Home()
+        return home.home()
 
 
 # These callbacks just set the active class for the navbar so it colors properly

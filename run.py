@@ -1,5 +1,6 @@
-from app import app
 import sys
+
+from app import app
 
 # Main application loop
 if __name__ == '__main__':

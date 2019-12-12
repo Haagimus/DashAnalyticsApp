@@ -1,6 +1,5 @@
-import dash_core_components as dcc
-import dash_html_components as html
 import dash_bootstrap_components as dbc
+import dash_html_components as html
 
 import assets.SQL as sql
 import assets.models as models
@@ -8,7 +7,7 @@ import assets.models as models
 
 # When new pages are added, update list with href to location
 def navbar():
-    navbar = html.Div([
+    navbar = html.Nav([
         dbc.Nav([
             dbc.NavItem(dbc.NavLink(html.Img(id='logo', src='..\\assets\images\L3Harris.svg'),
                                     href='https://nexus.l3harris.com/SitePages/Welcome.aspx',
@@ -19,13 +18,15 @@ def navbar():
             dbc.NavItem(dbc.NavLink('Capacity', id='capLink', href='/capacity')),
             dbc.NavItem([
                 dbc.Button('Register', id='registerOpen', n_clicks=0,
-                           style={'width': '120px', 'margin': '0px 5px'}),
+                           style={'width': '120px',
+                                  'margin': '0px 5px'}),
                 dbc.Button('Login', id='loginOpen', n_clicks=0,
-                           style={'width': '120px', 'margin': '0px 5px'})],
+                           style={'width': '120px',
+                                  'margin': '0px 5px'})],
                 className='ml-auto')
         ],
             pills=True,
-            # justified=True,
+            id='navbar'
         ),
         # The login modal page layout
         dbc.Modal([
