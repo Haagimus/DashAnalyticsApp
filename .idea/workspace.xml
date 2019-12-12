@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1277e24a-518e-4c91-a5df-90ef4a8586e2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/capacity.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/capacity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <list id="3428cc0c-6334-466d-81ab-07179f1c98b2" name="Revert &quot;initial commit for rope package (vs code support package)&quot;" comment="Revert &quot;initial commit for rope package (vs code support package)&quot;&#10;&#10;This reverts commit 3514cdff" />
     <list id="733dff2b-6d78-4ec1-b082-5214378b49f6" name="Revert &quot;initial commit for rope package (vs code support package)&quot;-2" comment="Revert &quot;initial commit for rope package (vs code support package)&quot;&#10;&#10;This reverts commit 3514cdff" />
@@ -62,14 +61,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/capacity.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1439">
-              <caret line="96" column="50" selection-start-line="96" selection-start-column="50" selection-end-line="96" selection-end-column="50" />
+            <state relative-caret-position="109">
+              <caret line="63" column="17" lean-forward="true" selection-start-line="63" selection-start-column="17" selection-end-line="63" selection-end-column="17" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="510">
+              <caret line="144" column="20" selection-start-line="144" selection-start-column="20" selection-end-line="144" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -165,7 +173,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/sql test.py" />
         <option value="$PROJECT_DIR$/assets/FRXResourceDemand.py" />
         <option value="$PROJECT_DIR$/sql_test.py" />
         <option value="$PROJECT_DIR$/migrations/db_update.py" />
@@ -216,13 +223,14 @@
         <option value="//frxsv-dauphin/users/thollis.sa/DashSiteFiles/run.py" />
         <option value="$PROJECT_DIR$/run.py" />
         <option value="$PROJECT_DIR$/pages/capacity.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1973" />
-    <option name="y" value="-544" />
-    <option name="width" value="1936" />
+    <option name="x" value="685" />
+    <option name="y" value="-8" />
+    <option name="width" value="1089" />
     <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -446,7 +454,21 @@
       <option name="project" value="LOCAL" />
       <updated>1576103494629</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="got the capacity page displaying counts and a graph">
+      <created>1576163739875</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1576163739875</updated>
+    </task>
+    <task id="LOCAL-00013" summary="adding new files">
+      <created>1576164242712</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1576164242712</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TodoView">
@@ -459,19 +481,19 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1088" y="-536" width="1096" height="1896" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Repositories" order="0" weight="0.19072708" />
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49729145" weight="0.3146718" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49729145" visible="true" weight="0.31449893" />
       <window_info id="Structure" order="2" sideWeight="0.50270855" side_tool="true" weight="0.17537314" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="0" weight="0.32936078" />
-      <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.4978678" weight="0.36511377" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="1" sideWeight="0.4978678" visible="true" weight="0.36511377" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5021322" side_tool="true" weight="0.36511377" />
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="bottom" id="Find" order="4" weight="0.1701645" />
-      <window_info active="true" anchor="bottom" id="Run" order="5" sideWeight="0.49946696" visible="true" weight="0.10833806" />
+      <window_info anchor="bottom" id="Run" order="5" sideWeight="0.49946696" weight="0.20693392" />
       <window_info anchor="bottom" id="Debug" order="6" weight="0.35734543" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
@@ -601,7 +623,9 @@
     <MESSAGE value="\everything" />
     <MESSAGE value="capacity page updates" />
     <MESSAGE value="lots of refactoring to support dash bootstrap component layouts" />
-    <option name="LAST_COMMIT_MESSAGE" value="lots of refactoring to support dash bootstrap component layouts" />
+    <MESSAGE value="got the capacity page displaying counts and a graph" />
+    <MESSAGE value="adding new files" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding new files" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="debuggerHistoryManager">
@@ -697,7 +721,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/migrations/versions/48279696114f_generating_tables.py" />
     <entry file="file://$PROJECT_DIR$/migrations/versions/23aafec9c3f8_generating_tables.py" />
     <entry file="file://$PROJECT_DIR$/migrations/versions/83064e52e3f2_generating_tables.py" />
     <entry file="file://$PROJECT_DIR$/migrations/versions/3cee229d951e_adding_relationship_to_resources_.py">
@@ -1009,11 +1032,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/capacity.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1439">
-          <caret line="96" column="50" selection-start-line="96" selection-start-column="50" selection-end-line="96" selection-end-column="50" />
+        <state relative-caret-position="109">
+          <caret line="63" column="17" lean-forward="true" selection-start-line="63" selection-start-column="17" selection-end-line="63" selection-end-column="17" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="144" column="20" selection-start-line="144" selection-start-column="20" selection-end-line="144" selection-end-column="20" />
         </state>
       </provider>
     </entry>
