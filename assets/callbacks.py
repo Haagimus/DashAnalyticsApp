@@ -14,7 +14,7 @@ from server import app
     [State('session-store', 'data')])
 def display_page(pathname, data):
     if pathname == '/employees':
-        return employees.employee_page_layout(data['isadmin'])
+        return employees.employee_page_layout(data)
     if pathname == '/programs':
         return programs.Programs()
     if pathname == '/capacity':
@@ -94,7 +94,8 @@ def toggle_login(open_login, close_login, is_open):
 
 @app.callback([Output('loginMessage', 'children'),
                Output('loginUsername', 'value'),
-               Output('loginPassword', 'value')],
+               Output('loginPassword', 'value'),
+               Output('session-store', 'data')],
               [Input('loginSubmit', 'n_clicks')],
               [State('loginUsername', 'value'),
                State('loginPassword', 'value'),
@@ -113,7 +114,7 @@ def login_message(login_click, username, password, data):
     data = {'isadmin': False}
     result = sql.verify_password(username, password)
     data['isadmin'] = result[1]
-    return [result[0], '', '']
+    return [result[0], '', '', result[1]]
 
 
 @app.callback(Output('registerView', 'is_open'),

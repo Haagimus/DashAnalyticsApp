@@ -28,52 +28,57 @@ basic_data = [{'name_first': i.name_first,
 # TODO: Add admin layout columns and data
 
 
-def employee_page_layout():
-    layout = dbc.Col([
-        dbc.InputGroup([
-            dbc.Input(id='search', placeholder='search employees'),
-            dbc.InputGroupAddon([
-                dbc.Button('Clear', id='clear-search'),
-                dbc.Button('Search', id='search-button')],
-                addon_type='append'
-            )
-        ]),
-        html.Br(),
-        dt.DataTable(
-            id='Employees',
-            # style_data={
-            #     'whitespace': 'normal',
-            #     'height': 'auto',
-            #     'overflow': 'hidden',
-            #     'textOverflow': 'ellipses',
-            #     'maxWidth': 0
-            # },
-            columns=basic_columns,
-            data=basic_data,
-            editable=False,
-            page_action='native',
-            page_size=20,
-            sort_action='native',
-            sort_mode='multi',
-            style_as_list_view=False,
-            style_header={
-                'backgroundColor': 'white',
-                'fontWeight': 'bolder',
-                'fontSize': '18px',
-                'textAlign': 'center',
-                'border-bottom': '1px solid black'
-            },
-            style_data_conditional=[
-                {'if': {'row_index': 'odd'},
-                 'backgroundColor': 'rgb(248, 248, 248)'},
-                {'border-bottom': '1px solid #ddd'},
-                {'border-left': 'none'},
-                {'border-right': 'none'}
-            ],
-            row_selectable='single'
-        ),
-        html.Div(id='employee-container')
-    ])
+def employee_page_layout(admin):
+    if admin:
+        layout = dbc.Col([
+            'test'
+        ])
+    else:
+        layout = dbc.Col([
+            dbc.InputGroup([
+                dbc.Input(id='search', placeholder='search employees'),
+                dbc.InputGroupAddon([
+                    dbc.Button('Clear', id='clear-search'),
+                    dbc.Button('Search', id='search-button')],
+                    addon_type='append'
+                )
+            ]),
+            html.Br(),
+            dt.DataTable(
+                id='Employees',
+                # style_data={
+                #     'whitespace': 'normal',
+                #     'height': 'auto',
+                #     'overflow': 'hidden',
+                #     'textOverflow': 'ellipses',
+                #     'maxWidth': 0
+                # },
+                columns=basic_columns,
+                data=basic_data,
+                editable=False,
+                page_action='native',
+                page_size=20,
+                sort_action='native',
+                sort_mode='multi',
+                style_as_list_view=False,
+                style_header={
+                    'backgroundColor': 'white',
+                    'fontWeight': 'bolder',
+                    'fontSize': '18px',
+                    'textAlign': 'center',
+                    'border-bottom': '1px solid black'
+                },
+                style_data_conditional=[
+                    {'if': {'row_index': 'odd'},
+                     'backgroundColor': 'rgb(248, 248, 248)'},
+                    {'border-bottom': '1px solid #ddd'},
+                    {'border-left': 'none'},
+                    {'border-right': 'none'}
+                ],
+                row_selectable='single'
+            ),
+            html.Div(id='employee-container')
+        ])
     return layout
 
 # TODO: Add a callback to filter the employee table
