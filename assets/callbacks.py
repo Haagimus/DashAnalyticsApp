@@ -153,7 +153,7 @@ def submit_registration(submit_clicks, username, emp_name, password, password2):
     :return: dict
     """
     if not submit_clicks:
-        raise exceptions.PreventUpdate
+        raise PreventUpdate
     msg = sql.register_user(username, emp_name, password, password2)
     return [msg, emp_name, '', '']
 
