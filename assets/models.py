@@ -1,8 +1,8 @@
 # coding: utf-8
-from sqlalchemy import Column, Date, ForeignKey, Integer, String, Boolean, Numeric
-from sqlalchemy.orm import relationship, backref
-from sqlalchemy.ext.declarative import declarative_base
 from flask_login import UserMixin
+from sqlalchemy import Column, Date, ForeignKey, Integer, String, Boolean, Numeric
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import relationship, backref
 
 Base = declarative_base()
 metadata = Base.metadata

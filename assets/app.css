@@ -1,6 +1,6 @@
 /* Main Application Styling*/
 body {
-	background-color: #f4f3ef;
+	 background-color: #f4f3ef;
 }
 
 H2 {
@@ -11,7 +11,6 @@ H2 {
 	padding: 0px 30px 30px;
 	margin-top: 15px;
 }
-
 
 /* Home Page Styling*/
 .card {

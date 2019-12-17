@@ -1,25 +1,24 @@
 from dash import exceptions
 from dash.dependencies import Output, Input, State
+from dash.exceptions import PreventUpdate
 
 import assets.SQL as sql
-import pages.capacity as cap
-import pages.employees as emp
-import pages.home as home
-import pages.programs as pgm
+from pages import employees, programs, capacity, home
 from server import app
 
 
 # These callbacks handle main page functionality like content loading
 @app.callback(
     Output('page-content', 'children'),
-    [Input('url', 'pathname')])
-def display_page(pathname):
+    [Input('url', 'pathname')],
+    [State('session-store', 'data')])
+def display_page(pathname, data):
     if pathname == '/employees':
-        return emp.employee_page_layout()
+        return employees.employee_page_layout(data['isadmin'])
     if pathname == '/programs':
-        return pgm.Programs()
+        return programs.Programs()
     if pathname == '/capacity':
-        return cap.capacity()
+        return capacity.capacity()
     if pathname == '/':
         return home.home()
 
@@ -98,8 +97,9 @@ def toggle_login(open_login, close_login, is_open):
                Output('loginPassword', 'value')],
               [Input('loginSubmit', 'n_clicks')],
               [State('loginUsername', 'value'),
-               State('loginPassword', 'value')])
-def login_message(login_click, username, password):
+               State('loginPassword', 'value'),
+               State('session-store', 'data')])
+def login_message(login_click, username, password, data):
     """
     This controls the login submission. It passes the entered username and password to the SQL.py verify password method.
     This also controls the closing of the login modal
@@ -109,9 +109,11 @@ def login_message(login_click, username, password):
     :return: str
     """
     if not login_click:
-        raise exceptions.PreventUpdate
+        raise PreventUpdate
+    data = {'isadmin': False}
     result = sql.verify_password(username, password)
-    return [result, '', '']
+    data['isadmin'] = result[1]
+    return [result[0], '', '']
 
 
 @app.callback(Output('registerView', 'is_open'),
@@ -141,7 +143,7 @@ def toggle_registration(open_registration, close_registration, is_open):
                State('registerPassword2', 'value')])
 def submit_registration(submit_clicks, username, emp_name, password, password2):
     """
-    Submits the user regisration using the entered data
+    Submits the user registration using the entered data
     :param submit_clicks: int
     :param username: str
     :param emp_name: str
@@ -153,3 +155,47 @@ def submit_registration(submit_clicks, username, emp_name, password, password2):
         raise exceptions.PreventUpdate
     msg = sql.register_user(username, emp_name, password, password2)
     return [msg, emp_name, '', '']
+
+
+@app.callback([Output('email', 'value'),
+               Output('msgType', 'value'),
+               Output('comment', 'value')],
+              [Input('reset', 'n_clicks')])
+def update(reset):
+    if reset:
+        return ['', 1, '']
+    return ['', '', '']
+
+
+@app.callback([Output('email', 'valid'),
+               Output('email', 'invalid')],
+              [Input('email', 'value')],
+              )
+def check_email(text):
+    if text:
+        is_l3harris = str.lower(text).endswith('@l3harris.com')
+        return is_l3harris, not is_l3harris
+    return False, False
+
+
+@app.callback(Output('output-state', 'children'),
+              [Input('msgType', 'value'),
+               Input('comment', 'value'),
+               Input('submit', 'n_clicks'),
+               Input('email', 'value')])
+def send_submission(msg_type, comment_value, send, email_value):
+    if send:
+        if msg_type == "1":
+            msgType = "Bug Report"
+        elif msg_type == "2":
+            msgType = "Feature Request"
+        elif msg_type == "3":
+            msgType = "Admin Request"
+        subject = "A new " + msgType + " was submtited."
+        body = comment_value
+        if home.send_mail(email_value, subject, body, msgType):
+            # TODO: reset the email submission form and click count
+            update(True)
+            return "Message sent successfully"
+        else:
+            return "Message unable to send. Try resetting form"

@@ -123,6 +123,6 @@ def verify_password(username, provided_password):
                                   100000)
     pwdhash = binascii.hexlify(pwdhash).decode('ascii')
     if pwdhash == stored_password:
-        return 'Logged in as {0}'.format(results.username)
+        return ['Logged in as {0}'.format(results.username), results.employee.employee_data[0].is_admin]
     else:
         return 'Invalid Password'

@@ -1,5 +1,5 @@
-import dash_html_components as html
 import dash_bootstrap_components as dbc
+import dash_html_components as html
 import dash_table as dt
 
 import assets.SQL as sql
@@ -20,6 +20,9 @@ basic_data = [{'name_first': i.name_first,
                'job_code': i.job_code,
                'programs': i.programs,
                'date_start': i.date_start} for i in employees]
+
+
+# filtering will apply for i in employees if param == search
 
 
 # TODO: Add admin layout columns and data

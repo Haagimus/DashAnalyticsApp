@@ -3,9 +3,6 @@ import smtplib
 import dash_bootstrap_components as dbc
 import dash_html_components as html
 import pandas as pd
-from dash.dependencies import Input, Output
-
-from server import app
 
 
 def read_active_features():
@@ -32,6 +29,7 @@ def read_upcoming_features():
     ])
 
 
+# TODO: Make page content reload each time the site is visited
 form = html.Content(
     dbc.Row([
         # In Development Features Column
@@ -81,6 +79,7 @@ form = html.Content(
                                 {"label": "Request Admin", "value": "3"}
                             ],
                                 id='msgType',
+                                value=1
                             ),
                             width=8
                         )],
@@ -143,6 +142,7 @@ def send_mail(orig_from, subject, body, msgType):
     message = """Subject: {0} has submitted a {1}
     Submission: {2}. """.format(orig_from, msgType, body)
     try:
+        # TODO: fix the message body and subject layout
         server = smtplib.SMTP(smtp_server, port)
         server.login("FRX.EmailRelay@iss.l3t.com", "N)QQH3hppTrthKQN")
         for email in receiver_email:
@@ -152,29 +152,6 @@ def send_mail(orig_from, subject, body, msgType):
     except Exception as e:
         # Message send failed, returning false
         return False
-
-
-@app.callback(Output('output-state', 'children'),
-              [Input('msgType', 'value'),
-               Input('comment', 'value'),
-               Input('submit', 'n_clicks'),
-               Input('email', 'value')])
-def send_submission(msgType_value, comment_value, send, email_value):
-    if send:
-        if msgType_value == "1":
-            msgType = "Bug Report"
-        elif msgType_value == "2":
-            msgType = "Feature Request"
-        elif msgType_value == "3":
-            msgType = "Admin Request"
-        subject = "A new " + msgType + " was submtited."
-        body = comment_value
-        if send_mail(email_value, subject, body, msgType):
-            # TODO: reset the email submission form and click count
-            return "Message sent successfully"
-        else:
-            return "Message unable to send. Try resetting form"
-
 
 #
 # @app.callback(Output('loginView', 'is_open'),
@@ -191,20 +168,3 @@ def send_submission(msgType_value, comment_value, send, email_value):
 #     if open_login or close_login:
 #         return not is_open
 #     return is_open
-
-
-@app.callback(Output('submit', 'n_clicks'),
-              [Input('reset', 'n_clicks')])
-def update(reset):
-    return 0
-
-
-@app.callback([Output('email', 'valid'),
-               Output('email', 'invalid')],
-              [Input('email', 'value')],
-              )
-def check_email(text):
-    if text:
-        is_l3harris = str.lower(text).endswith('@l3harris.com')
-        return is_l3harris, not is_l3harris
-    return False, False
