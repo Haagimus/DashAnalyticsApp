@@ -13,7 +13,7 @@ def navbar(admin=False):
     if admin:
         layout = html.Nav([
         ],
-        id=)
+            id='navbar')
     else:
         # TODO: Look into auto generating the options and page links based on page py files
         layout = html.Nav([
@@ -98,13 +98,3 @@ def navbar(admin=False):
         ])
 
     return layout
-
-
-@app.callback(Output('navbar', '')
-    [Input('session-store', 'data')])
-def get_admin(data):
-    if data is None:
-        raise PreventUpdate
-    data = data or {}
-    print(data['isadmin'])
-    return data['isadmin']

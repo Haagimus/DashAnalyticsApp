@@ -21,3 +21,12 @@ app.layout = html.Div([
         html.Div(id='page-content')
     ),
 ])
+
+
+@app.callback(Output('session-store', 'data')
+              [Input('session-store', 'data')])
+def get_admin(data):
+    if data is None:
+        raise PreventUpdate
+    data = data or {}
+    return data['isadmin']
