@@ -163,12 +163,6 @@ def submit_registration(submit_clicks, username, emp_name, password, password2):
     return [msg, emp_name, '', '']
 
 
-@app.callback([Output('submission-form', 'value')],
-              [Input('reset', 'n_clicks')])
-def reset_form(reset):
-    return 0
-
-
 @app.callback([Output('email', 'value'),
                Output('msgType', 'value'),
                Output('comment', 'value')],
@@ -205,7 +199,6 @@ def send_submission(msg_type, comment_value, send, email_value):
         subject = "A new " + msgType + " was submtited."
         body = comment_value
         if home.send_mail(email_value, subject, body, msgType):
-            # TODO: reset the email submission form and click count
             update(True)
             return "Message sent successfully"
         else:
