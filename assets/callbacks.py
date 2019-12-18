@@ -1,16 +1,12 @@
-import datetime
+import time
 
-from dash import exceptions
 from dash.dependencies import Output, Input, State
 from dash.exceptions import PreventUpdate
-import pandas as pd
-import numpy as np
 from dash_table import DataTable
-import dash_html_components as html
 
 import assets.SQL as sql
-from pages import employees, programs, capacity, home
 from assets.models import EmployeeData
+from pages import employees, programs, capacity, home
 from server import app
 
 
@@ -285,3 +281,10 @@ def filter_employees(search_click, search_clear, filter_text, admin):
         row_selectable='single'
     )
     return [figure], filter_text
+
+
+@app.callback([Output('employee-loading-output', 'children')],
+              [Input('', 'value')])
+def employees_loading(value):
+    time.sleep(1)
+    return value

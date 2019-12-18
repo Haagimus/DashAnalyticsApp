@@ -1,3 +1,2 @@
-Employee page filters
 Programs page
 Admin page views
