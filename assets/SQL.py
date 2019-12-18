@@ -17,7 +17,12 @@ session = Session()
 metadata = MetaData()
 metadata.reflect(bind=engine)
 
-emp_cols_str = [EmployeeData.name_first, EmployeeData.name_last, EmployeeData.job_title, EmployeeData.job_code]
+emp_cols_str = [EmployeeData.name_first,
+                EmployeeData.name_last,
+                EmployeeData.job_title,
+                EmployeeData.assigned_function,
+                EmployeeData.assigned_programs,
+                EmployeeData.job_code]
 
 def get_rows(table_name):
     """
