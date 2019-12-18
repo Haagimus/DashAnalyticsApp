@@ -19,9 +19,9 @@ from server import app
     Output('page-content', 'children'),
     [Input('url', 'pathname')],
     [State('session-store', 'data')])
-def display_page(pathname, data):
+def display_page(pathname, admin):
     if pathname == '/employees':
-        return employees.employee_page_layout(data)
+        return employees.employee_page_layout(admin)
     if pathname == '/programs':
         return programs.Programs()
     if pathname == '/capacity':
@@ -220,7 +220,6 @@ def filter_employees(search_click, search_clear, filter_text, admin):
     else:
         data_set = sql.get_rows(EmployeeData)
 
-
     if not admin:
         columns = [{'name': 'First Name', 'id': 'name_first'},
                    {'name': 'Last Name', 'id': 'name_last'},
@@ -256,5 +255,30 @@ def filter_employees(search_click, search_clear, filter_text, admin):
                  'programs': i.programs,
                  'date_start': i.date_start} for i in data_set]
 
-    figure = DataTable(data=data, columns=columns)
+    figure = DataTable(
+        id='Employees',
+        columns=columns,
+        data=data,
+        editable=False,
+        page_action='native',
+        page_size=20,
+        sort_action='native',
+        sort_mode='multi',
+        style_as_list_view=False,
+        style_header={
+            'backgroundColor': 'white',
+            'fontWeight': 'bolder',
+            'fontSize': '18px',
+            'textAlign': 'center',
+            'border-bottom': '1px solid black'
+        },
+        style_data_conditional=[
+            {'if': {'row_index': 'odd'},
+             'backgroundColor': 'rgb(248, 248, 248)'},
+            {'border-bottom': '1px solid #ddd'},
+            {'border-left': 'none'},
+            {'border-right': 'none'}
+        ],
+        row_selectable='single'
+    )
     return [figure]
