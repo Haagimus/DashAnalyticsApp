@@ -55,11 +55,12 @@ def employee_page_layout(admin):
         dbc.InputGroup([
             dbc.Input(id='search', placeholder='search employees'),
             dbc.InputGroupAddon([
-                dbc.Button('Clear', id='clear-search'),
-                dbc.Button('Search', id='search-button')],
+                dbc.Button('Clear', id='clear-search', n_clicks_timestamp=0),
+                dbc.Button('Search', id='search-button', n_clicks_timestamp=0)],
                 addon_type='append'
             )
-        ]),
+        ],
+            id='submit-group'),
         html.Br(),
         # dt.DataTable(
         #     id='Employees',

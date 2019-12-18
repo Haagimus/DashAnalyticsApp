@@ -1,3 +1,5 @@
+import datetime
+
 from dash import exceptions
 from dash.dependencies import Output, Input, State
 from dash.exceptions import PreventUpdate
@@ -206,17 +208,23 @@ def send_submission(msg_type, comment_value, send, email_value):
 
 
 @app.callback([Output('employee-container', 'children')],
-              [Input('search-button', 'n_clicks')],
+              [Input('search-button', 'n_clicks_timestamp'),
+               Input('clear-search', 'n_clicks_timestamp')],
               [State('search', 'value'),
                State('session-store', 'data')])
-def filter_employees(search_click, filter_text, admin):
-    if not search_click:
-        raise PreventUpdate
-    data_set = sql.query_rows(EmployeeData, filter_text)
+def filter_employees(search_click, search_clear, filter_text, admin):
+    if int(search_click) > int(search_clear):
+        data_set = sql.query_rows(EmployeeData, filter_text)
+    elif int(search_clear) > int(search_click):
+        data_set = sql.get_rows(EmployeeData)
+    else:
+        data_set = sql.get_rows(EmployeeData)
+
 
     if not admin:
         columns = [{'name': 'First Name', 'id': 'name_first'},
                    {'name': 'Last Name', 'id': 'name_last'},
+                   {'name': 'Employee #', 'id': 'employee_number'},
                    {'name': 'Job Code', 'id': 'job_code'},
                    {'name': 'Assigned Function', 'id': 'function'},
                    {'name': 'Assigned Program', 'id': 'programs'},
@@ -224,6 +232,7 @@ def filter_employees(search_click, filter_text, admin):
     else:
         columns = [{'name': 'First Name', 'id': 'name_first'},
                    {'name': 'Last Name', 'id': 'name_last'},
+                   {'name': 'Employee #', 'id': 'employee_number'},
                    {'name': 'Job Code', 'id': 'job_code'},
                    {'name': 'Assigned Function', 'id': 'function'},
                    {'name': 'Assigned Program', 'id': 'programs'},
@@ -233,6 +242,7 @@ def filter_employees(search_click, filter_text, admin):
     if not admin:
         data = [{'name_first': i.name_first,
                  'name_last': i.name_last,
+                 'employee_number': i.employee_number,
                  'function': i.assigned_function,
                  'job_code': i.job_code,
                  'programs': i.programs,
@@ -240,6 +250,7 @@ def filter_employees(search_click, filter_text, admin):
     else:
         data = [{'name_first': i.name_first,
                  'name_last': i.name_last,
+                 'employee_number': i.employee_number,
                  'function': i.assigned_function,
                  'job_code': i.job_code,
                  'programs': i.programs,

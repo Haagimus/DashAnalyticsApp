@@ -17,8 +17,7 @@ session = Session()
 metadata = MetaData()
 metadata.reflect(bind=engine)
 
-emp_cols = [EmployeeData.name_first, EmployeeData.name_last, EmployeeData.job_title, EmployeeData.job_code]
-
+emp_cols_str = [EmployeeData.name_first, EmployeeData.name_last, EmployeeData.job_title, EmployeeData.job_code]
 
 def get_rows(table_name):
     """
@@ -33,12 +32,20 @@ def get_rows(table_name):
 def query_rows(table_name, param):
     results = []
     if param is None:
-        results = get_rows(table_name)
-    for item in emp_cols:
-        if len(session.query(table_name).filter(item == param).all()) > 0:
-            for i in session.query(table_name).filter(item == param).all():
+        return get_rows(table_name)
+
+    try:
+        param = int(param)
+        if len(session.query(table_name).filter(EmployeeData.employee_number.like('%{}%'.format(param))).all()) > 0:
+            for i in session.query(table_name).filter(EmployeeData.employee_number.like('%{}%'.format(param))).all():
                 results.append(i)
                 continue
+    except ValueError:
+        for item in emp_cols_str:
+            if len(session.query(table_name).filter(item.like('%{}%'.format(param))).all()) > 0:
+                for i in session.query(table_name).filter(item.like('%{}%'.format(param))).all():
+                    results.append(i)
+                    continue
 
     # results = query_to_dict(results)
     return results
