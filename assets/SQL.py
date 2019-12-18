@@ -23,6 +23,9 @@ emp_cols_str = [EmployeeData.name_first,
                 EmployeeData.assigned_function,
                 EmployeeData.assigned_programs,
                 EmployeeData.job_code]
+emp_cols_int = [EmployeeData.employee_number,
+                EmployeeData.date_end,
+                EmployeeData.date_start]
 
 def get_rows(table_name):
     """
@@ -41,10 +44,11 @@ def query_rows(table_name, param):
 
     try:
         param = int(param)
-        if len(session.query(table_name).filter(EmployeeData.employee_number.like('%{}%'.format(param))).all()) > 0:
-            for i in session.query(table_name).filter(EmployeeData.employee_number.like('%{}%'.format(param))).all():
-                results.append(i)
-                continue
+        for item in emp_cols_int:
+            if len(session.query(table_name).filter(item.like('%{}%'.format(param))).all()) > 0:
+                for i in session.query(table_name).filter(item.like('%{}%'.format(param))).all():
+                    results.append(i)
+                    continue
     except ValueError:
         for item in emp_cols_str:
             if len(session.query(table_name).filter(item.like('%{}%'.format(param))).all()) > 0:

@@ -207,7 +207,8 @@ def send_submission(msg_type, comment_value, send, email_value):
             return "Message unable to send. Try resetting form"
 
 
-@app.callback([Output('employee-container', 'children')],
+@app.callback([Output('employee-container', 'children'),
+               Output('search', 'value')],
               [Input('search-button', 'n_clicks_timestamp'),
                Input('clear-search', 'n_clicks_timestamp')],
               [State('search', 'value'),
@@ -217,8 +218,10 @@ def filter_employees(search_click, search_clear, filter_text, admin):
         data_set = sql.query_rows(EmployeeData, filter_text)
     elif int(search_clear) > int(search_click):
         data_set = sql.get_rows(EmployeeData)
+        filter_text = ''
     else:
         data_set = sql.get_rows(EmployeeData)
+        filter_text = ''
 
     if not admin:
         columns = [{'name': 'First Name', 'id': 'name_first'},
@@ -281,4 +284,4 @@ def filter_employees(search_click, search_clear, filter_text, admin):
         ],
         row_selectable='single'
     )
-    return [figure]
+    return [figure], filter_text
