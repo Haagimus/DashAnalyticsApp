@@ -1,3 +1,5 @@
+import datetime
+
 import dash_bootstrap_components as dbc
 import dash_html_components as html
 import dash_table as dt
@@ -41,14 +43,8 @@ def get_data(admin):
                  'function': i.assigned_function,
                  'job_code': i.job_code,
                  'programs': i.programs,
-                 'date_start': i.date_start} for i in employees if i.name_last == 'Haag']
+                 'date_start': i.date_start} for i in employees]
     return data
-
-
-# filtering will apply for i in employees if param == search
-
-
-# TODO: Add admin layout columns and data
 
 
 def employee_page_layout(admin):
@@ -65,39 +61,31 @@ def employee_page_layout(admin):
             )
         ]),
         html.Br(),
-        dt.DataTable(
-            id='Employees',
-            # style_data={
-            #     'whitespace': 'normal',
-            #     'height': 'auto',
-            #     'overflow': 'hidden',
-            #     'textOverflow': 'ellipses',
-            #     'maxWidth': 0
-            # },
-            columns=columns,
-            data=data,
-            editable=False,
-            page_action='native',
-            page_size=20,
-            sort_action='native',
-            sort_mode='multi',
-            style_as_list_view=False,
-            style_header={
-                'backgroundColor': 'white',
-                'fontWeight': 'bolder',
-                'fontSize': '18px',
-                'textAlign': 'center',
-                'border-bottom': '1px solid black'
-            },
-            style_data_conditional=[
-                {'if': {'row_index': 'odd'},
-                 'backgroundColor': 'rgb(248, 248, 248)'},
-                {'border-bottom': '1px solid #ddd'},
-                {'border-left': 'none'},
-                {'border-right': 'none'}
-            ],
-            row_selectable='single'
-        ),
+        # dt.DataTable(
+        #     id='Employees',
+        #     columns=columns,
+        #     editable=False,
+        #     page_action='native',
+        #     page_size=20,
+        #     sort_action='native',
+        #     sort_mode='multi',
+        #     style_as_list_view=False,
+        #     style_header={
+        #         'backgroundColor': 'white',
+        #         'fontWeight': 'bolder',
+        #         'fontSize': '18px',
+        #         'textAlign': 'center',
+        #         'border-bottom': '1px solid black'
+        #     },
+        #     style_data_conditional=[
+        #         {'if': {'row_index': 'odd'},
+        #          'backgroundColor': 'rgb(248, 248, 248)'},
+        #         {'border-bottom': '1px solid #ddd'},
+        #         {'border-left': 'none'},
+        #         {'border-right': 'none'}
+        #     ],
+        #     row_selectable='single'
+        # ),
         html.Div(id='employee-container')
     ])
 

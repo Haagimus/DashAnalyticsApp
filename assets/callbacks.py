@@ -1,9 +1,14 @@
 from dash import exceptions
 from dash.dependencies import Output, Input, State
 from dash.exceptions import PreventUpdate
+import pandas as pd
+import numpy as np
+from dash_table import DataTable
+import dash_html_components as html
 
 import assets.SQL as sql
 from pages import employees, programs, capacity, home
+from assets.models import EmployeeData
 from server import app
 
 
@@ -158,6 +163,12 @@ def submit_registration(submit_clicks, username, emp_name, password, password2):
     return [msg, emp_name, '', '']
 
 
+@app.callback([Output('submission-form', 'value')],
+              [Input('reset', 'n_clicks')])
+def reset_form(reset):
+    return 0
+
+
 @app.callback([Output('email', 'value'),
                Output('msgType', 'value'),
                Output('comment', 'value')],
@@ -170,8 +181,7 @@ def update(reset):
 
 @app.callback([Output('email', 'valid'),
                Output('email', 'invalid')],
-              [Input('email', 'value')],
-              )
+              [Input('email', 'value')])
 def check_email(text):
     if text:
         is_l3harris = str.lower(text).endswith('@l3harris.com')
@@ -200,3 +210,47 @@ def send_submission(msg_type, comment_value, send, email_value):
             return "Message sent successfully"
         else:
             return "Message unable to send. Try resetting form"
+
+
+@app.callback([Output('employee-container', 'children')],
+              [Input('search-button', 'n_clicks')],
+              [State('search', 'value'),
+               State('session-store', 'data')])
+def filter_employees(search_click, filter_text, admin):
+    if not search_click:
+        raise PreventUpdate
+    data_set = sql.query_rows(EmployeeData, filter_text)
+
+    if not admin:
+        columns = [{'name': 'First Name', 'id': 'name_first'},
+                   {'name': 'Last Name', 'id': 'name_last'},
+                   {'name': 'Job Code', 'id': 'job_code'},
+                   {'name': 'Assigned Function', 'id': 'function'},
+                   {'name': 'Assigned Program', 'id': 'programs'},
+                   {'name': 'Start Date', 'id': 'date_start'}]
+    else:
+        columns = [{'name': 'First Name', 'id': 'name_first'},
+                   {'name': 'Last Name', 'id': 'name_last'},
+                   {'name': 'Job Code', 'id': 'job_code'},
+                   {'name': 'Assigned Function', 'id': 'function'},
+                   {'name': 'Assigned Program', 'id': 'programs'},
+                   {'name': 'Start Date', 'id': 'date_start'},
+                   {'name': 'End Date', 'id': 'date_end'}]
+
+    if not admin:
+        data = [{'name_first': i.name_first,
+                 'name_last': i.name_last,
+                 'function': i.assigned_function,
+                 'job_code': i.job_code,
+                 'programs': i.programs,
+                 'date_start': i.date_start} for i in data_set]
+    else:
+        data = [{'name_first': i.name_first,
+                 'name_last': i.name_last,
+                 'function': i.assigned_function,
+                 'job_code': i.job_code,
+                 'programs': i.programs,
+                 'date_start': i.date_start} for i in data_set]
+
+    figure = DataTable(data=data, columns=columns)
+    return [figure]

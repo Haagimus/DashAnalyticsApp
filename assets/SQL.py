@@ -1,8 +1,10 @@
 import binascii
 import hashlib
 import os
+from collections import defaultdict
 
-from sqlalchemy import create_engine, MetaData, select, exists
+from pandas import DataFrame
+from sqlalchemy import create_engine, MetaData, select, exists, text, inspect
 from sqlalchemy.orm import sessionmaker
 
 from assets.models import EmployeeNumber, EmployeeData, RegisteredUser, ChargeNumber, Program, ProjectData, ResourceUsage
@@ -15,6 +17,8 @@ session = Session()
 metadata = MetaData()
 metadata.reflect(bind=engine)
 
+emp_cols = [EmployeeData.name_first, EmployeeData.name_last, EmployeeData.job_title, EmployeeData.job_code]
+
 
 def get_rows(table_name):
     """
@@ -24,6 +28,48 @@ def get_rows(table_name):
     """
     results = session.query(table_name).all()
     return results
+
+
+def query_rows(table_name, param):
+    results = []
+    if param is None:
+        results = get_rows(table_name)
+    for item in emp_cols:
+        if len(session.query(table_name).filter(item == param).all()) > 0:
+            for i in session.query(table_name).filter(item == param).all():
+                results.append(i)
+                continue
+
+    # results = query_to_dict(results)
+    return results
+
+
+def query_to_list(result_set):
+    """
+    List conversion from sqlalchemy query
+    :param result_set: query
+    :return: list[]
+    """
+    results = []
+    for obj in result_set:
+        instance = inspect(obj)
+        items = instance.attrs.items()
+        results.append([x.value for _, x in items])
+    return instance.attrs.keys(), results
+
+
+def query_to_dict(result_set):
+    """
+    Dictionary conversion from sqlalchemy query
+    :param result_set: query
+    :return: dict
+    """
+    result = defaultdict(list)
+    for row in result_set:
+        instance = inspect(row)
+        for key, x in instance.attrs.items():
+            result[key].append(x.value)
+    return result
 
 
 def register_user(username, emp_num, password, password2):
@@ -50,7 +96,7 @@ def register_user(username, emp_num, password, password2):
             return 'Employee number already has associated account.'
         elif ((password is None or password is '') and
               (password2 is None or password2 is '')):
-                # One or both passwords are blank
+            # One or both passwords are blank
             return 'Password cannot be blank, please try again.'
         elif password != password2:
             # Password entries do not match
