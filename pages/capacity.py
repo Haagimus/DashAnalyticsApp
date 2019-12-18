@@ -56,7 +56,7 @@ def functions_chart():
     return graph
 
 
-def capacity():
+def capacity_page_layout():
     ft = function_totals()
 
     content = dbc.Row([

@@ -118,7 +118,7 @@ form = html.Content(
 )
 
 
-def home():
+def home_page_layout():
     content = html.Div(
         form,
     )

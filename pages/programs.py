@@ -31,7 +31,7 @@ def color_cells(str):
     return fmt[str]
 
 
-def Programs():
+def program_page_layout():
     layout = html.Div([
         html.H2('Under Construction'),
         html.Div(id='programs-table'),

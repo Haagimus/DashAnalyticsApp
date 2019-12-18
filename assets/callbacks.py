@@ -5,7 +5,7 @@ from dash.exceptions import PreventUpdate
 from dash_table import DataTable
 
 import assets.SQL as sql
-from assets.models import EmployeeData
+from assets.models import EmployeeData, RegisteredUser
 from pages import employees, programs, capacity, home
 from server import app
 
@@ -15,15 +15,18 @@ from server import app
     Output('page-content', 'children'),
     [Input('url', 'pathname')],
     [State('session-store', 'data')])
-def display_page(pathname, admin):
+def display_page(pathname, data):
     if pathname == '/employees':
-        return employees.employee_page_layout(admin)
+        try:
+            return employees.employee_page_layout(data['isadmin'])
+        except TypeError:
+            return employees.employee_page_layout(False)
     if pathname == '/programs':
-        return programs.Programs()
+        return programs.program_page_layout()
     if pathname == '/capacity':
-        return capacity.capacity()
+        return capacity.capacity_page_layout()
     if pathname == '/':
-        return home.home()
+        return home.home_page_layout()
 
 
 # These callbacks just set the active class for the navbar so it colors properly
@@ -98,12 +101,14 @@ def toggle_login(open_login, close_login, is_open):
 @app.callback([Output('loginMessage', 'children'),
                Output('loginUsername', 'value'),
                Output('loginPassword', 'value'),
-               Output('session-store', 'data')],
+               Output('session-store', 'data'),
+               Output('url', 'pathname')],
               [Input('loginSubmit', 'n_clicks')],
               [State('loginUsername', 'value'),
                State('loginPassword', 'value'),
-               State('session-store', 'data')])
-def login_message(login_click, username, password, data):
+               State('session-store', 'data'),
+               State('url', 'pathname')])
+def login_message(login_click, username, password, data, path):
     """
     This controls the login submission. It passes the entered username and password to the SQL.py verify password method.
     This also controls the closing of the login modal
@@ -114,10 +119,17 @@ def login_message(login_click, username, password, data):
     """
     if not login_click:
         raise PreventUpdate
-    data = {'isadmin': False}
+    data = {'isadmin': False,
+            'logged_in': False,
+            'login_user': None}
     result = sql.verify_password(username, password)
-    data['isadmin'] = result[1]
-    return [result[0], '', '', result[1]]
+    if type(result) == RegisteredUser:
+        user = '{}, {}'.format(result.employee.employee_data[0].name_last, result.employee.employee_data[0].name_first)
+        data['isadmin'] = result.employee.employee_data[0].is_admin
+        data['logged_in'] = True
+        data['login_user'] = user
+        result = 'Logged in as {0}'.format(result.username)
+    return [result, '', '', data, path]
 
 
 @app.callback(Output('registerView', 'is_open'),
@@ -209,7 +221,7 @@ def send_submission(msg_type, comment_value, send, email_value):
                Input('clear-search', 'n_clicks_timestamp')],
               [State('search', 'value'),
                State('session-store', 'data')])
-def filter_employees(search_click, search_clear, filter_text, admin):
+def filter_employees(search_click, search_clear, filter_text, data):
     if int(search_click) > int(search_clear):
         data_set = sql.query_rows(EmployeeData, filter_text)
     elif int(search_clear) > int(search_click):
@@ -219,15 +231,8 @@ def filter_employees(search_click, search_clear, filter_text, admin):
         data_set = sql.get_rows(EmployeeData)
         filter_text = ''
 
-    if not admin:
-        columns = [{'name': 'First Name', 'id': 'name_first'},
-                   {'name': 'Last Name', 'id': 'name_last'},
-                   {'name': 'Employee #', 'id': 'employee_number'},
-                   {'name': 'Job Code', 'id': 'job_code'},
-                   {'name': 'Assigned Function', 'id': 'function'},
-                   {'name': 'Assigned Program', 'id': 'programs'},
-                   {'name': 'Start Date', 'id': 'date_start'}]
-    else:
+    if data is not None and data['isadmin']:
+        # This is the admin layout
         columns = [{'name': 'First Name', 'id': 'name_first'},
                    {'name': 'Last Name', 'id': 'name_last'},
                    {'name': 'Employee #', 'id': 'employee_number'},
@@ -236,15 +241,25 @@ def filter_employees(search_click, search_clear, filter_text, admin):
                    {'name': 'Assigned Program', 'id': 'programs'},
                    {'name': 'Start Date', 'id': 'date_start'},
                    {'name': 'End Date', 'id': 'date_end'}]
+    else:
+        columns = [{'name': 'First Name', 'id': 'name_first'},
+                   {'name': 'Last Name', 'id': 'name_last'},
+                   {'name': 'Employee #', 'id': 'employee_number'},
+                   {'name': 'Job Code', 'id': 'job_code'},
+                   {'name': 'Assigned Function', 'id': 'function'},
+                   {'name': 'Assigned Program', 'id': 'programs'},
+                   {'name': 'Start Date', 'id': 'date_start'}]
 
-    if not admin:
+    if data is not None and data['isadmin']:
+        # This is the admin layout
         data = [{'name_first': i.name_first,
                  'name_last': i.name_last,
                  'employee_number': i.employee_number,
                  'function': i.assigned_function,
                  'job_code': i.job_code,
                  'programs': i.programs,
-                 'date_start': i.date_start} for i in data_set]
+                 'date_start': i.date_start,
+                 'date_end': i.date_end} for i in data_set]
     else:
         data = [{'name_first': i.name_first,
                  'name_last': i.name_last,

@@ -3,11 +3,10 @@ import hashlib
 import os
 from collections import defaultdict
 
-from pandas import DataFrame
-from sqlalchemy import create_engine, MetaData, select, exists, text, inspect
+from sqlalchemy import create_engine, MetaData, inspect
 from sqlalchemy.orm import sessionmaker
 
-from assets.models import EmployeeNumber, EmployeeData, RegisteredUser, ChargeNumber, Program, ProjectData, ResourceUsage
+from assets.models import EmployeeData, RegisteredUser
 
 server = 'FRXSV-DAUPHIN'
 dbname = 'FRXResourceDemand'
@@ -26,6 +25,7 @@ emp_cols_str = [EmployeeData.name_first,
 emp_cols_int = [EmployeeData.employee_number,
                 EmployeeData.date_end,
                 EmployeeData.date_start]
+
 
 def get_rows(table_name):
     """
@@ -140,7 +140,9 @@ def add_user(username, password, emp_num):
     :param emp_num: int
     :return: None
     """
-    submission = RegisteredUser(username=username, employee_number=emp_num, password=password)
+    submission = RegisteredUser(username=username,
+                                employee_number=emp_num,
+                                password=password)
     session.add(submission)
     session.commit()
 
@@ -185,6 +187,6 @@ def verify_password(username, provided_password):
                                   100000)
     pwdhash = binascii.hexlify(pwdhash).decode('ascii')
     if pwdhash == stored_password:
-        return ['Logged in as {0}'.format(results.username), results.employee.employee_data[0].is_admin]
+        return results
     else:
         return 'Invalid Password'
