@@ -165,7 +165,7 @@ def verify_password(username, provided_password):
     Verify a stored password against one provided by user
     :param username: str
     :param provided_password: str
-    :return: str
+    :return: str or RegisteredUser
     """
     if username is not None:
         results = session.query(RegisteredUser).filter(RegisteredUser.username == username).first()

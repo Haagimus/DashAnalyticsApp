@@ -5,81 +5,52 @@ from dash.exceptions import PreventUpdate
 from dash_table import DataTable
 
 import assets.SQL as sql
+from assets.navbar import navbar
 from assets.models import EmployeeData, RegisteredUser
-from pages import employees, programs, capacity, home
+from pages import home, employees, programs, capacity
 from server import app
+
+page_list = ['home', 'employees', 'programs', 'capacity']
 
 
 # These callbacks handle main page functionality like content loading
-@app.callback(
-    Output('page-content', 'children'),
-    [Input('url', 'pathname')],
-    [State('session-store', 'data')])
+@app.callback(Output('page-content', 'children'),
+              [Input('url', 'pathname')],
+              [State('session-store', 'data')])
 def display_page(pathname, data):
+    if pathname == '/':
+        return home.home_page_layout()
     if pathname == '/employees':
         try:
-            return employees.employee_page_layout(data['isadmin'])
+            return employees.employee_page_layout(data)
         except TypeError:
-            return employees.employee_page_layout(False)
+            return employees.employee_page_layout()
     if pathname == '/programs':
         return programs.program_page_layout()
     if pathname == '/capacity':
         return capacity.capacity_page_layout()
-    if pathname == '/':
-        return home.home_page_layout()
+
+
+@app.callback(Output('navbar-container', 'children'),
+              [Input('url', 'pathname')],
+              [State('session-store', 'data')])
+def display_navbar(pathname, data):
+
+        return navbar(data)
 
 
 # These callbacks just set the active class for the navbar so it colors properly
-@app.callback(
-    Output('homeLink', 'className'),
-    [Input('url', 'pathname')])
-def home_link(pathname):
+@app.callback([Output(f'{i}-link', 'active') for i in page_list],
+              [Input('url', 'pathname')])
+def check_links(pathname):
     """
-    This highlights the home button on the navbar if on the home page url
+    This highlights buttons on the navbar when in the corresponding page url
     :param pathname: str
-    :return: str
+    :return: []
     """
     if pathname == '/':
-        return 'active'
-
-
-@app.callback(
-    Output('empLink', 'className'),
-    [Input('url', 'pathname')])
-def emp_link(pathname):
-    """
-    This highlights the employees button on the navbar if on the employees page url
-    :param pathname: str
-    :return: str
-    """
-    if pathname == '/employees':
-        return 'active'
-
-
-@app.callback(
-    Output('pgmLink', 'className'),
-    [Input('url', 'pathname')])
-def pgm_link(pathname):
-    """
-    This highlights the programs button on the navbar if on the programs page url
-    :param pathname: str
-    :return: str
-    """
-    if pathname == '/programs':
-        return 'active'
-
-
-@app.callback(
-    Output('capLink', 'className'),
-    [Input('url', 'pathname')])
-def cap_link(pathname):
-    """
-    This highlights the capacity button on the navbar if on the capacity page url
-    :param pathname: str
-    :return: str
-    """
-    if pathname == '/capacity':
-        return 'active'
+        return True, False, False, False
+    return [pathname == f'/{i}' for i in page_list]
 
 
 @app.callback(Output('loginView', 'is_open'),
@@ -91,6 +62,7 @@ def toggle_login(open_login, close_login, is_open):
     This controls the display of the login modal
     :param open_login: int
     :param close_login: int
+    :param is_open: bool
     :return: dict
     """
     if open_login or close_login:
@@ -99,11 +71,16 @@ def toggle_login(open_login, close_login, is_open):
 
 
 @app.callback([Output('loginMessage', 'children'),
+               Output('loginMessage', 'color'),
+               Output('loginMessage', 'is_open'),
                Output('loginUsername', 'value'),
                Output('loginPassword', 'value'),
                Output('session-store', 'data'),
                Output('url', 'pathname')],
               [Input('loginSubmit', 'n_clicks')],
+              # Input('loginSubmit', 'n_clicks_timestamp'),
+              # Input('logout-button', 'n_clicks'),
+              # Input('logout-button', 'n_clicks_timestamp')],
               [State('loginUsername', 'value'),
                State('loginPassword', 'value'),
                State('session-store', 'data'),
@@ -115,21 +92,44 @@ def login_message(login_click, username, password, data, path):
     :param login_click: int
     :param username: set
     :param password: set
-    :return: str
+    :param data: dict
+    :param path: str
+    :return: tuple
     """
+    # if login_timestamp > logout_timestamp:
+    #     print('login was clicked')
+    # elif logout_timestamp > login_timestamp:
+    #     print('logout was clicked')
+    # else:
+    #     print('nothing was clicked')
+    # if not login_click:
+    #     raise PreventUpdate()
+    #
     if not login_click:
         raise PreventUpdate
-    data = {'isadmin': False,
-            'logged_in': False,
-            'login_user': None}
-    result = sql.verify_password(username, password)
-    if type(result) == RegisteredUser:
-        user = '{}, {}'.format(result.employee.employee_data[0].name_last, result.employee.employee_data[0].name_first)
-        data['isadmin'] = result.employee.employee_data[0].is_admin
-        data['logged_in'] = True
-        data['login_user'] = user
-        result = 'Logged in as {0}'.format(result.username)
-    return [result, '', '', data, path]
+
+    if login_click:
+        mode = 'login'
+    else:
+        mode = 'logout'
+
+    print(mode)
+
+    if mode == 'logout':
+        data = {'isadmin': False,
+                'logged_in': False,
+                'login_user': None}
+        return ['', 'danger', False, '', '', data, path]
+    if mode == 'login':
+        result = sql.verify_password(username, password)
+        if type(result) == RegisteredUser:
+            user = '{}, {}'.format(result.employee.employee_data[0].name_last, result.employee.employee_data[0].name_first)
+            data = {'isadmin': result.employee.employee_data[0].is_admin,
+                    'logged_in': True,
+                    'login_user': user}
+            result = 'Logged in as {0}'.format(result.username)
+            return [result, 'success', True, '', '', data, path]
+        return [result, 'danger', True, '', '', data, path]
 
 
 @app.callback(Output('registerView', 'is_open'),
@@ -141,6 +141,7 @@ def toggle_registration(open_registration, close_registration, is_open):
     This controls the display of the register user modal
     :param open_registration: int
     :param close_registration: int
+    :param is_open: bool
     :return: dict
     """
     if open_registration or close_registration:
@@ -222,6 +223,14 @@ def send_submission(msg_type, comment_value, send, email_value):
               [State('search', 'value'),
                State('session-store', 'data')])
 def filter_employees(search_click, search_clear, filter_text, data):
+    """
+    Runs a filter query against the employees table
+    :param search_click: int
+    :param search_clear: int
+    :param filter_text: str
+    :param data: dict
+    :return: DataTable
+    """
     if int(search_click) > int(search_clear):
         data_set = sql.query_rows(EmployeeData, filter_text)
     elif int(search_clear) > int(search_click):
@@ -299,7 +308,7 @@ def filter_employees(search_click, search_clear, filter_text, data):
 
 
 @app.callback([Output('employee-loading-output', 'children')],
-              [Input('', 'value')])
+              [Input('page-content', 'value')])
 def employees_loading(value):
     time.sleep(1)
     return value

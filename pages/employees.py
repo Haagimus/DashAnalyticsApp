@@ -8,8 +8,12 @@ import assets.models as models
 employees = sql.get_rows(models.EmployeeData)
 
 
-def employee_page_layout(admin):
-    if admin:
+def employee_page_layout(data=None):
+    if data is None:
+        data = {'isadmin': False,
+                'logged_in': False,
+                'login_user': None}
+    if data['isadmin']:
         layout = dbc.Col([
             dbc.InputGroup([
                 dbc.Input(id='search', placeholder='search employees'),
@@ -20,7 +24,13 @@ def employee_page_layout(admin):
                 )
             ]),
             html.Br(),
-            html.Div(id='employee-container')
+            html.Div(
+                dcc.Loading(id='employees-loading',
+                            children=[
+                                html.Div(id='employee-container')
+                            ],
+                            type='default'
+                            ))
         ])
     else:
         layout = dbc.Col([
@@ -39,7 +49,6 @@ def employee_page_layout(admin):
                                 html.Div(id='employee-container')
                             ],
                             type='default'
-                            )),
-
+                            ))
         ])
     return layout
