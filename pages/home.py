@@ -1,102 +1,129 @@
-import dash_html_components as html
-import dash_core_components as dcc
-import dash_bootstrap_components as dbc
-from dash.dependencies import Input, Output, State
-from server import app
 import smtplib
 
-#  inProgress =
-
-form = dbc.Row([
-    # Features in Development Column
-    dbc.Col([html.H1('Features in Development',
-                     style={'color': 'white',
-                            'text-align': 'center'}),
-             dbc.Card(
-                 dbc.CardBody([
-                     html.P('''This is where the in development feature list will go. Probably add
-                some descriptive text for the items as well.''')
-                 ])
-             )],
-            width=4),
-    # Change Log Column
-    dbc.Col([html.H1('Change Log',
-                     style={'color': 'white',
-                            'text-align': 'center'}),
-             dbc.Card(
-                 dbc.CardBody([
-                     html.P('''This is where the in development feature list will go. Probably add
-                            some descriptive text for the items as well.''')
-                 ])
-             )],
-            width=4),
-    # User Submission Form Column
-    dbc.Col([
-        html.Div([
-            dbc.Form(children=[
-                html.H1("User Submission Form",
-                        style={'color': 'white',
-                               'text-align': 'center'}),
-                # Email input field
-                dbc.FormGroup([
-                    dbc.Input(id='email',
-                              type="email",
-                              placeholder="Enter your email address",
-                              style={'width': '100%', 'marginTop': '3%'},
-                              value=''),
-                    dbc.FormText('Please enter your L3Harris email'),
-                    dbc.FormFeedback(valid=True),
-                    dbc.FormFeedback(valid=False)
-                ]),
-                dbc.Row([
-                    dbc.Col(
-                        html.H4("Choose one", style={'color': 'white'}),
-                        width=3
-                    ),
-                    dbc.Col(
-                        dbc.Select(options=[
-                            {"label": "Report a Bug", "value": "1"},
-                            {"label": "Feature Request", "value": "2"},
-                            {"label": "Request Admin", "value": "3"}
-                        ],
-                            id='msgType',
-                            # style={'color': 'white'}
-                        ),
-                        width=9
-                    )]
-                ),
-                html.Br(),
-                dbc.FormGroup([
-                    dbc.Textarea(id="comment", bs_size="lg",
-                                 placeholder="Enter comments/suggestions",
-                                 style={'height': '200px'},
-                                 value='')
-                ]),
-                dbc.Button("Submit",
-                           id='submit',
-                           n_clicks=0,
-                           size='lg',
-                           color='success',
-                           style={'width': '100px'}),
-                dbc.Button("Reset",
-                           id='reset',
-                           n_clicks=0,
-                           size='lg',
-                           color='danger',
-                           style={'width': '100px',
-                                  'float': 'right'})
-            ]),
-            html.Div(id='output-state', children=[''])],
-            id='submission-form'
-        )],
-        width=4
-    )
-])
+import dash_bootstrap_components as dbc
+import dash_html_components as html
+import pandas as pd
 
 
-def Home():
+def read_active_features():
+    """
+    Parses the text from the Active_Features text file and generates bullet points for the home page
+    :return: dbc.CardBody
+    """
+    af = pd.read_csv('assets/files/Active_Features.txt', sep="\n", header=None)
+
+    return html.Ul([
+        html.Li(line) for line in af[0]
+    ])
+
+
+def read_upcoming_features():
+    """
+    Parses the text from the Upcoming_Features text file and generates bullet points for the home page
+    :return: dbc.CardBody
+    """
+    uf = pd.read_csv('assets/files/Upcoming_Features.txt', sep="\n", header=None)
+
+    return html.Ul([
+        html.Li(line) for line in uf[0]
+    ])
+
+
+# TODO: Make page content reload each time the site is visited
+def home_page_layout():
     content = html.Div(
-        form,
+        html.Content(
+            dbc.Row([
+                # In Development Features Column
+                dbc.Col(
+                    dbc.Card([
+                        dbc.CardHeader(
+                            html.H5('Features in Development',
+                                    className='card-title')),
+                        dbc.CardBody(
+                            read_upcoming_features())
+                    ]),
+                    xl=4,
+                    md=6,
+                    width=12),
+                # Implemented Features Column
+                dbc.Col(
+                    dbc.Card([
+                        dbc.CardHeader(
+                            html.H5('Implemented Features',
+                                    className='card-title')),
+                        dbc.CardBody(
+                            read_active_features())
+                    ]),
+                    xl=4,
+                    md=6,
+                    width=12),
+                # User Submission Form Column
+                dbc.Col([
+                    html.Div([
+                        dbc.Form(children=[
+                            html.H2("User Submission Form",
+                                    style={'text-align': 'center'}),
+                            # Email input field
+                            dbc.FormGroup([
+                                dbc.Label('Email:', width=2),
+                                dbc.Col(
+                                    dbc.Input(id='email',
+                                              type="email",
+                                              placeholder="Enter your L3Harris email address",
+                                              value=''),
+                                    width=10
+                                ),
+                                dbc.FormFeedback(valid=True),
+                                dbc.FormFeedback(valid=False)
+                            ],
+                                row=True),
+                            dbc.FormGroup([
+                                dbc.Label("Choose one", width=4),
+                                dbc.Col(
+                                    dbc.Select(options=[
+                                        {"label": "Report a Bug", "value": "1"},
+                                        {"label": "Feature Request", "value": "2"},
+                                        {"label": "Request Admin", "value": "3"}
+                                    ],
+                                        id='msgType',
+                                        value=1
+                                    ),
+                                    width=8
+                                )],
+                                row=True
+                            ),
+                            dbc.FormGroup([
+                                dbc.Textarea(id="comment", bs_size="lg",
+                                             placeholder="Enter comments/suggestions",
+                                             style={'height': '200px'},
+                                             value='')
+                            ]),
+                            dbc.FormGroup([
+                                dbc.Button("Submit",
+                                           id='submit',
+                                           n_clicks=0,
+                                           size='lg',
+                                           color='success',
+                                           style={'width': '100px'}),
+                                dbc.Button("Reset",
+                                           id='reset',
+                                           n_clicks=0,
+                                           size='lg',
+                                           color='danger',
+                                           style={'width': '100px',
+                                                  'float': 'right'})
+                            ]),
+                        ]),
+                        html.Div(id='output-state', children=[''])],
+                        id='submission-form'
+                    )],
+                    xl={'size': 4, 'offset': 0},
+                    md={'size': 8, 'offset': 2},
+                    width=12
+                )
+            ])
+        )
     )
     return content
 
@@ -118,6 +145,7 @@ def send_mail(orig_from, subject, body, msgType):
     message = """Subject: {0} has submitted a {1}
     Submission: {2}. """.format(orig_from, msgType, body)
     try:
+        # TODO: fix the message body and subject layout
         server = smtplib.SMTP(smtp_server, port)
         server.login("FRX.EmailRelay@iss.l3t.com", "N)QQH3hppTrthKQN")
         for email in receiver_email:
@@ -127,45 +155,3 @@ def send_mail(orig_from, subject, body, msgType):
     except Exception as e:
         # Message send failed, returning false
         return False
-
-
-@app.callback(Output('output-state', 'children'),
-              [Input('msgType', 'value'),
-               Input('comment', 'value'),
-               Input('submit', 'n_clicks'),
-               Input('email', 'value')])
-def send_submission(msgType_value, comment_value, n_clicks, email_value):
-    count = 0
-    if n_clicks > 0 and n_clicks < 2:
-        while count < 1:
-            if msgType_value == "1":
-                msgType = "Bug Report"
-            elif msgType_value == "2":
-                msgType = "Feature Request"
-            elif msgType_value == "3":
-                msgType = "Admin Request"
-            subject = "A new " + msgType + " was submtited."
-            body = comment_value
-            if send_mail(email_value, subject, body, msgType):
-                # TODO: reset the email submission form and click count
-                return "Message sent successfully"
-            else:
-                return "Message unable to send. Try resetting form"
-            count = 1
-
-
-@app.callback(Output('submit', 'n_clicks'),
-              [Input('reset', 'n_clicks')])
-def update(reset):
-    return 0
-
-
-@app.callback([Output('email', 'valid'),
-               Output('email', 'invalid')],
-              [Input('email', 'value')],
-              )
-def check_email(text):
-    if text:
-        is_l3harris = str.lower(text).endswith('@l3harris.com')
-        return is_l3harris, not is_l3harris
-    return False, False

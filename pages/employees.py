@@ -1,61 +1,54 @@
-# Dash
+import dash_bootstrap_components as dbc
 import dash_html_components as html
-import dash_table as dt
+import dash_core_components as dcc
 
-# Local assets import
 import assets.SQL as sql
 import assets.models as models
 
 employees = sql.get_rows(models.EmployeeData)
 
 
-def employee_page_layout():
-    layout = dt.DataTable(
-        style_data={
-            'whitespace': 'normal',
-            'height': 'auto',
-            'overflow': 'hidden',
-            'textOverflow': 'ellipses',
-            'maxWidth': 0
-        },
-        id='Employees',
-        columns=[{'name': i, 'id': i} for i in dir(models.EmployeeData) if not i.startswith('_')],
-        data=[{'name_first': i.name_first,
-               'name_last': i.name_last,
-               'function': i.function,
-               'functions': i.functions,
-               'job_code': i.job_code,
-               'programs': i.programs,
-               'date_start': i.date_start} for i in employees],
-        editable=False,
-        filter_action='custom',
-        sort_action='native',
-        sort_mode='single',
-        row_deletable=False,
-        hidden_columns=[
-            'id',
-            'metadata',
-            'is_admin',
-            'level',
-            'number',
-            'employee_number',
-            'assigned_function',
-            'assigned_programs',
-            'job_title',
-            'date_end'],
-        style_as_list_view=True,
-        style_header={
-            'backgroundColor': 'white',
-            'fontWeight': 'bold'
-        },
-        row_selectable='single'
-    ),
-    html.Div(id='employee-container')
+def employee_page_layout(data=None):
+    if data is None:
+        data = {'isadmin': False,
+                'logged_in': False,
+                'login_user': None}
+    if data['isadmin']:
+        layout = dbc.Col([
+            dbc.InputGroup([
+                dbc.Input(id='search', placeholder='search employees'),
+                dbc.InputGroupAddon([
+                    dbc.Button('Clear', id='clear-search', n_clicks_timestamp=0),
+                    dbc.Button('Search', id='search-button', n_clicks_timestamp=0)],
+                    addon_type='append'
+                )
+            ]),
+            html.Br(),
+            html.Div(
+                dcc.Loading(id='employees-loading',
+                            children=[
+                                html.Div(id='employee-container')
+                            ],
+                            type='default'
+                            ))
+        ])
+    else:
+        layout = dbc.Col([
+            dbc.InputGroup([
+                dbc.Input(id='search', placeholder='search employees'),
+                dbc.InputGroupAddon([
+                    dbc.Button('Clear', id='clear-search', n_clicks_timestamp=0),
+                    dbc.Button('Search', id='search-button', n_clicks_timestamp=0)],
+                    addon_type='append'
+                )
+            ]),
+            html.Br(),
+            html.Div(
+                dcc.Loading(id='employees-loading',
+                            children=[
+                                html.Div(id='employee-container')
+                            ],
+                            type='default'
+                            ))
+        ])
     return layout
-
-
-# For debugging
-# for (key, value) in count.items():
-#     print(key, '::', value)
-#     total += value
-# print('{0} total staff'.format(total))

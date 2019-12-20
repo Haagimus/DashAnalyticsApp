@@ -1,8 +1,7 @@
-from flask import Flask
 from dash import Dash
+from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
-import dash_bootstrap_components as dbc
 
 db = SQLAlchemy()
 login_manager = LoginManager()

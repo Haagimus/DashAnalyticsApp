@@ -1,11 +1,12 @@
 import binascii
 import hashlib
 import os
+from collections import defaultdict
 
-from sqlalchemy import create_engine, MetaData, select, exists
+from sqlalchemy import create_engine, MetaData, inspect
 from sqlalchemy.orm import sessionmaker
 
-from assets.models import EmployeeNumber, EmployeeData, RegisteredUser, ChargeNumber, Program, ProjectData, ResourceUsage
+from assets.models import EmployeeData, RegisteredUser
 
 server = 'FRXSV-DAUPHIN'
 dbname = 'FRXResourceDemand'
@@ -14,6 +15,16 @@ Session = sessionmaker(bind=engine)
 session = Session()
 metadata = MetaData()
 metadata.reflect(bind=engine)
+
+emp_cols_str = [EmployeeData.name_first,
+                EmployeeData.name_last,
+                EmployeeData.job_title,
+                EmployeeData.assigned_function,
+                EmployeeData.assigned_programs,
+                EmployeeData.job_code]
+emp_cols_int = [EmployeeData.employee_number,
+                EmployeeData.date_end,
+                EmployeeData.date_start]
 
 
 def get_rows(table_name):
@@ -24,6 +35,57 @@ def get_rows(table_name):
     """
     results = session.query(table_name).all()
     return results
+
+
+def query_rows(table_name, param):
+    results = []
+    if param is None:
+        return get_rows(table_name)
+
+    try:
+        param = int(param)
+        for item in emp_cols_int:
+            if len(session.query(table_name).filter(item.like('%{}%'.format(param))).all()) > 0:
+                for i in session.query(table_name).filter(item.like('%{}%'.format(param))).all():
+                    results.append(i)
+                    continue
+    except ValueError:
+        for item in emp_cols_str:
+            if len(session.query(table_name).filter(item.like('%{}%'.format(param))).all()) > 0:
+                for i in session.query(table_name).filter(item.like('%{}%'.format(param))).all():
+                    results.append(i)
+                    continue
+
+    # results = query_to_dict(results)
+    return results
+
+
+def query_to_list(result_set):
+    """
+    List conversion from sqlalchemy query
+    :param result_set: query
+    :return: list[]
+    """
+    results = []
+    for obj in result_set:
+        instance = inspect(obj)
+        items = instance.attrs.items()
+        results.append([x.value for _, x in items])
+    return instance.attrs.keys(), results
+
+
+def query_to_dict(result_set):
+    """
+    Dictionary conversion from sqlalchemy query
+    :param result_set: query
+    :return: dict
+    """
+    result = defaultdict(list)
+    for row in result_set:
+        instance = inspect(row)
+        for key, x in instance.attrs.items():
+            result[key].append(x.value)
+    return result
 
 
 def register_user(username, emp_num, password, password2):
@@ -50,7 +112,7 @@ def register_user(username, emp_num, password, password2):
             return 'Employee number already has associated account.'
         elif ((password is None or password is '') and
               (password2 is None or password2 is '')):
-                # One or both passwords are blank
+            # One or both passwords are blank
             return 'Password cannot be blank, please try again.'
         elif password != password2:
             # Password entries do not match
@@ -78,7 +140,9 @@ def add_user(username, password, emp_num):
     :param emp_num: int
     :return: None
     """
-    submission = RegisteredUser(username=username, employee_number=emp_num, password=password)
+    submission = RegisteredUser(username=username,
+                                employee_number=emp_num,
+                                password=password)
     session.add(submission)
     session.commit()
 
@@ -101,7 +165,7 @@ def verify_password(username, provided_password):
     Verify a stored password against one provided by user
     :param username: str
     :param provided_password: str
-    :return: str
+    :return: str or RegisteredUser
     """
     if username is not None:
         results = session.query(RegisteredUser).filter(RegisteredUser.username == username).first()
@@ -123,6 +187,6 @@ def verify_password(username, provided_password):
                                   100000)
     pwdhash = binascii.hexlify(pwdhash).decode('ascii')
     if pwdhash == stored_password:
-        return 'Logged in as {0}'.format(results.username)
+        return results
     else:
         return 'Invalid Password'
