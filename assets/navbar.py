@@ -4,33 +4,6 @@ import dash_html_components as html
 import assets.SQL as sql
 import assets.models as models
 
-
-def nav_logout(lbl):
-    return dbc.NavItem([
-        dbc.Label('Logged in as: {}'.format(lbl),
-                  style={'margin': '0px 10px'}),
-        dbc.Button('Logout',
-                   id='logout-button',
-                   n_clicks=0,
-                   n_clicks_timestamp=0,
-                   style={'width': '120px',
-                          'margin': '0px 5px'})],
-        className='ml-auto')
-
-
-nav_login = dbc.NavItem([
-    dbc.Button('Register',
-               id='registerOpen',
-               n_clicks=0,
-               style={'width': '120px',
-                      'margin': '0px 5px'}),
-    dbc.Button('Login',
-               id='loginOpen',
-               n_clicks=0,
-               style={'width': '120px',
-                      'margin': '0px 5px'})],
-    className='ml-auto')
-
 login_modal = dbc.Modal([
     dbc.ModalHeader('Please log in:', id='loginHead'),
     dbc.ModalBody([
@@ -98,44 +71,64 @@ def navbar(data=None):
         data = {'isadmin': False,
                 'logged_in': False,
                 'login_user': None}
+
     if data['logged_in']:
         if data['isadmin']:
             lbl = '{} (Admin)'.format(data['login_user'])
+            login_display = 'none'
+            logout_display = 'flex'
         else:
-            lbl = data['login_user']
-        layout = html.Nav([
-            dbc.Nav([
-                dbc.NavItem(dbc.NavLink(html.Img(id='logo', src='..\\assets\images\L3Harris.svg'),
-                                        href='https://nexus.l3harris.com/SitePages/Welcome.aspx',
-                                        style={'padding': '0px'})),
-                dbc.NavItem(dbc.NavLink('Home', id='home-link', href='/')),
-                dbc.NavItem(dbc.NavLink('Employees', id='employees-link', href='/employees')),
-                dbc.NavItem(dbc.NavLink('Programs', id='programs-link', href='/programs')),
-                dbc.NavItem(dbc.NavLink('Capacity', id='capacity-link', href='/capacity')),
-                nav_logout(lbl)],
-                pills=True,
-                id='navbar')
-        ])
+            lbl = '{}'.format(data['login_user'])
+            login_display = 'none'
+            logout_display = 'flex'
     else:
+        lbl = ''
+        login_display = 'flex'
+        logout_display = 'none'
+
         # TODO: Look into auto generating the options and page links based on page py files
-        layout = html.Nav([
-            dbc.Nav([
-                dbc.NavItem(dbc.NavLink(html.Img(id='logo', src='..\\assets\images\L3Harris.svg'),
-                                        href='https://nexus.l3harris.com/SitePages/Welcome.aspx',
-                                        style={'padding': '0px'})),
-                dbc.NavItem(dbc.NavLink('Home', id='home-link', href='/')),
-                dbc.NavItem(dbc.NavLink('Employees', id='employees-link', href='/employees')),
-                dbc.NavItem(dbc.NavLink('Programs', id='programs-link', href='/programs')),
-                dbc.NavItem(dbc.NavLink('Capacity', id='capacity-link', href='/capacity')),
-                nav_login],
-                pills=True,
-                id='navbar'),
+    layout = html.Nav([
+        dbc.Nav([
+            dbc.NavItem(dbc.NavLink(html.Img(id='logo', src='..\\assets\images\L3Harris.svg'),
+                                    href='https://nexus.l3harris.com/SitePages/Welcome.aspx',
+                                    style={'padding': '0px'})),
+            dbc.NavItem(dbc.NavLink('Home', id='home-link', href='/')),
+            dbc.NavItem(dbc.NavLink('Employees', id='employees-link', href='/employees')),
+            dbc.NavItem(dbc.NavLink('Programs', id='programs-link', href='/programs')),
+            dbc.NavItem(dbc.NavLink('Capacity', id='capacity-link', href='/capacity')),
+            dbc.NavItem([
+                dbc.Button('Register',
+                           id='registerOpen',
+                           n_clicks=0,
+                           style={'width': '120px',
+                                  'margin': '0px 5px'}),
+                dbc.Button('Login',
+                           id='loginOpen',
+                           n_clicks=0,
+                           style={'width': '120px',
+                                  'margin': '0px 5px'})],
+                className='ml-auto',
+                style={'display': login_display}),
+            dbc.NavItem([
+                dbc.Label('Logged in as: {}'.format(lbl),
+                          style={'margin': '0px 10px',
+                                 'padding': '10px 0px'}),
+                dbc.Button('Logout',
+                           id='logout-button',
+                           n_clicks=0,
+                           n_clicks_timestamp=0,
+                           style={'width': '120px',
+                                  'margin': '0px 5px'})],
+                className='ml-auto',
+                style={'display': logout_display})],
+            pills=True,
+            id='navbar'),
 
-            # The login modal page layout
-            login_modal,
+        # The login modal page layout
+        login_modal,
 
-            # The registration modal page layout
-            registration_modal
-        ])
+        # The registration modal page layout
+        registration_modal
+    ])
 
     return layout

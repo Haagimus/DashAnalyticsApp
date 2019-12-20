@@ -10,7 +10,7 @@ from assets.models import EmployeeData, RegisteredUser
 from pages import home, employees, programs, capacity
 from server import app
 
-page_list = ['home', 'employees', 'programs', 'capacity']
+page_list = ['', 'employees', 'programs', 'capacity']
 
 
 # These callbacks handle main page functionality like content loading
@@ -31,26 +31,35 @@ def display_page(pathname, data):
         return capacity.capacity_page_layout()
 
 
-@app.callback(Output('navbar-container', 'children'),
+# @app.callback(Output('url', 'pathname'),
+#               [Input('logout-button', 'n_clicks')],
+#               [State('url', 'pathname'),
+#                State('session-store', 'data')])
+# def logout(logout_click, url, data):
+#     if not logout_click:
+#         raise PreventUpdate
+#     data = None
+#     logout(url, data)
+#     return
+
+
+@app.callback([Output('navbar-container', 'children'),
+               Output('home-link', 'active'),
+               Output('employees-link', 'active'),
+               Output('programs-link', 'active'),
+               Output('capacity-link', 'active')],
               [Input('url', 'pathname')],
               [State('session-store', 'data')])
-def display_navbar(pathname, data):
-
-        return navbar(data)
-
-
-# These callbacks just set the active class for the navbar so it colors properly
-@app.callback([Output(f'{i}-link', 'active') for i in page_list],
-              [Input('url', 'pathname')])
-def check_links(pathname):
-    """
-    This highlights buttons on the navbar when in the corresponding page url
-    :param pathname: str
-    :return: []
-    """
+def load_navbar(pathname, data):
+    active_link = ([pathname == f'/{i}' for i in page_list])
     if pathname == '/':
-        return True, False, False, False
-    return [pathname == f'/{i}' for i in page_list]
+        return [navbar(data), active_link[0], active_link[1], active_link[2], active_link[3]]
+    if pathname == '/employees':
+        return [navbar(data), active_link[0], active_link[1], active_link[2], active_link[3]]
+    if pathname == '/programs':
+        return [navbar(data), active_link[0], active_link[1], active_link[2], active_link[3]]
+    if pathname == '/capacity':
+        return [navbar(data), active_link[0], active_link[1], active_link[2], active_link[3]]
 
 
 @app.callback(Output('loginView', 'is_open'),
@@ -77,15 +86,13 @@ def toggle_login(open_login, close_login, is_open):
                Output('loginPassword', 'value'),
                Output('session-store', 'data'),
                Output('url', 'pathname')],
-              [Input('loginSubmit', 'n_clicks')],
-              # Input('loginSubmit', 'n_clicks_timestamp'),
-              # Input('logout-button', 'n_clicks'),
-              # Input('logout-button', 'n_clicks_timestamp')],
+              [Input('loginSubmit', 'n_clicks_timestamp'),
+               Input('logout-button', 'n_clicks_timestamp')],
               [State('loginUsername', 'value'),
                State('loginPassword', 'value'),
                State('session-store', 'data'),
                State('url', 'pathname')])
-def login_message(login_click, username, password, data, path):
+def login_message(login_click, logout_click, username, password, data, path):
     """
     This controls the login submission. It passes the entered username and password to the SQL.py verify password method.
     This also controls the closing of the login modal
@@ -96,40 +103,28 @@ def login_message(login_click, username, password, data, path):
     :param path: str
     :return: tuple
     """
-    # if login_timestamp > logout_timestamp:
-    #     print('login was clicked')
-    # elif logout_timestamp > login_timestamp:
-    #     print('logout was clicked')
-    # else:
-    #     print('nothing was clicked')
-    # if not login_click:
-    #     raise PreventUpdate()
-    #
-    if not login_click:
+    if not (login_click or logout_click):
+        print('nothing clicked')
         raise PreventUpdate
 
-    if login_click:
-        mode = 'login'
-    else:
-        mode = 'logout'
+    if login_click > logout_click:
+        print('login clicked')
+    elif logout_click > login_click:
+        print('logout clicked')
 
-    print(mode)
+    if logout_click:
+        data = None
+        return ['Logout successful', True, 'success', '', '', data, path]
 
-    if mode == 'logout':
-        data = {'isadmin': False,
-                'logged_in': False,
-                'login_user': None}
-        return ['', 'danger', False, '', '', data, path]
-    if mode == 'login':
-        result = sql.verify_password(username, password)
-        if type(result) == RegisteredUser:
-            user = '{}, {}'.format(result.employee.employee_data[0].name_last, result.employee.employee_data[0].name_first)
-            data = {'isadmin': result.employee.employee_data[0].is_admin,
-                    'logged_in': True,
-                    'login_user': user}
-            result = 'Logged in as {0}'.format(result.username)
-            return [result, 'success', True, '', '', data, path]
-        return [result, 'danger', True, '', '', data, path]
+    result = sql.verify_password(username, password)
+    if type(result) == RegisteredUser:
+        user = '{}, {}'.format(result.employee.employee_data[0].name_last, result.employee.employee_data[0].name_first)
+        data = {'isadmin': result.employee.employee_data[0].is_admin,
+                'logged_in': True,
+                'login_user': user}
+        result = 'Logged in as {0}'.format(result.username)
+        return [result, 'success', True, '', '', data, path]
+    return [result, 'danger', True, '', '', data, path]
 
 
 @app.callback(Output('registerView', 'is_open'),
