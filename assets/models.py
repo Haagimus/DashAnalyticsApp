@@ -14,6 +14,12 @@ class EmployeeNumber(Base):
     id = Column(Integer(), primary_key=True)
     number = Column(Integer(), unique=True)
 
+    registered_user_id = Column(Integer(), ForeignKey('registered_users.id'))
+    registered_user = relationship('RegisteredUser', backref=backref('employee_numbers', uselist=False))
+
+    # employee_data_id = Column(Integer(), ForeignKey('employee_data.id'))
+    # employee_data = relationship('EmployeeData', backref=backref('employee_numbers', uselist=False))
+
 
 class RegisteredUser(UserMixin, Base):
     __tablename__ = 'registered_users'
@@ -21,12 +27,26 @@ class RegisteredUser(UserMixin, Base):
     id = Column(Integer(), primary_key=True)
     username = Column(String(50), nullable=False, unique=True, index=True)
     password = Column(String(), nullable=False)
+    employee_number = Column(Integer(), unique=True)
 
     # Foreign Keys
-    employee_number = Column(Integer(), ForeignKey('employee_numbers.number'))
+    department_id = Column(Integer(), ForeignKey('departments.id'))
+    departments = relationship('Departments', backref=backref('registered_users'))
 
-    # One to One relationships
-    employee = relationship('EmployeeNumber', uselist=False)
+    # One-to-One relationships
+
+    # Many-to-One relationship
+    admin_of = relationship('Departments')
+
+
+class Departments(Base):
+    __tablename__ = 'departments'
+
+    id = Column(Integer(), primary_key=True)
+    department = Column(String(50), nullable=False, unique=True, index=True)
+
+    # One-to-Many relationships
+    users = relationship('RegisteredUser', back_populates='departments')
 
 
 class EmployeeData(Base):
@@ -47,11 +67,12 @@ class EmployeeData(Base):
     assigned_programs = Column(String(50), ForeignKey('programs.name'))
     assigned_function = Column(String(50), ForeignKey('functions.function'))
 
-    # One to One relationships
+    # One-to-One relationships
     function = relationship('Functions', backref=backref('assigned_function'))
+    number = relationship('EmployeeNumber', backref=backref('employee_number'))
 
-    # One to Many relationships
-    number = relationship('EmployeeNumber', backref=backref('employee_data'))
+    # One-to-Many relationships
+    # number = relationship('EmployeeNumber', backref=backref('employee_data'))
     programs = relationship('Program', backref=backref('employee_data'))
 
 
@@ -76,9 +97,8 @@ class Program(Base):
     # One to One relationship
     charge = relationship('ChargeNumber', uselist=False)
 
-    # One to Many relationships
+    # One-to-Many relationships
     employees = relationship('EmployeeData', back_populates='programs')
-    time_entries = relationship('ResourceUsage', back_populates='programs')
 
 
 class ProjectData(Base):
@@ -93,8 +113,11 @@ class ProjectData(Base):
     # Foreign Keys
     parent_program = Column(String(50), ForeignKey('programs.name'))
 
-    # One to One relationships
+    # One-to-One relationships
     program = relationship('Program', uselist=False)
+
+    # One-to-Many relationships
+    time_entries = relationship('ResourceUsage', back_populates='projects')
 
 
 class ResourceUsage(Base):
@@ -109,11 +132,11 @@ class ResourceUsage(Base):
 
     # Foreign Keys
     employee_number = Column(Integer(), ForeignKey('employee_numbers.number'))
-    project = Column(String(50), ForeignKey('projects.name'))
+    project_id = Column(Integer(), ForeignKey('projects.id'))
+    projects = relationship('ProjectData', backref=backref('resource_entries', uselist=False))
 
-    # One to Many relationships
+    # One-to-Many relationships
     number = relationship('EmployeeNumber', backref=backref('resource_entries'))
-    programs = relationship('Program', backref=backref('resource_entries'))
 
 
 class Functions(Base):
@@ -125,5 +148,6 @@ class Functions(Base):
     # Foreign Keys
     employee_numbers = Column(Integer(), ForeignKey('employee_numbers.number'))
 
-    # One to Many relationships
+    # One-to-Many relationships
     employees = relationship('EmployeeData', backref=backref('functions'))
+

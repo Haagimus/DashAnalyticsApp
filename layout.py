@@ -4,6 +4,7 @@ import dash_html_components as html
 import dash_bootstrap_components as dbc
 
 from server import app
+import assets.callbacks
 
 navbar = html.Nav(id='navbar-container')
 content = html.Div(id='page-content')
@@ -28,4 +29,3 @@ app.layout = html.Div([
     content,
     footer
 ])
-import assets.callbacks

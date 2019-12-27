@@ -52,14 +52,14 @@ def display_page(pathname, data):
               [State('session-store', 'data')])
 def load_navbar(pathname, data):
     active_link = ([pathname == f'/{i}' for i in page_list])
-    if pathname == '/':
-        return [navbar(data), active_link[0], active_link[1], active_link[2], active_link[3]]
-    if pathname == '/employees':
-        return [navbar(data), active_link[0], active_link[1], active_link[2], active_link[3]]
-    if pathname == '/programs':
-        return [navbar(data), active_link[0], active_link[1], active_link[2], active_link[3]]
-    if pathname == '/capacity':
-        return [navbar(data), active_link[0], active_link[1], active_link[2], active_link[3]]
+    # if pathname == '/':
+    #     return navbar(data), active_link[0], active_link[1], active_link[2], active_link[3]
+    # if pathname == '/employees':
+    #     return navbar(data), active_link[0], active_link[1], active_link[2], active_link[3]
+    # if pathname == '/programs':
+    #     return navbar(data), active_link[0], active_link[1], active_link[2], active_link[3]
+    # if pathname == '/capacity':
+    return navbar(data), active_link[0], active_link[1], active_link[2], active_link[3]
 
 
 @app.callback(Output('loginView', 'is_open'),
@@ -118,8 +118,9 @@ def login_message(login_click, logout_click, username, password, data, path):
 
     result = sql.verify_password(username, password)
     if type(result) == RegisteredUser:
-        user = '{}, {}'.format(result.employee.employee_data[0].name_last, result.employee.employee_data[0].name_first)
-        data = {'isadmin': result.employee.employee_data[0].is_admin,
+        employee = sql.query_rows(EmployeeData, result.employee_number)
+        user = '{}, {}'.format(employee[0].name_last, employee[0].name_first)
+        data = {'isadmin': employee[0].is_admin,
                 'logged_in': True,
                 'login_user': user}
         result = 'Logged in as {0}'.format(result.username)
@@ -241,6 +242,8 @@ def filter_employees(search_click, search_clear, filter_text, data):
                    {'name': 'Last Name', 'id': 'name_last'},
                    {'name': 'Employee #', 'id': 'employee_number'},
                    {'name': 'Job Code', 'id': 'job_code'},
+                   {'name': 'Job Title', 'id': 'job_title'},
+                   {'name': 'Level', 'id': 'level'},
                    {'name': 'Assigned Function', 'id': 'function'},
                    {'name': 'Assigned Program', 'id': 'programs'},
                    {'name': 'Start Date', 'id': 'date_start'},
@@ -259,9 +262,11 @@ def filter_employees(search_click, search_clear, filter_text, data):
         data = [{'name_first': i.name_first,
                  'name_last': i.name_last,
                  'employee_number': i.employee_number,
-                 'function': i.assigned_function,
                  'job_code': i.job_code,
-                 'programs': i.programs,
+                 'job_title': i.job_title,
+                 'level': i.level,
+                 'function': i.assigned_function,
+                 'programs': i.assigned_programs,
                  'date_start': i.date_start,
                  'date_end': i.date_end} for i in data_set]
     else:
@@ -270,7 +275,7 @@ def filter_employees(search_click, search_clear, filter_text, data):
                  'employee_number': i.employee_number,
                  'function': i.assigned_function,
                  'job_code': i.job_code,
-                 'programs': i.programs,
+                 'programs': i.assigned_programs,
                  'date_start': i.date_start} for i in data_set]
 
     figure = DataTable(
