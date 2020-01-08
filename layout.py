@@ -1,7 +1,7 @@
 # Dash
+import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 import dash_html_components as html
-import dash_bootstrap_components as dbc
 
 from server import app
 import assets.callbacks
@@ -22,6 +22,7 @@ footer = html.Footer(
 
 
 app.layout = html.Div([
+    html.Link(rel='shortcut icon', href='assets/images/favicon.ico'),
     dcc.Store(id='session-store',
               storage_type='session'),
     dcc.Location(id='url', ),

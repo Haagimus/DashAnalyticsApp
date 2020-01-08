@@ -7,7 +7,8 @@ db = SQLAlchemy()
 login_manager = LoginManager()
 external_stylesheets = ['dbc.themes.BOOTSTRAP']
 
-server = Flask('Resource and Analysis Website')
-app = Dash(server=server, external_stylesheets=external_stylesheets)
+server = Flask(__name__)
+app = Dash(__name__, server=server, external_stylesheets=external_stylesheets)
 app.config.suppress_callback_exceptions = True
+app.title = 'ForceX Analytics'
 login_manager.init_app(server)

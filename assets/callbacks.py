@@ -118,7 +118,7 @@ def login_message(login_click, logout_click, username, password, data, path):
 
     result = sql.verify_password(username, password)
     if type(result) == RegisteredUser:
-        employee = sql.query_rows(EmployeeData, result.employee_number)
+        employee = sql.query_rows(EmployeeData, result.employee_number.number)
         user = '{}, {}'.format(employee[0].name_last, employee[0].name_first)
         data = {'isadmin': employee[0].is_admin,
                 'logged_in': True,
@@ -138,9 +138,27 @@ def toggle_registration(open_registration, close_registration, is_open):
     :param open_registration: int
     :param close_registration: int
     :param is_open: bool
-    :return: dict
     """
     if open_registration or close_registration:
+        return not is_open
+    return is_open
+
+
+@app.callback(Output('employeeDataModel', 'is_open'),
+              [Input('new-employee', 'n_clicks'),
+               Input('edit-employee', 'n_clicks'),
+               Input('employeeEditorClose', 'n_clicks')],
+              [State('employeeDataModel', 'is_open')])
+def toggle_employee_editor(open_editor_new, open_editor_edit, close_editor, is_open):
+    """
+    This controls the display of the edit employee data modal
+    :param open_editor_new: int
+    :param open_editor_edit: int
+    :param close_editor: int
+    :param is_open: bool
+    """
+    # if open_editor_new or open_editor_edit or close_editor:
+    if open_editor_new or open_editor_edit or close_editor:
         return not is_open
     return is_open
 
@@ -198,14 +216,14 @@ def check_email(text):
 def send_submission(msg_type, comment_value, send, email_value):
     if send:
         if msg_type == "1":
-            msgType = "Bug Report"
+            msg_text = "Bug Report"
         elif msg_type == "2":
-            msgType = "Feature Request"
+            msg_text = "Feature Request"
         elif msg_type == "3":
-            msgType = "Admin Request"
-        subject = "A new " + msgType + " was submtited."
+            msg_text = "Admin Request"
+        subject = "A new " + msg_text + " was submtited."
         body = comment_value
-        if home.send_mail(email_value, subject, body, msgType):
+        if home.send_mail(email_value, subject, body, msg_text):
             update(True)
             return "Message sent successfully"
         else:
@@ -228,7 +246,7 @@ def filter_employees(search_click, search_clear, filter_text, data):
     :return: DataTable
     """
     if int(search_click) > int(search_clear):
-        data_set = sql.query_rows(EmployeeData, filter_text)
+        data_set = sql.query_rows(filter_text, 'EmployeeData')
     elif int(search_clear) > int(search_click):
         data_set = sql.get_rows(EmployeeData)
         filter_text = ''
@@ -245,7 +263,7 @@ def filter_employees(search_click, search_clear, filter_text, data):
                    {'name': 'Job Title', 'id': 'job_title'},
                    {'name': 'Level', 'id': 'level'},
                    {'name': 'Assigned Function', 'id': 'function'},
-                   {'name': 'Assigned Program', 'id': 'programs'},
+                   {'name': 'Assigned Project', 'id': 'projects'},
                    {'name': 'Start Date', 'id': 'date_start'},
                    {'name': 'End Date', 'id': 'date_end'}]
     else:
@@ -254,29 +272,33 @@ def filter_employees(search_click, search_clear, filter_text, data):
                    {'name': 'Employee #', 'id': 'employee_number'},
                    {'name': 'Job Code', 'id': 'job_code'},
                    {'name': 'Assigned Function', 'id': 'function'},
-                   {'name': 'Assigned Program', 'id': 'programs'},
+                   {'name': 'Assigned Project', 'id': 'projects'},
                    {'name': 'Start Date', 'id': 'date_start'}]
 
     if data is not None and data['isadmin']:
         # This is the admin layout
         data = [{'name_first': i.name_first,
                  'name_last': i.name_last,
-                 'employee_number': i.employee_number,
+                 'employee_number': i.employee_number.number,
                  'job_code': i.job_code,
                  'job_title': i.job_title,
                  'level': i.level,
-                 'function': i.assigned_function,
-                 'programs': i.assigned_programs,
+                 'function': i.employee_number.assigned_functions[0].function
+                 if len(i.employee_number.assigned_functions) > 0 else '',
+                 'projects': i.employee_number.assigned_projects[0].name
+                 if len(i.employee_number.assigned_projects) > 0 else '',
                  'date_start': i.date_start,
                  'date_end': i.date_end} for i in data_set]
     else:
         data = [{'name_first': i.name_first,
                  'name_last': i.name_last,
-                 'employee_number': i.employee_number,
-                 'function': i.assigned_function,
+                 'employee_number': i.employee_number.number,
+                 'function': i.employee_number.assigned_functions[0].function
+                 if len(i.employee_number.assigned_functions) > 0 else '',
                  'job_code': i.job_code,
-                 'programs': i.assigned_programs,
-                 'date_start': i.date_start} for i in data_set]
+                 'projects': i.employee_number.assigned_projects[0].name
+                 if len(i.employee_number.assigned_projects) > 0 else '',
+                 'date_start': i.date_start} for i in filter(None, data_set)]
 
     figure = DataTable(
         id='Employees',
@@ -302,6 +324,10 @@ def filter_employees(search_click, search_clear, filter_text, data):
             {'border-left': 'none'},
             {'border-right': 'none'}
         ],
+        style_table={
+            'overflowX': 'scroll',
+            'border': 'solid 1px black'
+        },
         row_selectable='single'
     )
     return [figure], filter_text

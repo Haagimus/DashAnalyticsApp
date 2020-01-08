@@ -6,57 +6,70 @@ from collections import defaultdict
 from sqlalchemy import create_engine, MetaData, inspect
 from sqlalchemy.orm import sessionmaker
 
-from assets.models import EmployeeData, RegisteredUser
+from assets.models import RegisteredUser, EmployeeData, ProjectData, Functions
 
 server = 'FRXSV-DAUPHIN'
 dbname = 'FRXResourceDemand'
 engine = create_engine('mssql://@{0}/{1}?trusted_connection=yes&driver=SQL+Server'.format(server, dbname), echo=False)
 Session = sessionmaker(bind=engine)
 session = Session()
+conn = engine.connect()
 metadata = MetaData()
 metadata.reflect(bind=engine)
 
-emp_cols_str = [EmployeeData.name_first,
-                EmployeeData.name_last,
-                EmployeeData.job_title,
-                EmployeeData.assigned_function,
-                EmployeeData.assigned_programs,
-                EmployeeData.job_code]
-emp_cols_int = [EmployeeData.employee_number,
-                EmployeeData.date_end,
-                EmployeeData.date_start]
+emp_cols = {0: (EmployeeData, EmployeeData.name_first),
+            1: (EmployeeData, EmployeeData.name_last),
+            2: (EmployeeData, EmployeeData.job_title),
+            3: (Functions, Functions.function),
+            4: (ProjectData, ProjectData.name),
+            5: (EmployeeData, EmployeeData.job_code),
+            6: (EmployeeData, EmployeeData.employee_number_number),
+            7: (EmployeeData, EmployeeData.date_end),
+            8: (EmployeeData, EmployeeData.date_start),
+            9: (EmployeeData, EmployeeData.level)}
 
 
-def get_rows(table_name):
+def get_rows(class_name):
     """
     Returns all rows from selected columns in a table
-    :param table_name: str
+    :param class_name: str
     :return: list[]
     """
-    results = session.query(table_name).all()
+    results = session.query(class_name).all()
     return results
 
 
-def query_rows(table_name, param):
+def query_rows(param, class_name=None):
     results = []
     if param is None:
-        return get_rows(table_name)
+        return get_rows(class_name)
 
     try:
         param = int(param)
-        for item in emp_cols_int:
-            if len(session.query(table_name).filter(item.like('%{}%'.format(param))).all()) > 0:
-                for i in session.query(table_name).filter(item.like('%{}%'.format(param))).all():
-                    results.append(i)
-                    continue
     except ValueError:
-        for item in emp_cols_str:
-            if len(session.query(table_name).filter(item.like('%{}%'.format(param))).all()) > 0:
-                for i in session.query(table_name).filter(item.like('%{}%'.format(param))).all():
-                    results.append(i)
-                    continue
+        param = param
 
-    # results = query_to_dict(results)
+    for idx, column in emp_cols.items():
+        if isinstance(param, int):
+            if len(session.query(column[0]).filter(column[1].contains('%{}%'.format(param))).all()) > 0:
+                for i in session.query(column[0]).filter(column[1].contains('%{}%'.format(param))).all():
+                    if not isinstance(i, EmployeeData):
+                        for emp in i.employee_number:
+                            results.append(emp.employee_data[0])
+                    else:
+                        results.append(i)
+        elif isinstance(param, str):
+            if len(session.query(column[0]).filter(column[1].like(param)).all()) > 0:
+                for i in session.query(column[0]).filter(column[1].like(param)).all():
+                    if isinstance(i, ProjectData):
+                        for emp in i.employee_number:
+                            results.append(emp.employee_data[0])
+                    elif isinstance(i, Functions):
+                        for emp in i.employees:
+                            results.append(emp.employee_data[0])
+                    else:
+                        results.append(i)
+
     return results
 
 

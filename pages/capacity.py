@@ -5,23 +5,21 @@ import dash_table as dt
 import pandas as pd
 
 import assets.SQL as sql
-import assets.models as models
+from assets.models import employee_function_association_table, EmployeeData
 
-employees = sql.get_rows(models.EmployeeData)
-functions = sql.get_rows(models.Functions)
+employees = sql.get_rows(EmployeeData)
+functions = sql.get_rows(employee_function_association_table)
 
 
 def function_totals():
     count = {}
-    idx = 0
     total = 0
-    for item in functions:
-        count.update({item.function: 0})
+    for f in functions:
+        count.update({f.function_name: 0})
         for row in employees:
-            if row.assigned_function == item.function and row.date_end is None:
-                count[item.function] += 1
-                total += 1
-        idx += 1
+            if row.employee_number.assigned_functions[0].function == f.function_name and row.date_end is None:
+                count[f.function_name] += 1
+        total += 1
     count.update({'Total': total})
 
     results = pd.DataFrame({
@@ -36,10 +34,10 @@ def functions_chart():
     count = {}
     idx = 0
     for item in functions:
-        count.update({item.function: 0})
+        count.update({item.function_name: 0})
         for row in employees:
-            if row.assigned_function == item.function and row.date_end is None:
-                count[item.function] += 1
+            if row.employee_number.assigned_functions[0].function == item.function_name and row.date_end is None:
+                count[item.function_name] += 1
         idx += 1
 
     results = pd.DataFrame({
@@ -57,37 +55,34 @@ def functions_chart():
 
 
 def capacity_page_layout():
-    ft = function_totals()
-
-    content = dbc.Row([
-        dbc.Col([
-            html.H2('Functional Area Totals:',
-                    style={'text-align': 'center'}),
+    layout = dbc.Row([
+        dbc.Col(
+            # html.H2('Functional Area Totals:',
+            #         style={'text-align': 'center'}),
             dt.DataTable(
                 id='capacity',
-                columns=[{'name': i, 'id': i} for i in ft],
-                data=ft.to_dict('rows'),
+                columns=[{'name': i, 'id': i} for i in function_totals()],
+                data=function_totals().to_dict('rows'),
                 style_header={
                     'backgroundColor': 'white',
                     'fontWeight': 'bolder',
-                    'fontSize': '18px',
+                    'fontSize': '16px',
                     'textAlign': 'center'
                 },
                 style_data_conditional=[
                     {'if': {'row_index': 'odd'},
                      'backgroundColor': 'rgb(248, 248, 248)'},
-                    {'if': {'row_index': 15},
+                    {'if': {'row_index': 25},
                      'fontWeight': 'bolder',
-                     'fontSize': '18px'},
+                     'fontSize': '16px'},
                     {'if': {'column_id': 'Functions'},
                      'textAlign': 'right',
-                     'padding': '5px 15px 5px 0px'},
+                     'padding': '2px 15px 2px 0px'},
                     {'if': {'column_id': 'Head Count'},
                      'textAlign': 'left',
-                     'padding': '5px 0px 5px 15px'}
+                     'padding': '2px 0px 2px 15px'}
                 ]
-            )
-        ],
+            ),
             xs={'size': 12, 'order': 1},
             md={'size': 6, 'order': 2},
             lg={'size': 5, 'order': 1}),
@@ -99,4 +94,4 @@ def capacity_page_layout():
             lg={'size': 7, 'order': 2})
     ])
 
-    return content
+    return layout
