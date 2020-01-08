@@ -39,28 +39,31 @@ def get_rows(class_name):
     return results
 
 
-def query_rows(param, class_name=None):
+def query_rows(filter_text):
+    """
+
+    :param filter_text: str
+    :return: []
+    """
     results = []
-    if param is None:
-        return get_rows(class_name)
 
     try:
-        param = int(param)
+        filter_text = int(filter_text)
     except ValueError:
-        param = param
+        filter_text = filter_text
 
     for idx, column in emp_cols.items():
-        if isinstance(param, int):
-            if len(session.query(column[0]).filter(column[1].contains('%{}%'.format(param))).all()) > 0:
-                for i in session.query(column[0]).filter(column[1].contains('%{}%'.format(param))).all():
+        if isinstance(filter_text, int):
+            if len(session.query(column[0]).filter(column[1].contains('%{}%'.format(filter_text))).all()) > 0:
+                for i in session.query(column[0]).filter(column[1].contains('%{}%'.format(filter_text))).all():
                     if not isinstance(i, EmployeeData):
                         for emp in i.employee_number:
                             results.append(emp.employee_data[0])
                     else:
                         results.append(i)
-        elif isinstance(param, str):
-            if len(session.query(column[0]).filter(column[1].like(param)).all()) > 0:
-                for i in session.query(column[0]).filter(column[1].like(param)).all():
+        elif isinstance(filter_text, str):
+            if len(session.query(column[0]).filter(column[1].like(filter_text)).all()) > 0:
+                for i in session.query(column[0]).filter(column[1].like(filter_text)).all():
                     if isinstance(i, ProjectData):
                         for emp in i.employee_number:
                             results.append(emp.employee_data[0])

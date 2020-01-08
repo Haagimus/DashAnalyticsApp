@@ -118,7 +118,7 @@ def login_message(login_click, logout_click, username, password, data, path):
 
     result = sql.verify_password(username, password)
     if type(result) == RegisteredUser:
-        employee = sql.query_rows(EmployeeData, result.employee_number.number)
+        employee = sql.query_rows(result.employee_number.number)
         user = '{}, {}'.format(employee[0].name_last, employee[0].name_first)
         data = {'isadmin': employee[0].is_admin,
                 'logged_in': True,
@@ -246,7 +246,7 @@ def filter_employees(search_click, search_clear, filter_text, data):
     :return: DataTable
     """
     if int(search_click) > int(search_clear):
-        data_set = sql.query_rows(filter_text, 'EmployeeData')
+        data_set = sql.query_rows(filter_text)
     elif int(search_clear) > int(search_click):
         data_set = sql.get_rows(EmployeeData)
         filter_text = ''
