@@ -9,9 +9,9 @@ employee_function_association_table = Table('employee_function_mapping', metadat
                                             Column('employee_number', Integer(), ForeignKey('employee_numbers.number')),
                                             Column('function_name', String(50), ForeignKey('functions.function')))
 
-employee_project_association_table = Table('employee_project_mapping', metadata,
+employee_program_association_table = Table('employee_project_mapping', metadata,
                                            Column('employee_number', Integer(), ForeignKey('employee_numbers.number')),
-                                           Column('project_name', String(50), ForeignKey('projects.name')))
+                                           Column('program_name', String(50), ForeignKey('programs.name')))
 
 
 class EmployeeNumber(Base):
@@ -27,7 +27,7 @@ class EmployeeNumber(Base):
     employee_data = relationship('EmployeeData', back_populates='employee_number')
 
     # Assigned Programs (One-to-Many)
-    assigned_projects = relationship('ProjectData', secondary=employee_project_association_table,
+    assigned_programs = relationship('Program', secondary=employee_program_association_table,
                                      back_populates='employee_number')
 
     # Assigned Functions (Many-to-Many)
@@ -93,11 +93,6 @@ class ProjectData(Base):
     # Charge Number (One-to-One)
     charge_number = relationship('ChargeNumber', back_populates='project', uselist=False)
 
-    # Employee Numbers (Many-to-One)
-    # employee_number_number = Column(Integer(), ForeignKey('employee_numbers.number'))
-    employee_number = relationship('EmployeeNumber', secondary=employee_project_association_table,
-                                   back_populates='assigned_projects')
-
     # Program (Many-to-One)
     program_name = Column(String(50), ForeignKey('programs.name'))
     program = relationship('Program', back_populates='project')
@@ -125,6 +120,11 @@ class Program(Base):
 
     # Projects (One-to-Many)
     project = relationship('ProjectData', back_populates='program')
+
+    # Employee Numbers (Many-to-One)
+    # employee_number_number = Column(Integer(), ForeignKey('employee_numbers.number'))
+    employee_number = relationship('EmployeeNumber', secondary=employee_program_association_table,
+                                   back_populates='assigned_programs')
 
 
 class ResourceUsage(Base):

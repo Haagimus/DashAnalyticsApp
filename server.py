@@ -1,3 +1,5 @@
+import time
+
 from dash import Dash
 from flask import Flask
 from flask_login import LoginManager
@@ -6,6 +8,7 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 login_manager = LoginManager()
 external_stylesheets = ['dbc.themes.BOOTSTRAP']
+log_time = time.strftime('%d%b%y %H:%M:%S')
 
 server = Flask(__name__)
 app = Dash(__name__, server=server, external_stylesheets=external_stylesheets)

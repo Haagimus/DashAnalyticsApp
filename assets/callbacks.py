@@ -6,9 +6,9 @@ from dash_table import DataTable
 
 import assets.SQL as sql
 from assets.navbar import navbar
-from assets.models import EmployeeData, RegisteredUser
+from assets.models import EmployeeData, RegisteredUser, Functions, Program
 from pages import home, employees, programs, capacity
-from server import app
+from server import app, log_time
 
 page_list = ['', 'employees', 'programs', 'capacity']
 
@@ -21,26 +21,11 @@ def display_page(pathname, data):
     if pathname == '/':
         return home.home_page_layout()
     if pathname == '/employees':
-        try:
-            return employees.employee_page_layout(data)
-        except TypeError:
-            return employees.employee_page_layout()
+        return employees.employee_page_layout(data)
     if pathname == '/programs':
         return programs.program_page_layout()
     if pathname == '/capacity':
         return capacity.capacity_page_layout()
-
-
-# @app.callback(Output('url', 'pathname'),
-#               [Input('logout-button', 'n_clicks')],
-#               [State('url', 'pathname'),
-#                State('session-store', 'data')])
-# def logout(logout_click, url, data):
-#     if not logout_click:
-#         raise PreventUpdate
-#     data = None
-#     logout(url, data)
-#     return
 
 
 @app.callback([Output('navbar-container', 'children'),
@@ -52,13 +37,6 @@ def display_page(pathname, data):
               [State('session-store', 'data')])
 def load_navbar(pathname, data):
     active_link = ([pathname == f'/{i}' for i in page_list])
-    # if pathname == '/':
-    #     return navbar(data), active_link[0], active_link[1], active_link[2], active_link[3]
-    # if pathname == '/employees':
-    #     return navbar(data), active_link[0], active_link[1], active_link[2], active_link[3]
-    # if pathname == '/programs':
-    #     return navbar(data), active_link[0], active_link[1], active_link[2], active_link[3]
-    # if pathname == '/capacity':
     return navbar(data), active_link[0], active_link[1], active_link[2], active_link[3]
 
 
@@ -97,6 +75,7 @@ def login_message(login_click, logout_click, username, password, data, path):
     This controls the login submission. It passes the entered username and password to the SQL.py verify password method.
     This also controls the closing of the login modal
     :param login_click: int
+    :param logout_click: int
     :param username: set
     :param password: set
     :param data: dict
@@ -104,15 +83,15 @@ def login_message(login_click, logout_click, username, password, data, path):
     :return: tuple
     """
     if not (login_click or logout_click):
-        print('nothing clicked')
         raise PreventUpdate
 
     if login_click > logout_click:
-        print('login clicked')
+        pass
     elif logout_click > login_click:
-        print('logout clicked')
+        pass
 
     if logout_click:
+        app.logger.info('INFO: {} logged out successfully at {}.'.format(data['login_user'], log_time))
         data = None
         return ['Logout successful', True, 'success', '', '', data, path]
 
@@ -124,6 +103,7 @@ def login_message(login_click, logout_click, username, password, data, path):
                 'logged_in': True,
                 'login_user': user}
         result = 'Logged in as {0}'.format(result.username)
+        app.logger.info('INFO: {} logged in successfully at {}.'.format(data['login_user'], log_time))
         return [result, 'success', True, '', '', data, path]
     return [result, 'danger', True, '', '', data, path]
 
@@ -144,23 +124,47 @@ def toggle_registration(open_registration, close_registration, is_open):
     return is_open
 
 
-@app.callback(Output('employeeDataModel', 'is_open'),
-              [Input('new-employee', 'n_clicks'),
-               Input('edit-employee', 'n_clicks'),
-               Input('employeeEditorClose', 'n_clicks')],
-              [State('employeeDataModel', 'is_open')])
-def toggle_employee_editor(open_editor_new, open_editor_edit, close_editor, is_open):
+@app.callback([Output('first-name', 'value'),
+               Output('last-name', 'value'),
+               Output('employee-number', 'value'),
+               Output('job-code', 'value'),
+               Output('function', 'options'),
+               Output('program-name', 'options'),
+               Output('start-date', 'value'),
+               Output('end-date', 'value'),],
+              [Input('load-employee', 'n_clicks'),
+               Input('Employees', 'data'),
+               Input('Employees', 'selected_rows')])
+def load_employee_data(load_click, row, row_idx):
     """
-    This controls the display of the edit employee data modal
-    :param open_editor_new: int
-    :param open_editor_edit: int
-    :param close_editor: int
-    :param is_open: bool
+    This loads selected employee data into the edit fields
+    :param load_click: int
+    :param row: DataFrame
+    :param row_idx: int
     """
-    # if open_editor_new or open_editor_edit or close_editor:
-    if open_editor_new or open_editor_edit or close_editor:
-        return not is_open
-    return is_open
+    if not load_click:
+        raise PreventUpdate()
+#     else:
+    if len(row_idx) > 0:
+        f_name = row[row_idx[0]]['name_first']
+        l_name = row[row_idx[0]]['name_last']
+        emp_num = row[row_idx[0]]['employee_number']
+        job_code = row[row_idx[0]]['job_code']
+        func = row[row_idx[0]]['function']
+        if len(sql.get_rows(Functions, Functions.function == func)) > 0:
+            func = sql.get_rows(Functions, Functions.function == func)[0].function
+        else:
+            func = None
+        pgm = row[row_idx[0]]['program']
+        if len(sql.get_rows(Program, Program.name == pgm)) > 0:
+            pgm = sql.get_rows(Program, Program.name == pgm)[0].name
+        else:
+            pgm = None
+        start = row[row_idx[0]]['date_start']
+        end = row[row_idx[0]]['date_end']
+
+        return f_name, l_name, emp_num, job_code, func, pgm, start, end
+    raise PreventUpdate
 
 
 @app.callback([Output('registerMessage', 'children'),
@@ -230,19 +234,17 @@ def send_submission(msg_type, comment_value, send, email_value):
             return "Message unable to send. Try resetting form"
 
 
-@app.callback([Output('employee-container', 'children'),
+@app.callback([Output('Employees', 'data'),
                Output('search', 'value')],
               [Input('search-button', 'n_clicks_timestamp'),
                Input('clear-search', 'n_clicks_timestamp')],
-              [State('search', 'value'),
-               State('session-store', 'data')])
-def filter_employees(search_click, search_clear, filter_text, data):
+              [State('search', 'value')])
+def filter_employees(search_click, search_clear, filter_text):
     """
     Runs a filter query against the employees table
     :param search_click: int
     :param search_clear: int
     :param filter_text: str
-    :param data: dict
     :return: DataTable
     """
     if int(search_click) > int(search_clear):
@@ -254,87 +256,95 @@ def filter_employees(search_click, search_clear, filter_text, data):
         data_set = sql.get_rows(EmployeeData)
         filter_text = ''
 
-    if data is not None and data['isadmin']:
+    # if data is not None and data['isadmin']:
+    #     # This is the admin layout
+    #     columns = [{'name': 'First Name', 'id': 'name_first', "hideable": True},
+    #                {'name': 'Last Name', 'id': 'name_last', "hideable": True},
+    #                {'name': 'Employee #', 'id': 'employee_number', "hideable": True},
+    #                {'name': 'Job Code', 'id': 'job_code', "hideable": True},
+    #                {'name': 'Job Title', 'id': 'job_title', "hideable": True},
+    #                {'name': 'Level', 'id': 'level', "hideable": True},
+    #                {'name': 'Assigned Function', 'id': 'function', "hideable": True},
+    #                {'name': 'Assigned Program(s)', 'id': 'programs', "hideable": True},
+    #                {'name': 'Start Date', 'id': 'date_start', "hideable": True},
+    #                {'name': 'End Date', 'id': 'date_end', "hideable": True}]
+    # else:
+    #     columns = [{'name': 'First Name', 'id': 'name_first', "hideable": True},
+    #                {'name': 'Last Name', 'id': 'name_last', "hideable": True},
+    #                {'name': 'Employee #', 'id': 'employee_number', "hideable": True},
+    #                {'name': 'Job Code', 'id': 'job_code', "hideable": True},
+    #                {'name': 'Assigned Function', 'id': 'function', "hideable": True},
+    #                {'name': 'Assigned Program(s)', 'id': 'program', "hideable": True},
+    #                {'name': 'Start Date', 'id': 'date_start', "hideable": True}]
+    #
+    # if data is not None and data['isadmin']:
         # This is the admin layout
-        columns = [{'name': 'First Name', 'id': 'name_first'},
-                   {'name': 'Last Name', 'id': 'name_last'},
-                   {'name': 'Employee #', 'id': 'employee_number'},
-                   {'name': 'Job Code', 'id': 'job_code'},
-                   {'name': 'Job Title', 'id': 'job_title'},
-                   {'name': 'Level', 'id': 'level'},
-                   {'name': 'Assigned Function', 'id': 'function'},
-                   {'name': 'Assigned Project', 'id': 'projects'},
-                   {'name': 'Start Date', 'id': 'date_start'},
-                   {'name': 'End Date', 'id': 'date_end'}]
-    else:
-        columns = [{'name': 'First Name', 'id': 'name_first'},
-                   {'name': 'Last Name', 'id': 'name_last'},
-                   {'name': 'Employee #', 'id': 'employee_number'},
-                   {'name': 'Job Code', 'id': 'job_code'},
-                   {'name': 'Assigned Function', 'id': 'function'},
-                   {'name': 'Assigned Project', 'id': 'projects'},
-                   {'name': 'Start Date', 'id': 'date_start'}]
-
-    if data is not None and data['isadmin']:
-        # This is the admin layout
-        data = [{'name_first': i.name_first,
-                 'name_last': i.name_last,
-                 'employee_number': i.employee_number.number,
-                 'job_code': i.job_code,
-                 'job_title': i.job_title,
-                 'level': i.level,
-                 'function': i.employee_number.assigned_functions[0].function
-                 if len(i.employee_number.assigned_functions) > 0 else '',
-                 'projects': i.employee_number.assigned_projects[0].name
-                 if len(i.employee_number.assigned_projects) > 0 else '',
-                 'date_start': i.date_start,
-                 'date_end': i.date_end} for i in data_set]
-    else:
-        data = [{'name_first': i.name_first,
-                 'name_last': i.name_last,
-                 'employee_number': i.employee_number.number,
-                 'function': i.employee_number.assigned_functions[0].function
-                 if len(i.employee_number.assigned_functions) > 0 else '',
-                 'job_code': i.job_code,
-                 'projects': i.employee_number.assigned_projects[0].name
-                 if len(i.employee_number.assigned_projects) > 0 else '',
-                 'date_start': i.date_start} for i in filter(None, data_set)]
-
-    figure = DataTable(
-        id='Employees',
-        columns=columns,
-        data=data,
-        editable=False,
-        page_action='native',
-        page_size=20,
-        sort_action='native',
-        sort_mode='multi',
-        style_as_list_view=False,
-        style_header={
-            'backgroundColor': 'white',
-            'fontWeight': 'bolder',
-            'fontSize': '18px',
-            'textAlign': 'center',
-            'border-bottom': '1px solid black'
-        },
-        style_data_conditional=[
-            {'if': {'row_index': 'odd'},
-             'backgroundColor': 'rgb(248, 248, 248)'},
-            {'border-bottom': '1px solid #ddd'},
-            {'border-left': 'none'},
-            {'border-right': 'none'}
-        ],
-        style_table={
-            'overflowX': 'scroll',
-            'border': 'solid 1px black'
-        },
-        row_selectable='single'
-    )
-    return [figure], filter_text
+    data = [{'name_first': i.name_first,
+             'name_last': i.name_last,
+             'employee_number': i.employee_number.number,
+             'job_code': i.job_code,
+             'job_title': i.job_title,
+             'level': i.level,
+             'function': i.employee_number.assigned_functions[0].function
+             if len(i.employee_number.assigned_functions) > 0 else '',
+             'program': i.employee_number.assigned_programs[0].name
+             if len(i.employee_number.assigned_programs) > 0 else '',
+             'date_start': i.date_start,
+             'date_end': i.date_end} for i in data_set]
+    # else:
+    #     data = [{'name_first': i.name_first,
+    #              'name_last': i.name_last,
+    #              'employee_number': i.employee_number.number,
+    #              'function': i.employee_number.assigned_functions[0].function
+    #              if len(i.employee_number.assigned_functions) > 0 else '',
+    #              'job_code': i.job_code,
+    #              'program': i.employee_number.assigned_programs[0].name
+    #              if len(i.employee_number.assigned_programs) > 0 else '',
+    #              'date_start': i.date_start} for i in data_set]
+    #
+    # figure = DataTable(
+    #     id='Employees',
+    #     columns=columns,
+    #     data=data,
+    #     editable=False,
+    #     page_action='native',
+    #     page_size=20,
+    #     sort_action='native',
+    #     sort_mode='multi',
+    #     style_as_list_view=False,
+    #     style_header={
+    #         'backgroundColor': 'white',
+    #         'fontWeight': 'bolder',
+    #         'fontSize': '18px',
+    #         'textAlign': 'center',
+    #         'border-bottom': '1px solid black'
+    #     },
+    #     style_data_conditional=[
+    #         {'if': {'row_index': 'odd'},
+    #          'backgroundColor': 'rgb(248, 248, 248)'},
+    #         {'border-bottom': '1px solid #ddd'},
+    #         {'border-left': 'none'},
+    #         {'border-right': 'none'}
+    #     ],
+    #     style_table={
+    #         'overflowX': 'scroll',
+    #         'border': 'solid 1px black'
+    #     },
+    #     row_selectable='single',
+    #     selected_rows=[]
+    # )
+    return data, filter_text
 
 
 @app.callback([Output('employee-loading-output', 'children')],
               [Input('page-content', 'value')])
 def employees_loading(value):
+    time.sleep(1)
+    return value
+
+
+@app.callback([Output('capacity-loading-output', 'children')],
+              [Input('page-content', 'value')])
+def capacity_loading(value):
     time.sleep(1)
     return value

@@ -17,7 +17,8 @@ def function_totals():
     for f in functions:
         count.update({f.function_name: 0})
         for row in employees:
-            if row.employee_number.assigned_functions[0].function == f.function_name and row.date_end is None:
+            if row.employee_number.assigned_functions[0].function == f.function_name \
+                    and row.date_end is None:
                 count[f.function_name] += 1
         total += 1
     count.update({'Total': total})
@@ -32,13 +33,14 @@ def function_totals():
 
 def functions_chart():
     count = {}
-    idx = 0
+    # total = 0
     for item in functions:
         count.update({item.function_name: 0})
         for row in employees:
-            if row.employee_number.assigned_functions[0].function == item.function_name and row.date_end is None:
+            if row.employee_number.assigned_functions[0].function == item.function_name \
+                    and row.date_end is None:
                 count[item.function_name] += 1
-        idx += 1
+        # total += 1
 
     results = pd.DataFrame({
         'Functions': list(count.keys()),
@@ -56,9 +58,7 @@ def functions_chart():
 
 def capacity_page_layout():
     layout = dbc.Row([
-        dbc.Col(
-            # html.H2('Functional Area Totals:',
-            #         style={'text-align': 'center'}),
+        dbc.Col([
             dt.DataTable(
                 id='capacity',
                 columns=[{'name': i, 'id': i} for i in function_totals()],
@@ -82,16 +82,15 @@ def capacity_page_layout():
                      'textAlign': 'left',
                      'padding': '2px 0px 2px 15px'}
                 ]
-            ),
+            )],
             xs={'size': 12, 'order': 1},
             md={'size': 6, 'order': 2},
             lg={'size': 5, 'order': 1}),
-        dbc.Col([
-            functions_chart()
-        ],
+        dbc.Col(
+            functions_chart(),
             xs={'size': 12, 'order': 2},
             md={'size': 12, 'order': 1},
-            lg={'size': 7, 'order': 2})
-    ])
+            lg={'size': 7, 'order': 2}
+        )])
 
     return layout

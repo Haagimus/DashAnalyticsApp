@@ -6,7 +6,8 @@ from collections import defaultdict
 from sqlalchemy import create_engine, MetaData, inspect
 from sqlalchemy.orm import sessionmaker
 
-from assets.models import RegisteredUser, EmployeeData, ProjectData, Functions
+from assets.models import RegisteredUser, EmployeeData, ProjectData, Functions, Program
+from server import app, log_time
 
 server = 'FRXSV-DAUPHIN'
 dbname = 'FRXResourceDemand'
@@ -21,7 +22,7 @@ emp_cols = {0: (EmployeeData, EmployeeData.name_first),
             1: (EmployeeData, EmployeeData.name_last),
             2: (EmployeeData, EmployeeData.job_title),
             3: (Functions, Functions.function),
-            4: (ProjectData, ProjectData.name),
+            4: (Program, Program.name),
             5: (EmployeeData, EmployeeData.job_code),
             6: (EmployeeData, EmployeeData.employee_number_number),
             7: (EmployeeData, EmployeeData.date_end),
@@ -29,13 +30,17 @@ emp_cols = {0: (EmployeeData, EmployeeData.name_first),
             9: (EmployeeData, EmployeeData.level)}
 
 
-def get_rows(class_name):
+def get_rows(class_name, filter_text=None):
     """
     Returns all rows from selected columns in a table
     :param class_name: str
+    :param filter_text: str
     :return: list[]
     """
-    results = session.query(class_name).all()
+    if filter_text is None:
+        results = session.query(class_name).all()
+    else:
+        results = session.query(class_name).filter(filter_text).all()
     return results
 
 
@@ -58,20 +63,25 @@ def query_rows(filter_text):
                 for i in session.query(column[0]).filter(column[1].contains('%{}%'.format(filter_text))).all():
                     if not isinstance(i, EmployeeData):
                         for emp in i.employee_number:
-                            results.append(emp.employee_data[0])
+                            if emp.employee_data[0] not in results:
+                                results.append(emp.employee_data[0])
                     else:
-                        results.append(i)
+                        if i not in results:
+                            results.append(i)
         elif isinstance(filter_text, str):
-            if len(session.query(column[0]).filter(column[1].like(filter_text)).all()) > 0:
-                for i in session.query(column[0]).filter(column[1].like(filter_text)).all():
-                    if isinstance(i, ProjectData):
+            if len(session.query(column[0]).filter(column[1].contains('%{}%'.format(filter_text))).all()) > 0:
+                for i in session.query(column[0]).filter(column[1].contains('%{}%'.format(filter_text))).all():
+                    if isinstance(i, Program):
                         for emp in i.employee_number:
-                            results.append(emp.employee_data[0])
+                            if emp.employee_data[0] not in results:
+                                results.append(emp.employee_data[0])
                     elif isinstance(i, Functions):
                         for emp in i.employees:
-                            results.append(emp.employee_data[0])
+                            if emp.employee_data[0] not in results:
+                                results.append(emp.employee_data[0])
                     else:
-                        results.append(i)
+                        if i not in results:
+                            results.append(i)
 
     return results
 
@@ -186,13 +196,14 @@ def verify_password(username, provided_password):
     if username is not None:
         results = session.query(RegisteredUser).filter(RegisteredUser.username == username).first()
     else:
-        return """Username can not be blank, please enter a username
-            and try again."""
+        app.logger.error('ERROR: Failed login with blank username at {}.'.format(log_time))
+        return """Username can not be blank, please enter a username and try again."""
 
     if provided_password is None:
-        return """Password can not be blank, please enter a password
-            and try again."""
+        app.logger.error('ERROR: Failed login with blank password using username {} at {}.'.format(username, log_time))
+        return """Password can not be blank, please enter a password and try again."""
     if results is None:
+        app.logger.error('ERROR: Failed login with username {} at {}, username not found'.format(username, log_time))
         return 'User not found'
     stored_password = results.password
     salt = stored_password[:64]
@@ -205,4 +216,5 @@ def verify_password(username, provided_password):
     if pwdhash == stored_password:
         return results
     else:
+        app.logger.error('ERROR: Failed login with invalid password for username {} at {}'.format(username, log_time))
         return 'Invalid Password'

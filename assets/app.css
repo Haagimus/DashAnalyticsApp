@@ -57,6 +57,17 @@ H2 {
 }
 
 /* Employee Page Styling */
+#employee-number {
+    -webkit-appearance: textfield;
+    -mox-appearance: textfield;
+    appearance: textfield;
+}
+
+.DateInput,
+.DateInput_1 {
+    width: auto;
+    padding: 0px 10px;
+}
 
 /* Capacity Page Styling*/
 #functions-graph,
