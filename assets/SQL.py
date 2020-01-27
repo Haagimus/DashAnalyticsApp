@@ -319,7 +319,6 @@ def update_employee(employee_number, **kwargs):
         else:
             employee.date_end = kwargs['date_end']
 
-
     try:
         session.commit()
     except Exception as e:

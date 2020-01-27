@@ -5,8 +5,8 @@ from logging.handlers import RotatingFileHandler
 from app import app
 
 logger = logging.getLogger('werkzeug')
-logger.setLevel(logging.INFO)
-handler = RotatingFileHandler('err.txt', maxBytes=10000, backupCount=1)
+logger.setLevel(logging.WARN)
+handler = RotatingFileHandler('log.txt', maxBytes=10000, backupCount=1)
 logger.addHandler(handler)
 app.logger.addHandler(handler)
 

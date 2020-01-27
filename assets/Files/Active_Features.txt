@@ -3,3 +3,5 @@ User submission form
 User registration form
 Employee page filters
 Employee Admin page
+Add new employee function
+Edit existing employee function

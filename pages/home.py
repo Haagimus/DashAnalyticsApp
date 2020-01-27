@@ -1,8 +1,12 @@
 import smtplib
+from email.message import EmailMessage
+
 
 import dash_bootstrap_components as dbc
 import dash_html_components as html
 import pandas as pd
+
+from server import app
 
 
 def read_active_features():
@@ -68,7 +72,7 @@ def home_page_layout():
                             dbc.FormGroup([
                                 dbc.Label('Email:', width=2),
                                 dbc.Col(
-                                    dbc.Input(id='email',
+                                    dbc.Input(id='from_addr',
                                               type="email",
                                               placeholder="Enter your L3Harris email address",
                                               value=''),
@@ -94,7 +98,7 @@ def home_page_layout():
                                 row=True
                             ),
                             dbc.FormGroup([
-                                dbc.Textarea(id="comment", bs_size="lg",
+                                dbc.Textarea(id="body", bs_size="lg",
                                              placeholder="Enter comments/suggestions",
                                              style={'height': '200px'},
                                              value='')
@@ -128,30 +132,36 @@ def home_page_layout():
     return content
 
 
-def send_mail(orig_from, subject, body, msgType):
+def send_mail(from_addr, subject, body):
     """
 
-    :param orig_from: str
+    :param from_addr: str
     :param subject: str
     :param body: str
-    :param msgType: str
     :return: bool
     """
     port = 25
     smtp_server = "frxsv-globemaster"
-    sender_email = "FRX.DevOps@L3Harris.com"
-    receiver_email = ['stephen.french@l3harris.com',
-                      'gary.haag@l3harris.com', orig_from]
-    message = """Subject: {0} has submitted a {1}
-    Submission: {2}. """.format(orig_from, msgType, body)
+    relay_addr = "FRX Analytics Page"
+    to_addrs = ['stephen.french@l3harris.com',
+                'gary.haag@l3harris.com',
+                from_addr]
+    msg = EmailMessage()
+    msg['from'] = relay_addr
+    msg['to'] = to_addrs
+    msg['subject'] = subject
+    msg.set_content(body)
+
     try:
         # TODO: fix the message body and subject layout
         server = smtplib.SMTP(smtp_server, port)
         server.login("FRX.EmailRelay@iss.l3t.com", "N)QQH3hppTrthKQN")
-        for email in receiver_email:
-            server.sendmail(from_addr=sender_email, to_addr=email, msg=message)
+        server.send_message(msg)
         server.quit()
         return True
     except Exception as e:
         # Message send failed, returning false
-        return False
+        if e.errno == 10060:
+            errmsg = f'ERROR: {e.errno} :: {e.strerror}'
+            app.logger.error(errmsg)
+            return errmsg

@@ -1,2 +1,2 @@
 Programs page
-Employee editing
+Employee quick close feature

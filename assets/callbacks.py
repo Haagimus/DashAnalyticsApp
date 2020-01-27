@@ -217,10 +217,10 @@ def email_validity_checker(text):
 # region Send email callback
 @app.callback(Output('output-state', 'children'),
               [Input('msgType', 'value'),
-               Input('comment', 'value'),
+               Input('body', 'value'),
                Input('submit', 'n_clicks'),
-               Input('email', 'value')])
-def send_email(msg_type, comment_value, send, email_value):
+               Input('from_addr', 'value')])
+def send_email(msg_type, body, send, from_addr):
     if send:
         msg_text = ''
         if msg_type == "1":
@@ -229,14 +229,16 @@ def send_email(msg_type, comment_value, send, email_value):
             msg_text = "Feature Request"
         elif msg_type == "3":
             msg_text = "Admin Request"
-        subject = "A new " + msg_text + " was submtited."
-        body = comment_value
-        if home.send_mail(email_value, subject, body, msg_text):
+        subject = "A new " + msg_text + " was submitted."
+        body = body
+        result = home.send_mail(from_addr, subject, body)
+        if result is True:
             reset_email_form(True)
             return "Message sent successfully"
-        else:
-            return "Message unable to send. Try resetting form"
-
+        elif isinstance(result, Exception):
+            return result.strerror
+        elif isinstance(result, str):
+            return result
 
 # endregion
 # endregion
