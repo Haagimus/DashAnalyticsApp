@@ -229,16 +229,12 @@ def send_email(msg_type, body, send, from_addr):
             msg_text = "Feature Request"
         elif msg_type == "3":
             msg_text = "Admin Request"
-        subject = "A new " + msg_text + " was submitted."
+        subject = f"A new {msg_text} was submitted by {from_addr}"
         body = body
-        result = home.send_mail(from_addr, subject, body)
-        if result is True:
-            reset_email_form(True)
-            return "Message sent successfully"
-        elif isinstance(result, Exception):
-            return result.strerror
-        elif isinstance(result, str):
-            return result
+        home.send_mail(from_addr, subject, body)
+
+        reset_email_form(True)
+        return "Message sent successfully"
 
 # endregion
 # endregion
@@ -322,9 +318,8 @@ def load_employee_data(row, row_idx, func_op, pgm_op):
                State('start-date', 'date'),
                State('end-date', 'date'),
                State('session-store', 'data')])
-def employee_editor_buttons(search_click, search_clear, new, save, close, clear, row, row_idx, search_text, first_name, last_name, employee_number, job_code,
+def employee_editor_buttons(search_click, search_clear, new, save, close, clear, table_data, row_idx, search_text, first_name, last_name, employee_number, job_code,
                             level, func, pgm, start_date, end_date, data):
-    # https://community.plot.ly/t/input-two-or-more-button-how-to-tell-which-button-is-pressed/5788/29
     if func != (0 or None):
         func = sql.get_rows(Functions, Functions.id == func)[0].function
     else:
@@ -347,6 +342,7 @@ def employee_editor_buttons(search_click, search_clear, new, save, close, clear,
                      start_date,
                      end_date]
 
+    # https://community.plot.ly/t/input-two-or-more-button-how-to-tell-which-button-is-pressed/5788/29
     new = 0 if new is None else new
     save = 0 if save is None else save
     close = 0 if close is None else close
@@ -369,21 +365,24 @@ def employee_editor_buttons(search_click, search_clear, new, save, close, clear,
         update_args = {}
 
         for i in range(len(data_fields)):
-            if row[row_idx[0]][data_fields[i]] != editor_fields[i]:
+            if table_data[row_idx[0]][data_fields[i]] != editor_fields[i]:
                 updates_exist = True
                 update_args[data_fields[i]] = editor_fields[i]
-                updated_indices += f', {data_fields[i]}: {row[row_idx[0]][data_fields[i]]} >> {editor_fields[i]}'
+                updated_indices += f', {data_fields[i]}: {table_data[row_idx[0]][data_fields[i]]} >> {editor_fields[i]}'
         if updates_exist:
-            sql.update_employee(row[row_idx[0]]['employee_number'], **update_args)
+            sql.update_employee(table_data[row_idx[0]]['employee_number'], **update_args)
             app.logger.info(
-                f'INFO: The user {data["login_user"]} updated the employee record for {row[row_idx[0]]["name_first"]} {row[row_idx[0]]["name_last"]} '
+                f'INFO: The user {data["login_user"]} updated the employee record for {table_data[row_idx[0]]["name_first"]} {table_data[row_idx[0]]["name_last"]} '
                 f'with the following information {updated_indices}')
     elif close > new and close > save and close > clear:
         # Close was clicked
-        print('close clicked: duplicating selected database entry, closing the orginal and loading the duplicate')
+        print('close clicked: duplicating selected database entry, closing the original and loading the duplicate')
+        # TODO: Prompt the user for a date to close the selected entry
+        # TODO: Create a new entry with the selected entry data, replace the start date with the selected close date and clear the close date
     elif clear > new and clear > close and clear > close:
         # Clear was clicked
         print('clear clicked: deselecting currently active row')
+        return [], [], table_data, search_text
     else:
         # Nothing was clicked
         print('nothing clicked: doing nothing')

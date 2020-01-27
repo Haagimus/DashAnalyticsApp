@@ -1,12 +1,9 @@
 import smtplib
 from email.message import EmailMessage
 
-
 import dash_bootstrap_components as dbc
 import dash_html_components as html
 import pandas as pd
-
-from server import app
 
 
 def read_active_features():
@@ -152,16 +149,7 @@ def send_mail(from_addr, subject, body):
     msg['subject'] = subject
     msg.set_content(body)
 
-    try:
-        # TODO: fix the message body and subject layout
-        server = smtplib.SMTP(smtp_server, port)
-        server.login("FRX.EmailRelay@iss.l3t.com", "N)QQH3hppTrthKQN")
-        server.send_message(msg)
-        server.quit()
-        return True
-    except Exception as e:
-        # Message send failed, returning false
-        if e.errno == 10060:
-            errmsg = f'ERROR: {e.errno} :: {e.strerror}'
-            app.logger.error(errmsg)
-            return errmsg
+    server = smtplib.SMTP(smtp_server, port)
+    server.login("FRX.EmailRelay@iss.l3t.com", "N)QQH3hppTrthKQN")
+    server.send_message(msg)
+    server.quit()
