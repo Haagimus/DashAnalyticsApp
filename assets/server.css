@@ -69,6 +69,41 @@ H2 {
     padding: 0px 10px;
 }
 
+#data-container{
+    flex-basis: auto;
+    margin-right: 0px;
+    padding-top: 10px;
+}
+
+.sidebar {
+    height: 95%;
+    width: 0px;
+    position: fixed;
+    z-index: 1;
+    top: 48px;
+    right: 0.8%;
+    background-color: gainsboro;
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+.close-editor {
+    font-size: 36px;
+    position: fixed;
+    top: 40px;
+    cursor: pointer;
+}
+
+#data-container {
+    transition: margin-right 0.5s;
+    padding: 16px;
+}
+
+h4 {
+    margin-top: 10px;
+    weight: bold;
+}
+
 /* Capacity Page Styling*/
 #functions-graph,
 #capacity {

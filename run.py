@@ -2,7 +2,7 @@ import sys
 import logging
 from logging.handlers import RotatingFileHandler
 
-from layout import app
+from app import app
 
 logger = logging.getLogger('werkzeug')
 logger.setLevel(logging.INFO)

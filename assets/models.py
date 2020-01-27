@@ -1,17 +1,9 @@
 from sqlalchemy import Column, Date, ForeignKey, Integer, String, Boolean, Numeric, Table
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, backref
 
 Base = declarative_base()
 metadata = Base.metadata
-
-employee_function_association_table = Table('employee_function_mapping', metadata,
-                                            Column('employee_number', Integer(), ForeignKey('employee_numbers.number')),
-                                            Column('function_name', String(50), ForeignKey('functions.function')))
-
-employee_program_association_table = Table('employee_project_mapping', metadata,
-                                           Column('employee_number', Integer(), ForeignKey('employee_numbers.number')),
-                                           Column('program_name', String(50), ForeignKey('programs.name')))
 
 
 class EmployeeNumber(Base):
@@ -26,13 +18,12 @@ class EmployeeNumber(Base):
     # Employee Data (One-to-Many)
     employee_data = relationship('EmployeeData', back_populates='employee_number')
 
-    # Assigned Programs (One-to-Many)
-    assigned_programs = relationship('Program', secondary=employee_program_association_table,
-                                     back_populates='employee_number')
+    # Assigned Programs (Many-to-Many)
+    assigned_programs = relationship('Program', secondary='employee_program_link')
 
     # Assigned Functions (Many-to-Many)
-    assigned_functions = relationship('Functions', secondary=employee_function_association_table,
-                                      back_populates='employees')
+    assigned_functions = relationship('Functions', secondary='employee_function_link')
+
     # Resource Entry (One-to-Many)
     resource_entries = relationship('ResourceUsage', back_populates='employee_number')
 
@@ -48,9 +39,9 @@ class RegisteredUser(Base):
     employee_number_number = Column(Integer(), ForeignKey('employee_numbers.number'))
     employee_number = relationship('EmployeeNumber', back_populates='registered_user')
 
-    # Department
-    department = Column(String(50), ForeignKey('departments.department'))
-    departments = relationship('Departments', back_populates='users')
+    # Function
+    function = Column(String(50), ForeignKey('functions.function'))
+    functions = relationship('Functions', back_populates='users')
 
 
 class Departments(Base):
@@ -59,9 +50,6 @@ class Departments(Base):
     id = Column(Integer(), primary_key=True)
     department = Column(String(50), nullable=False, unique=True, index=True)
 
-    # Registered Users
-    users = relationship('RegisteredUser', back_populates='departments', uselist=False)
-
 
 class EmployeeData(Base):
     __tablename__ = 'employee_data'
@@ -69,7 +57,7 @@ class EmployeeData(Base):
     id = Column(Integer(), primary_key=True)
     name_last = Column(String(50), nullable=False, index=True)
     name_first = Column(String(50), nullable=False, index=True)
-    job_title = Column(String(50), nullable=False)
+    job_title = Column(String(50), nullable=True)
     level = Column(Integer(), nullable=True)
     job_code = Column(String(10), nullable=False)
     date_start = Column(Date(), nullable=False)
@@ -123,8 +111,7 @@ class Program(Base):
 
     # Employee Numbers (Many-to-One)
     # employee_number_number = Column(Integer(), ForeignKey('employee_numbers.number'))
-    employee_number = relationship('EmployeeNumber', secondary=employee_program_association_table,
-                                   back_populates='assigned_programs')
+    employees = relationship(EmployeeNumber, secondary='employee_program_link')
 
 
 class ResourceUsage(Base):
@@ -152,6 +139,32 @@ class Functions(Base):
     id = Column(Integer(), primary_key=True)
     function = Column(String(50), unique=True, nullable=False, index=True)
 
-    # One-to-Many relationships
-    employees = relationship('EmployeeNumber', secondary=employee_function_association_table,
-                             back_populates='assigned_functions')
+    # Employees Assigned (Many-to-Many)
+    employees = relationship(EmployeeNumber, secondary='employee_function_link')
+
+    # Registered Users
+    users = relationship('RegisteredUser', back_populates='functions', uselist=False)
+
+
+# region association tables
+class EmployeeFunctionLink(Base):
+    __tablename__ = 'employee_function_link'
+
+    id = Column(Integer(), primary_key=True)
+    employee_number = Column(Integer(), ForeignKey('employee_numbers.number'))
+    employee_function = Column(String(50), ForeignKey('functions.function'))
+
+    number = relationship(EmployeeNumber, backref=backref('employee_func_assoc'))
+    function = relationship(Functions, backref=backref('function_assoc'))
+
+
+class EmployeeProgramLink(Base):
+    __tablename__ = 'employee_program_link'
+
+    id = Column(Integer(), primary_key=True)
+    employee_number = Column(Integer(), ForeignKey('employee_numbers.number'))
+    employee_program = Column(String(50), ForeignKey('programs.name'))
+
+    number = relationship(EmployeeNumber, backref=backref('employee_pgm_assoc'))
+    program = relationship(Program, backref=backref('program_assoc'))
+# endregion

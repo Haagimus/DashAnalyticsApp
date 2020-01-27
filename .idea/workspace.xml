@@ -3,12 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="1277e24a-518e-4c91-a5df-90ef4a8586e2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/Files/Active_Features.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/Files/Active_Features.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/Files/Upcoming_Features.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/Files/Upcoming_Features.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/SQL.py" beforeDir="false" afterPath="$PROJECT_DIR$/assets/SQL.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/server.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/callbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/assets/callbacks.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/assets/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/navbar.py" beforeDir="false" afterPath="$PROJECT_DIR$/assets/navbar.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/layout.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/capacity.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/capacity.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/employees.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/employees.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/run.py" afterDir="false" />
@@ -31,58 +31,37 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/callbacks.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="335" selection-start-line="335" selection-end-line="335" />
+            <state relative-caret-position="612">
+              <caret line="350" column="41" selection-start-line="350" selection-start-column="41" selection-end-line="350" selection-end-column="41" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/capacity.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="481">
-              <caret line="64" column="36" selection-start-line="64" selection-start-column="21" selection-end-line="64" selection-end-column="36" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
+                <element signature="e#752#782#0" />
+                <element signature="e#1894#1922#0" />
+                <element signature="e#7826#7872#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/assets/SQL.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="525">
+              <caret line="298" column="119" selection-start-line="298" selection-start-column="119" selection-end-line="298" selection-end-column="119" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/employees.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3128">
-              <caret line="184" column="16" selection-start-line="184" selection-start-column="16" selection-end-line="184" selection-end-column="16" />
+            <state relative-caret-position="867">
+              <caret line="120" column="21" lean-forward="true" selection-start-line="120" selection-start-column="21" selection-end-line="120" selection-end-column="21" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/layout.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
-              <folding>
-                <element signature="e#7#46#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -99,8 +78,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>employee_number</find>
-      <find>registeredusers</find>
       <find>db.</find>
       <find>Model</find>
       <find>Base</find>
@@ -124,6 +101,13 @@
       <find>toggl</find>
       <find>column</find>
       <find>-</find>
+      <find>new-emplo</find>
+      <find>single</find>
+      <find>loginMessage</find>
+      <find>True</find>
+      <find>back_populates=</find>
+      <find>backref=backref(</find>
+      <find>is_</find>
     </findStrings>
     <replaceStrings>
       <replace>db.String</replace>
@@ -132,12 +116,13 @@
       <replace>Base</replace>
       <replace>Integer()</replace>
       <replace>backref</replace>
-      <replace>backref=backref(</replace>
       <replace>employee_numbers.id</replace>
       <replace>One-to-One relationships</replace>
       <replace>Many-to-One</replace>
       <replace>One-to-Many</replace>
       <replace>EmployeeData</replace>
+      <replace>backref=backref(</replace>
+      <replace>back_populates=</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -153,9 +138,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/migrations/env.py" />
-        <option value="$PROJECT_DIR$/migrations/versions/7203471635ff_.py" />
-        <option value="$PROJECT_DIR$/migrations/versions/ecb1780b7f90_initial_table_generation.py" />
         <option value="$PROJECT_DIR$/migrations/versions/a4c0ab653ad8_initial_table_generation.py" />
         <option value="$PROJECT_DIR$/migrations/versions/c1b76fddd5a0_.py" />
         <option value="$PROJECT_DIR$/migrations/versions/ae6f9662f656_table_state_check.py" />
@@ -187,23 +169,26 @@
         <option value="$PROJECT_DIR$/assets/Programs.css" />
         <option value="$PROJECT_DIR$/__init__.py" />
         <option value="$PROJECT_DIR$/pages/home.py" />
-        <option value="$PROJECT_DIR$/app.py" />
-        <option value="$PROJECT_DIR$/layout.py" />
         <option value="$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/orm/relationships.py" />
         <option value="$PROJECT_DIR$/migrations/versions/8c0d5428c7a7_updating_relationships.py" />
         <option value="$PROJECT_DIR$/app.log" />
-        <option value="$PROJECT_DIR$/server.py" />
-        <option value="$PROJECT_DIR$/assets/models.py" />
         <option value="$PROJECT_DIR$/assets/Files/Upcoming_Features.txt" />
-        <option value="$PROJECT_DIR$/assets/Files/Active_Features.txt" />
-        <option value="$PROJECT_DIR$/pages/capacity.py" />
         <option value="$PROJECT_DIR$/run.py" />
-        <option value="$PROJECT_DIR$/assets/navbar.py" />
-        <option value="$PROJECT_DIR$/err.txt" />
-        <option value="$PROJECT_DIR$/assets/SQL.py" />
+        <option value="$PROJECT_DIR$/layout.py" />
+        <option value="$PROJECT_DIR$/server.py" />
         <option value="$PROJECT_DIR$/assets/app.css" />
-        <option value="$PROJECT_DIR$/assets/callbacks.py" />
+        <option value="$PROJECT_DIR$/assets/server.css" />
+        <option value="$PROJECT_DIR$/err.txt.1" />
+        <option value="$PROJECT_DIR$/err.txt" />
+        <option value="$PROJECT_DIR$/assets/Files/Active_Features.txt" />
+        <option value="$PROJECT_DIR$/app.py" />
+        <option value="$PROJECT_DIR$/assets/navbar.py" />
+        <option value="$PROJECT_DIR$/assets/test_update_employee.py" />
+        <option value="$PROJECT_DIR$/assets/models.py" />
+        <option value="$PROJECT_DIR$/pages/capacity.py" />
         <option value="$PROJECT_DIR$/pages/employees.py" />
+        <option value="$PROJECT_DIR$/assets/callbacks.py" />
+        <option value="$PROJECT_DIR$/assets/SQL.py" />
       </list>
     </option>
   </component>
@@ -211,10 +196,10 @@
     <scope name="Project" pattern="file[Resources_App]:assets//*||file[Resources_App]:pages//*" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1913" />
-    <option name="y" value="-266" />
-    <option name="width" value="974" />
-    <option name="height" value="1167" />
+    <option name="x" value="-1272" />
+    <option name="y" value="-552" />
+    <option name="width" value="1038" />
+    <option name="height" value="646" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -233,6 +218,18 @@
               <item name="Resources_App" type="b2602c69:ProjectViewProjectNode" />
               <item name="Resources_App" type="462c0819:PsiDirectoryNode" />
               <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Resources_App" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Resources_App" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="Files" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Resources_App" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Resources_App" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="font-awesome" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Resources_App" type="b2602c69:ProjectViewProjectNode" />
@@ -601,7 +598,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578515812323</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="refactored the employee data table callbacks and loading">
+      <created>1578929878934</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1578929878934</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TodoView">
@@ -614,20 +618,20 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-274" width="1936" height="1176" extended-state="6" />
+    <frame x="-1088" y="-536" width="1096" height="1896" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Repositories" order="0" weight="0.19072708" />
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4972299" visible="true" weight="0.1748401" />
-      <window_info id="Structure" order="2" sideWeight="0.503792" side_tool="true" weight="0.33333334" />
-      <window_info id="Favorites" order="3" sideWeight="0.50277007" side_tool="true" weight="0.28735632" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49408284" weight="0.33687258" />
+      <window_info id="Structure" order="2" sideWeight="0.50591713" side_tool="true" weight="0.32335907" />
+      <window_info id="Favorites" order="3" sideWeight="0.50277007" side_tool="true" weight="0.28667954" />
       <window_info anchor="bottom" id="Python Console" order="0" weight="0.32898468" />
-      <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49733475" weight="0.27453205" />
+      <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49733475" weight="0.27339762" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5026652" side_tool="true" weight="0.36511377" />
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="bottom" id="Find" order="4" weight="0.16903006" />
-      <window_info anchor="bottom" id="Run" order="5" sideWeight="0.49946696" weight="0.360735" />
-      <window_info active="true" anchor="bottom" x="-1079" y="-497" width="1078" height="908" id="Debug" order="6" visible="true" weight="0.32981783" />
+      <window_info anchor="bottom" id="Run" order="5" sideWeight="0.49946696" weight="0.3601815" />
+      <window_info active="true" anchor="bottom" x="-1079" y="-497" width="1078" height="908" id="Debug" order="6" visible="true" weight="0.19398752" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="9" weight="0.24446966" />
@@ -638,16 +642,16 @@
     </layout>
     <layout-to-restore>
       <window_info id="Repositories" order="0" weight="0.19072708" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.4972299" visible="true" weight="0.2084942" />
-      <window_info id="Structure" order="2" sideWeight="0.503792" side_tool="true" weight="0.33333334" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49408284" weight="0.33011582" />
+      <window_info id="Structure" order="2" sideWeight="0.50591713" side_tool="true" weight="0.32335907" />
       <window_info id="Favorites" order="3" sideWeight="0.50277007" side_tool="true" weight="0.28735632" />
       <window_info anchor="bottom" id="Python Console" order="0" weight="0.32898468" />
-      <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49733475" weight="0.27453205" />
+      <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49733475" weight="0.27339762" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5026652" side_tool="true" weight="0.36511377" />
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="bottom" id="Find" order="4" weight="0.16903006" />
-      <window_info anchor="bottom" id="Run" order="5" sideWeight="0.49946696" weight="0.36074874" />
-      <window_info anchor="bottom" x="-1079" y="-497" width="1078" height="908" id="Debug" order="6" visible="true" weight="0.242768" />
+      <window_info anchor="bottom" id="Run" order="5" sideWeight="0.49946696" visible="true" weight="0.3601815" />
+      <window_info anchor="bottom" x="-1079" y="-497" width="1078" height="908" id="Debug" order="6" weight="0.3442995" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="9" weight="0.24446966" />
@@ -756,7 +760,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="removing unneeded file and content" />
     <MESSAGE value="\everything" />
     <MESSAGE value="capacity page updates" />
     <MESSAGE value="lots of refactoring to support dash bootstrap component layouts" />
@@ -781,77 +784,146 @@
     <MESSAGE value="updated models and SQL database with new relationship, also had to update the login script" />
     <MESSAGE value="updated database model to support associations between tables, refactored SQL and page lookups to support the refactored database model" />
     <MESSAGE value="added debug to browser title" />
-    <option name="LAST_COMMIT_MESSAGE" value="added debug to browser title" />
+    <MESSAGE value="refactored the employee data table callbacks and loading" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactored the employee data table callbacks and loading" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/assets/SQL.py</url>
+          <line>298</line>
+          <option name="timeStamp" value="127" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/assets/SQL.py</url>
+          <line>300</line>
+          <option name="timeStamp" value="128" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="row[row_idx[0]][data_fields[i]]" language="Python" />
+        <watch expression="editor_fields[i]" language="Python" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateCodeFragment">
       <expression>
-        <expression-string>for i in session.query(column[0]).filter(column[1].like(param)).all(): 
-    for e in i.employee_number: 
-        print(e.employee_data[0].name_first)</expression-string>
+        <expression-string>if kwargs['programs']:
+    print('programs')
+else:
+    print('no programs')</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>for i in session.query(column[0]).filter(column[1].like(param)).all(): 
-    for e in i.employee_number: 
-        print(e.employee_data.name_first)</expression-string>
+        <expression-string>if kwargs['programs']:
+    print('no programs')
+else:
+    print('programs')</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>for i in session.query(column[0]).filter(column[1].like(param)).all(): 
-    for e in i.employee_number: 
-        print(e)</expression-string>
+        <expression-string>if kwargs['programs'] is not None:
+    print('no programs')
+else:
+    print('programs')</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>for i in session.query(column[0]).filter(column[1].like(param)).all(): 
-    for e in i[0].employee_number: 
-        print(e)</expression-string>
+        <expression-string>if kwargs['programs']:
+    print('yes')
+else:
+    print('no')</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>for i in filter(None, data_set): 
-    print(i.employee_number.assigned_projects[0].name)</expression-string>
+        <expression-string>if not kwargs['level']: 
+    print('yes') 
+else: 
+    print('no')</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>for i in filter(None, data_set): print(i.employee_number.assigned_projects[0].name)</expression-string>
+        <expression-string>if not kwargs['function']: 
+    print('yes') 
+else: 
+    print('no')</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>for item in emp_cols_int:
-    print(item.key())</expression-string>
+        <expression-string>if kwargs['level']: 
+    print('yes') 
+else: 
+    print('no')</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>from dash.dependencies import Input, Output, State
-@app.callback(Output('session-store', 'data'),
-              [Input('', '')],
-              [State('session-store', 'data')])
-def data(input,data):
-    return data</expression-string>
+        <expression-string>for f in data_fields:
+    print(row[row_idx[0]][f])</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>from dash.dependencies import Input, Output, State
-@app.callback(Output('session-store', 'data'),
-              [Input('session-store', 'data')])
-def data(data):
-    return data</expression-string>
+        <expression-string>for p in EmployeeData.__table__.columns:
+    p.split(',')
+    for c in row[row_idx[0][p]]:
+        print(c)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
     </expressions>
     <expressions id="watch">
+      <expression>
+        <expression-string>editor_fields[i]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>row[row_idx[0]][data_fields[i]]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>i.program_assoc.0</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>employee</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>_selected_rows</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>len(active_employees)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>len(ended)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>len(employees)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>i.name_first + ', ' + i.name_last</expression-string>
         <language-id>Python</language-id>
@@ -862,48 +934,13 @@ def data(data):
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>i.name_first</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>i</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>column[1].prop</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>column[1].prop[0]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>column[1].prop()</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>column[1]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>column[1].params()</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>item.key</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
     <expressions id="setValue">
+      <expression>
+        <expression-string>&lt;class 'list'&gt;: [-1]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>'0500V2'</expression-string>
         <language-id>Python</language-id>
@@ -917,277 +954,62 @@ def data(data):
     </expressions>
     <expressions id="evaluateExpression">
       <expression>
-        <expression-string>len(sql.get_rows(Program, Program.name == pgm))</expression-string>
+        <expression-string>kwargs['programs']</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>len(sql.get_rows(Program, Program.name == pgm)</expression-string>
+        <expression-string>if kwargs['level']: print('yes') else: print('no')</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>sql.get_rows(Program, Program.name == pgm)</expression-string>
+        <expression-string>if kwargs['level']: print('yes')</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>sql.get_rows(Program, Program.name == pgm) is ''</expression-string>
+        <expression-string>if kwargs['level']</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>(sql.get_rows(Program, Program.name == pgm) is '')</expression-string>
+        <expression-string>kwargs['level']</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>(sql.get_rows(Program, Program.name == pgm) is None) or (sql.get_rows(Program, Program.name == pgm) is '')</expression-string>
+        <expression-string>kwargs['programs'] is (not None or not '')</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>sql.get_rows(Program, Program.name == pgm) is None or sql.get_rows(Program, Program.name == pgm) is ''</expression-string>
+        <expression-string>kwargs['programs'] is not None or ''</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>sql.get_rows(Program, Program.name == pgm) is None</expression-string>
+        <expression-string>kwargs['programs'] is not None</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>sql.get_rows(Program, Program.name == pgm) is None or ''</expression-string>
+        <expression-string>kwargs['programs'] is not (None or '')</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>row[row_idx[0]][data_fields[i]] != (editor_fields[i] or '')</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/migrations/versions/2cdf5d54bb53_updating_relationships.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="46" column="41" lean-forward="true" selection-start-line="46" selection-start-column="41" selection-end-line="46" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/migrations/versions/17b9a43f874d_updating_relationships.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/util/langhelpers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="854" selection-start-line="854" selection-end-line="854" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/codecs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="309" selection-start-line="309" selection-end-line="309" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/abc.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="138" selection-start-line="138" selection-end-line="138" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/util/_collections.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
-          <caret line="811" selection-start-line="811" selection-end-line="811" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/orm/query.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="167" selection-start-line="167" selection-end-line="167" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/ext/declarative/clsregistry.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="305" selection-start-line="305" selection-end-line="305" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3/builtins.pyi">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="581" column="6" selection-start-line="581" selection-start-column="6" selection-end-line="581" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/orm/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="99" selection-start-line="99" selection-end-line="99" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/migrations/versions/ee48e13120dc_updating_relationships.py" />
-    <entry file="file://$PROJECT_DIR$/migrations/versions/8c0d5428c7a7_updating_relationships.py" />
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/sql/schema.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="2048" selection-start-line="2048" selection-end-line="2048" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/orm/session.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="1543" selection-start-line="1543" selection-end-line="1543" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/new 1.txt" />
-    <entry file="file://$PROJECT_DIR$/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="11" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.log" />
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/orm/mapper.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="2045" selection-start-line="2045" selection-end-line="2045" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/Files/Upcoming_Features.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/Files/Active_Features.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="13" lean-forward="true" selection-start-column="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/pandas/core/frame.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="486" selection-start-line="486" selection-end-line="486" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-          <folding>
-            <element signature="e#1852#2413#0" />
-            <element signature="e#2445#2709#0" />
-            <element signature="e#3490#4453#0" />
-            <element signature="e#4486#4816#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/err.txt.1" />
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/dash_html_components/Div.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="47" selection-start-line="47" selection-end-line="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/dash/development/base_component.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1038">
-          <caret line="322" selection-start-line="322" selection-end-line="322" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/dash_bootstrap_components/_components/Button.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="36" column="6" selection-start-line="36" selection-start-column="6" selection-end-line="36" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Continuum/anaconda3/Lib/socketserver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="719" selection-start-line="719" selection-end-line="719" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Continuum/anaconda3/Lib/threading.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="864" selection-start-line="864" selection-end-line="864" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/err.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/navbar.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="108" column="35" lean-forward="true" selection-start-line="108" selection-start-column="35" selection-end-line="109" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/dash_core_components/DatePickerSingle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="569">
-          <caret line="43" column="13" selection-start-line="43" selection-start-column="2" selection-end-line="43" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/dash_bootstrap_components/_components/Col.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" column="7" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/dash_table/DataTable.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="22" column="9" selection-start-line="22" selection-start-column="2" selection-end-line="22" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/SQL.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="43" selection-start-line="43" selection-end-line="43" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/orm/attributes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="274" selection-start-line="274" selection-end-line="274" />
         </state>
       </provider>
     </entry>
@@ -1198,57 +1020,288 @@ def data(data):
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/capacity.py">
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/engine/default.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="64" column="36" selection-start-line="64" selection-start-column="21" selection-end-line="64" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="486">
+          <caret line="590" column="18" lean-forward="true" selection-start-line="590" selection-start-column="18" selection-end-line="590" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/app.css">
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/dash_bootstrap_components/_components/Row.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="69" column="1" selection-start-line="69" selection-start-column="1" selection-end-line="69" selection-end-column="1" />
+        <state relative-caret-position="280">
+          <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/dash_bootstrap_components/_components/InputGroupAddon.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="7" selection-start-line="20" selection-start-column="7" selection-end-line="20" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/dash_bootstrap_components/_components/Button.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="32" column="10" selection-start-line="32" selection-start-column="2" selection-end-line="32" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/run.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
+        <state relative-caret-position="187">
+          <caret line="11" lean-forward="true" selection-start-line="6" selection-end-line="11" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/engine/strategies.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="174" column="13" lean-forward="true" selection-start-line="174" selection-start-column="13" selection-end-line="174" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/engine/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5984">
+          <caret line="84" column="4" selection-start-line="84" selection-start-column="4" selection-end-line="84" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Continuum/anaconda3/Lib/collections/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="241" column="8" selection-start-line="241" selection-start-column="8" selection-end-line="241" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3/typing.pyi">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="364" column="10" lean-forward="true" selection-start-line="364" selection-start-column="10" selection-end-line="364" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/server.py">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="72" selection-start-line="12" selection-start-column="72" selection-end-line="12" selection-end-column="72" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/dash_table/DataTable.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="734" column="21" lean-forward="true" selection-start-line="734" selection-start-column="21" selection-end-line="734" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/pool/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="528" lean-forward="true" selection-start-line="528" selection-end-line="528" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.3/system/python_stubs/-1109865891/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="4472" column="8" selection-start-line="4472" selection-start-column="8" selection-end-line="4472" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/server.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="72" selection-start-line="72" selection-end-line="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/err.txt.1" />
+    <entry file="file://$PROJECT_DIR$/err.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="37" column="15" lean-forward="true" selection-start-line="37" selection-start-column="15" selection-end-line="37" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/sql/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="399" column="32" lean-forward="true" selection-start-line="399" selection-start-column="32" selection-end-line="399" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/Files/Active_Features.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/home.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/orm/interfaces.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="195" selection-start-line="195" selection-end-line="195" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/orm/session.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="1543" selection-start-line="1543" selection-end-line="1543" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/orm/query.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="457">
+          <caret line="4120" selection-start-line="4120" selection-end-line="4120" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/util/langhelpers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="854" selection-start-line="854" selection-end-line="854" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/dash/development/base_component.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="584">
+          <caret line="100" column="17" lean-forward="true" selection-start-line="100" selection-start-column="17" selection-end-line="100" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/dash_bootstrap_components/_components/Select.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="8" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/orm/state.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1241">
+          <caret line="89" selection-start-line="89" selection-end-line="89" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/orm/instrumentation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="499">
+          <caret line="365" selection-start-line="365" selection-end-line="365" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/test_update_employee.py" />
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/orm/mapper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="2050" column="31" selection-start-line="2050" selection-start-column="31" selection-end-line="2050" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/ext/declarative/clsregistry.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1094">
+          <caret line="342" column="25" lean-forward="true" selection-start-line="342" selection-start-column="25" selection-end-line="342" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/orm/relationships.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="695">
+          <caret line="2396" column="17" lean-forward="true" selection-start-line="2396" selection-start-column="17" selection-end-line="2396" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/orm/attributes.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="274" selection-start-line="274" selection-end-line="274" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/events.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="1068" column="8" selection-start-line="1068" selection-start-column="8" selection-end-line="1068" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/interfaces.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="319" column="8" selection-start-line="319" selection-start-column="8" selection-end-line="319" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/capacity.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="42" selection-start-line="24" selection-start-column="42" selection-end-line="24" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.py">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/navbar.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="457">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
           <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/layout.py">
+    <entry file="file://$PROJECT_DIR$/assets/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
+        <state relative-caret-position="465">
+          <caret line="53" column="6" selection-start-line="53" selection-start-column="6" selection-end-line="53" selection-end-column="6" />
           <folding>
-            <element signature="e#7#46#0" expanded="true" />
+            <element signature="e#0#89#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/engine/default.py">
+    <entry file="file://$USER_HOME$/AppData/Local/Continuum/anaconda3/Lib/socketserver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="590" column="18" lean-forward="true" selection-start-line="590" selection-start-column="18" selection-end-line="590" selection-end-column="18" />
+        <state relative-caret-position="457">
+          <caret line="649" selection-start-line="649" selection-end-line="649" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Continuum/anaconda3/Lib/threading.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="864" selection-start-line="864" selection-end-line="864" />
         </state>
       </provider>
     </entry>
@@ -1261,8 +1314,8 @@ def data(data):
     </entry>
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/werkzeug/serving.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="361" selection-start-line="361" selection-end-line="361" />
+        <state relative-caret-position="635">
+          <caret line="303" selection-start-line="303" selection-end-line="303" />
           <folding>
             <element signature="e#1366#1375#0" expanded="true" />
           </folding>
@@ -1278,34 +1331,54 @@ def data(data):
     </entry>
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/flask/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
+        <state relative-caret-position="1203">
           <caret line="2462" selection-start-line="2462" selection-end-line="2462" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/dash/dash.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="1370" selection-start-line="1370" selection-end-line="1370" />
+        <state relative-caret-position="465">
+          <caret line="1250" selection-start-line="1250" selection-end-line="1250" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/callbacks.py">
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/dash_bootstrap_components/_components/Input.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="335" selection-start-line="335" selection-end-line="335" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="340">
+          <caret line="20" column="10" selection-start-line="20" selection-start-column="2" selection-end-line="20" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/employees.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3128">
-          <caret line="184" column="16" selection-start-line="184" selection-start-column="16" selection-end-line="184" selection-end-column="16" />
+        <state relative-caret-position="867">
+          <caret line="120" column="21" lean-forward="true" selection-start-line="120" selection-start-column="21" selection-end-line="120" selection-end-column="21" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/callbacks.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="350" column="41" selection-start-line="350" selection-start-column="41" selection-end-line="350" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#752#782#0" />
+            <element signature="e#1894#1922#0" />
+            <element signature="e#7826#7872#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/SQL.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="298" column="119" selection-start-line="298" selection-start-column="119" selection-end-line="298" selection-end-column="119" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>

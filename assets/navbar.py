@@ -1,8 +1,10 @@
 import dash_bootstrap_components as dbc
+import dash_core_components as dcc
 import dash_html_components as html
 
 import assets.SQL as sql
 from assets.models import EmployeeNumber
+
 login_modal = dbc.Modal([
     dbc.ModalHeader('Please log in:', id='loginHead'),
     dbc.ModalBody([
@@ -39,11 +41,10 @@ registration_modal = dbc.Modal([
                                    className='required username',
                                    placeholder='username')]),
         html.P(children=['Employee #: ',
-                         dbc.Select(id='emp-num-dropdown',
-                                    options=[{'label': i.number, 'value': i.id}
-                                             for i in sql.get_rows(EmployeeNumber)],
-                                    )],
-               id='dropdown'),
+                         dcc.Dropdown(id='emp-num-dropdown',
+                                      options=[{'label': i.number, 'value': i.id}
+                                               for i in sql.get_rows(EmployeeNumber)]
+                                      )]),
         html.P(children=['Password: ',
                          dbc.Input(type='password',
                                    id='registerPassword',

@@ -5,23 +5,34 @@ import dash_table as dt
 import pandas as pd
 
 import assets.SQL as sql
-from assets.models import employee_function_association_table, EmployeeData
+from assets.models import EmployeeFunctionLink, EmployeeData
 
-employees = sql.get_rows(EmployeeData)
-functions = sql.get_rows(employee_function_association_table)
+functions = sql.get_rows(EmployeeFunctionLink)
+
+
+def get_counts():
+    count = {}
+    employees = sql.get_rows(EmployeeData)
+    ended = []
+
+    for row in employees:
+        if row.date_end is not None:
+            ended.append(row)
+
+    active_employees = [e for e in employees if e not in ended]
+
+    for f in functions:
+        count.update({f.function_name: 0})
+        for row in active_employees:
+            if row.employee_number.assigned_functions[0].function == f.function_name:
+                count[f.function_name] += 1
+    count.update({'Total': len(active_employees)})
+
+    return count
 
 
 def function_totals():
-    count = {}
-    total = 0
-    for f in functions:
-        count.update({f.function_name: 0})
-        for row in employees:
-            if row.employee_number.assigned_functions[0].function == f.function_name \
-                    and row.date_end is None:
-                count[f.function_name] += 1
-        total += 1
-    count.update({'Total': total})
+    count = get_counts()
 
     results = pd.DataFrame({
         'Functions': list(count.keys()),
@@ -32,15 +43,8 @@ def function_totals():
 
 
 def functions_chart():
-    count = {}
-    # total = 0
-    for item in functions:
-        count.update({item.function_name: 0})
-        for row in employees:
-            if row.employee_number.assigned_functions[0].function == item.function_name \
-                    and row.date_end is None:
-                count[item.function_name] += 1
-        # total += 1
+    count = get_counts()
+    count.pop('Total')
 
     results = pd.DataFrame({
         'Functions': list(count.keys()),
@@ -58,7 +62,7 @@ def functions_chart():
 
 def capacity_page_layout():
     layout = dbc.Row([
-        dbc.Col([
+        dbc.Col(
             dt.DataTable(
                 id='capacity',
                 columns=[{'name': i, 'id': i} for i in function_totals()],
@@ -82,15 +86,17 @@ def capacity_page_layout():
                      'textAlign': 'left',
                      'padding': '2px 0px 2px 15px'}
                 ]
-            )],
+            ),
             xs={'size': 12, 'order': 1},
             md={'size': 6, 'order': 2},
-            lg={'size': 5, 'order': 1}),
+            lg={'size': 5, 'order': 1}
+        ),
         dbc.Col(
             functions_chart(),
             xs={'size': 12, 'order': 2},
             md={'size': 12, 'order': 1},
             lg={'size': 7, 'order': 2}
-        )])
+        )
+    ])
 
     return layout

@@ -9,8 +9,9 @@ import assets.callbacks
 navbar = html.Nav(id='navbar-container')
 content = html.Div(id='page-content')
 footer = html.Footer(
-    dbc.Alert(id='loginMessage',
-              is_open=True,
+    dbc.Alert(id='alert_toast',
+              is_open=False,
+              dismissable=True,
               duration=4000,
               style={'position': 'fixed',
                      'bottom': 10,

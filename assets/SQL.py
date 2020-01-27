@@ -3,15 +3,22 @@ import hashlib
 import os
 from collections import defaultdict
 
-from sqlalchemy import create_engine, MetaData, inspect
+from sqlalchemy import create_engine, MetaData, inspect, update
 from sqlalchemy.orm import sessionmaker
 
-from assets.models import RegisteredUser, EmployeeData, ProjectData, Functions, Program
+from assets.models import RegisteredUser, EmployeeData, ProjectData, Functions, Program, EmployeeNumber, EmployeeFunctionLink, EmployeeProgramLink
 from server import app, log_time
 
 server = 'FRXSV-DAUPHIN'
 dbname = 'FRXResourceDemand'
-engine = create_engine('mssql://@{0}/{1}?trusted_connection=yes&driver=SQL+Server'.format(server, dbname), echo=False)
+t_conn = 'trusted_connections=yes'
+driver = 'driver=SQL+Server'
+MARS = 'MARS_Connection=Yes'
+echo = False
+pool_size = 20
+engine = create_engine(f'mssql://@{server}/{dbname}?{t_conn}&{driver}&{MARS}',
+                       echo=echo,
+                       pool_size=pool_size)
 Session = sessionmaker(bind=engine)
 session = Session()
 conn = engine.connect()
@@ -62,7 +69,7 @@ def query_rows(filter_text):
             if len(session.query(column[0]).filter(column[1].contains('%{}%'.format(filter_text))).all()) > 0:
                 for i in session.query(column[0]).filter(column[1].contains('%{}%'.format(filter_text))).all():
                     if not isinstance(i, EmployeeData):
-                        for emp in i.employee_number:
+                        for emp in i.employee_number_number:
                             if emp.employee_data[0] not in results:
                                 results.append(emp.employee_data[0])
                     else:
@@ -72,7 +79,7 @@ def query_rows(filter_text):
             if len(session.query(column[0]).filter(column[1].contains('%{}%'.format(filter_text))).all()) > 0:
                 for i in session.query(column[0]).filter(column[1].contains('%{}%'.format(filter_text))).all():
                     if isinstance(i, Program):
-                        for emp in i.employee_number:
+                        for emp in i.employees:
                             if emp.employee_data[0] not in results:
                                 results.append(emp.employee_data[0])
                     elif isinstance(i, Functions):
@@ -82,7 +89,7 @@ def query_rows(filter_text):
                     else:
                         if i not in results:
                             results.append(i)
-
+    session.close()
     return results
 
 
@@ -127,7 +134,10 @@ def register_user(username, emp_num, password, password2):
     """
     if username is not None and username is not '':
         uname = session.query(RegisteredUser).filter(RegisteredUser.username == username).first()
-        empnum = session.query(RegisteredUser).filter(RegisteredUser.employee_number == emp_num).first()
+        try:
+            empnum = session.query(RegisteredUser).filter(RegisteredUser.employee_number == emp_num).first()
+        except AttributeError:
+            empnum = None
         if uname is not None:
             return 'Username already exists, please try a different username.'
         elif emp_num is None or emp_num == '':
@@ -166,11 +176,158 @@ def add_user(username, password, emp_num):
     :param emp_num: int
     :return: None
     """
-    submission = RegisteredUser(username=username,
-                                employee_number=emp_num,
-                                password=password)
+    empnum = session.query(EmployeeNumber).filter(EmployeeNumber.id == emp_num).first()
+    query = EmployeeFunctionLink.c.employee_number == empnum.number
+    func = get_rows(EmployeeFunctionLink, query)
+
+    submission = RegisteredUser(username=username, employee_number=empnum, function=func[0][1], password=password)
     session.add(submission)
     session.commit()
+
+
+def add_employee(first_name, last_name, employee_number, job_code, level, func, pgms, start_date, end_date):
+    """
+    Adds a new employee to the EmployeeData table
+    :param first_name: str
+    :param last_name: str
+    :param employee_number: int
+    :param job_code: str
+    :param level: inf
+    :param func: str
+    :param pgms: str
+    :param start_date: date
+    :param end_date: date
+    :return: None
+    """
+    number = (EmployeeNumber(number=employee_number))
+
+    try:
+        session.add(number)
+        session.commit()
+    except Exception as e:
+        if 'Cannot insert duplicate key' in e.args[0]:
+            app.logger.error(f'ERROR: Attempted insertion of new employee number, {employee_number} which already exists in the table EmployeeNumber.')
+        session.rollback()
+        raise
+    finally:
+        session.close()
+
+    queries = []
+
+    function_name = session.query(Functions).filter(Functions.id == func)[0].function
+    queries.append(EmployeeFunctionLink.insert().values(function_name=function_name, employee_number=employee_number))
+
+    pgm_names = []
+    for p in pgms:
+        pgm_names.append(session.query(Program).filter(Program.id == p)[0].name)
+
+    for p in pgm_names:
+        queries.append(EmployeeProgramLink.insert().values(program_name=p, employee_number=employee_number))
+
+    for q in queries:
+        try:
+            session.execute(q)
+            session.commit()
+        except Exception as e:
+            app.logger.error(f'ERROR: {e}')
+            session.rollback()
+            raise
+        finally:
+            session.close()
+
+    employee = EmployeeData(name_first=first_name, name_last=last_name, employee_number_number=employee_number, job_code=job_code,
+                            level=level, date_start=start_date, date_end=end_date)
+    try:
+        session.add(employee)
+        session.commit()
+    except Exception as e:
+        app.logger.error(f'ERROR: {e}')
+        session.rollback()
+        raise
+    finally:
+        session.close()
+
+
+def update_employee(employee_number, **kwargs):
+    """
+    Update an existing employee data entry
+    :keyword name_first: str
+    :keyword name_last: str
+    :keyword employee_number: int
+    :keyword job_code: str
+    :keyword level: int
+    :keyword assigned_function: str
+    :keyword assigned_programs: []
+    :keyword date_start: date
+    :keyword date_end: date
+    """
+    employee = session.query(EmployeeData).filter(EmployeeData.employee_number_number == employee_number).first()
+
+    if kwargs.__contains__('name_first'):
+        if kwargs['name_first']:
+            employee.name_first = kwargs['name_first']
+        else:
+            employee.name_first = None
+
+    if kwargs.__contains__('name_last'):
+        if kwargs['name_last']:
+            employee.name_last = kwargs['name_last']
+        else:
+            employee.name_last = None
+
+    if kwargs.__contains__('employee_number'):
+        if kwargs['employee_number']:
+            employee.employee_number_number = kwargs['employee_number']
+        else:
+            employee.employee_number_number = None
+
+    if kwargs.__contains__('job_code'):
+        if kwargs['job_code']:
+            employee.job_code = kwargs['job_code']
+        else:
+            employee.job_code = None
+
+    if kwargs.__contains__('level'):
+        if kwargs['level']:
+            employee.level = kwargs['level']
+        else:
+            employee.level = None
+
+    if kwargs.__contains__('function'):
+        if kwargs['function']:
+            session.query(EmployeeFunctionLink).filter(EmployeeFunctionLink.employee_number == employee_number).delete()
+            session.merge(EmployeeFunctionLink(employee_number = employee_number, employee_function=kwargs['function']))
+        else:
+            session.query(EmployeeFunctionLink).filter(EmployeeFunctionLink.employee_number == employee_number).delete()
+
+    if kwargs.__contains__('programs'):
+        if kwargs['programs']:
+            session.query(EmployeeProgramLink).filter(EmployeeProgramLink.employee_number == employee_number).delete()
+            for pgm in kwargs['programs']:
+                c_pgm = get_rows(Program, Program.name == pgm)
+                session.merge(EmployeeProgramLink(employee_number=employee_number, employee_program=c_pgm[0].name))
+                session.commit()
+        else:
+            session.query(EmployeeProgramLink).filter(EmployeeProgramLink.employee_number == employee_number).delete()
+
+    if kwargs.__contains__('date_start') and kwargs['date_start']:
+        employee.date_start = kwargs['date_start']
+
+    if kwargs.__contains__('date_end'):
+        if kwargs['date_end'] is None:
+            employee.date_end = None
+        else:
+            employee.date_end = kwargs['date_end']
+
+
+    try:
+        session.commit()
+    except Exception as e:
+        app.logger.error(f'ERROR: {e}')
+        session.rollback()
+        raise
+    finally:
+        session.close()
 
 
 def hash_password(password):
