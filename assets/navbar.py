@@ -7,26 +7,29 @@ from assets.models import EmployeeNumber
 
 login_modal = dbc.Modal([
     dbc.ModalHeader('Please log in:', id='loginHead'),
-    dbc.ModalBody([
-        html.P(children=['Username: ',
-                         dbc.Input(type='text',
-                                   id='loginUsername',
-                                   className='required username',
-                                   placeholder='username')]),
-        html.P(children=['Password: ',
-                         dbc.Input(type='password',
-                                   id='loginPassword',
-                                   className='required password',
-                                   placeholder='password')])
-    ]),
-    dbc.ModalFooter([
-        dbc.Button('Login',
-                   id='loginSubmit',
-                   n_clicks=0,
-                   n_clicks_timestamp=0),
-        dbc.Button('Close',
-                   id='loginClose',
-                   n_clicks=0)
+    html.Form([
+        dbc.ModalBody([
+            html.P(children=['Username: ',
+                             dbc.Input(type='text',
+                                       id='loginUsername',
+                                       className='required username',
+                                       placeholder='username')]),
+            html.P(children=['Password: ',
+                             dbc.Input(type='password',
+                                       id='loginPassword',
+                                       className='required password',
+                                       placeholder='password')])
+        ]),
+        dbc.ModalFooter([
+            dbc.Button('Login',
+                        id='loginSubmit',
+                        n_clicks=0,
+                        n_clicks_timestamp=0),
+            dbc.Button('Close',
+                       id='loginClose',
+                       n_clicks=0)
+
+        ])
     ])
 ],
     id='loginView',

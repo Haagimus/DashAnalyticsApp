@@ -84,21 +84,21 @@ def employee_editor():
         ),
         dbc.Row(
             dbc.Col([
-                dbc.Label('First Name: *'),
+                dbc.Label('First Name: (required)'),
                 dbc.Input(id='first-name',
                           type='text',
                           className='required',
                           placeholder='First Name')])),
         dbc.Row(
             dbc.Col([
-                dbc.Label('Last Name: *'),
+                dbc.Label('Last Name: (required)'),
                 dbc.Input(id='last-name',
                           type='text',
                           className='required',
                           placeholder='Last Name')])),
         dbc.Row(
             dbc.Col([
-                dbc.Label('Employee Number: *'),
+                dbc.Label('Employee Number: (required)'),
                 dbc.Input(id='employee-number',
                           type='number',
                           className='required',
@@ -106,7 +106,7 @@ def employee_editor():
                           placeholder='Employee Number')])),
         dbc.Row(
             dbc.Col([
-                dbc.Label('Job Code: *'),
+                dbc.Label('Job Code: (required)'),
                 dbc.Input(id='job-code',
                           type='text',
                           className='required',
@@ -136,7 +136,7 @@ def employee_editor():
                              searchable=True)])),
         dbc.Row(
             dbc.Col([
-                dbc.Label('Start Date: *'),
+                dbc.Label('Start Date: (required)'),
                 dcc.DatePickerSingle(id='start-date',
                                      with_portal=True,
                                      className='required', placeholder='Start Date',
@@ -163,6 +163,8 @@ def employee_editor():
                                           'margin': '2px'}),
                         width=6
                     ),
+                    dbc.Tooltip('Adds a new employee to the database using the information entered in the above fields.',
+                                target='new-employee'),
                     dbc.Col(
                         dbc.Button('Save',
                                    id='save-employee',
@@ -171,6 +173,8 @@ def employee_editor():
                                           'margin': '2px'}),
                         width=6
                     ),
+                    dbc.Tooltip('Saves any modifications to the currently selected employee record.',
+                                target='save-employee'),
                     dbc.Col(
                         dbc.Button('Quick Close',
                                    id='quick-close-employee',
@@ -180,6 +184,8 @@ def employee_editor():
                                           'margin': '2px'}),
                         width=6
                     ),
+                    dbc.Tooltip('Adds end date to selected employee and creates a new record using the same date as its start date.',
+                                target='quick-close-employee'),
                     dbc.Col(
                         dbc.Button('Clear',
                                    id='clear-employee-editor',
@@ -187,7 +193,9 @@ def employee_editor():
                                    style={'width': 'inherit',
                                           'margin': '2px'}),
                         width=6
-                    )
+                    ),
+                    dbc.Tooltip('Clears the editor fields and deselects any selected rows in the table.',
+                                target='clear-employee-editor'),
                 ],
                 style={'margin-top': '10px'}),
         dbc.Row(id='msg')]
@@ -202,15 +210,14 @@ def employee_page_layout(data=None):
                 'login_user': None}
     if data['isadmin']:
         editor = {'width': 'auto',
-                  'visibility': 'visible'},
-        display = [8, 10, 'grid']
+                  'visibility': 'visible'}
     else:
         editor = {'width': '0px',
                   'visibility': 'hidden',
-                  'padding': '0px'},
-        display = [12, 12, 'none']
+                  'padding': '0px'}
 
     layout = dbc.Row([
+        # TODO: Create an upload area for admins so new .csv exports can be used to update the existing database
         # Employee data table
         dbc.Col([
             # Search field and buttons
@@ -225,7 +232,7 @@ def employee_page_layout(data=None):
                             ),
                             id='open-employee-editor',
                             n_clicks_timestamp=0,
-                            style=editor[0]
+                            style=editor
                         ),
                         addon_type='prepend',
                         style={'height': '38px'}

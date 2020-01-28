@@ -186,42 +186,50 @@ def submit_registration(submit_clicks, username, emp_name, password, password2):
 # endregion
 
 
-# region Email reset callback
-@app.callback([Output('email', 'value'),
-               Output('msgType', 'value'),
-               Output('comment', 'value')],
-              [Input('reset', 'n_clicks')])
-def reset_email_form(reset_click):
-    if reset_click:
-        return ['', 1, '']
-    return ['', '', '']
+# region Email validation callback
+@app.callback(Output('from_addr', 'valid'),
+             [Input('from_addr', 'value')])
+def email_validity_checker(text):
+    is_l3harris = False
+    if text:
+        is_l3harris = str.lower(text).endswith('@l3harris.com')
+    return is_l3harris
 
 
 # endregion
 
 
-# region Email validation callback
-@app.callback([Output('email', 'valid'),
-               Output('email', 'invalid')],
-              [Input('email', 'value')])
-def email_validity_checker(text):
-    if text:
-        is_l3harris = str.lower(text).endswith('@l3harris.com')
-        return is_l3harris, not is_l3harris
-    return False, False
+# region Email form buttons
+@app.callback(Output('submit', 'disabled'),
+              [Input('body', 'value'),
+               Input('from_addr', 'valid')])
+def email_button_states(msg_text, from_valid):
+    if msg_text == '' or from_valid is False:
+        return True
+    elif msg_text != '' and from_valid is True:
+        return False
 
 
 # endregion
 
 
 # region Send email callback
-@app.callback(Output('output-state', 'children'),
-              [Input('msgType', 'value'),
-               Input('body', 'value'),
-               Input('submit', 'n_clicks'),
-               Input('from_addr', 'value')])
-def send_email(msg_type, body, send, from_addr):
-    if send:
+@app.callback([Output('output-state', 'children'),
+               Output('from_addr', 'value'),
+               Output('msgType', 'value'),
+               Output('body', 'value')],
+              [Input('submit', 'n_clicks_timestamp'),
+               Input('reset', 'n_clicks_timestamp')],
+              [State('from_addr', 'value'),
+               State('msgType', 'value'),
+               State('body', 'value')])
+def send_email(submit, reset, from_addr, msg_type, body):
+    reset = 0 if reset is None else reset
+    submit = 0 if submit is None else submit
+
+    if reset > submit:
+        return '', '', 1, ''
+    elif submit > reset:
         msg_text = ''
         if msg_type == "1":
             msg_text = "Bug Report"
@@ -231,10 +239,12 @@ def send_email(msg_type, body, send, from_addr):
             msg_text = "Admin Request"
         subject = f"A new {msg_text} was submitted by {from_addr}"
         body = body
-        home.send_mail(from_addr, subject, body)
+        result = home.send_mail(from_addr, subject, body)
+        if result is None:
+            return "Message sent successfully", '', 1, ''
+        else:
+            return result, '', 1, ''
 
-        reset_email_form(True)
-        return "Message sent successfully"
 
 # endregion
 # endregion
@@ -318,7 +328,8 @@ def load_employee_data(row, row_idx, func_op, pgm_op):
                State('start-date', 'date'),
                State('end-date', 'date'),
                State('session-store', 'data')])
-def employee_editor_buttons(search_click, search_clear, new, save, close, clear, table_data, row_idx, search_text, first_name, last_name, employee_number, job_code,
+def employee_editor_buttons(search_click, search_clear, new, save, close, clear, table_data, row_idx, search_text, first_name, last_name, employee_number,
+                            job_code,
                             level, func, pgm, start_date, end_date, data):
     if func != (0 or None):
         func = sql.get_rows(Functions, Functions.id == func)[0].function
@@ -355,7 +366,8 @@ def employee_editor_buttons(search_click, search_clear, new, save, close, clear,
             pass
         sql.add_employee(first_name, last_name, employee_number, job_code, level, func, pgm, start_date, end_date)
         app.logger.info(
-            f'INFO: The user {data["login_user"]} added a new employee using the following information: first_name:{first_name}, last_name:{last_name}, employee_number:\
+            f'INFO: The user {data["login_user"]} added a new employee using the following information: first_name:{first_name}, last_name:{last_name}, '
+            f'employee_number:\
             {employee_number}, job_code:{job_code}, level:{level}, function:{func}, program:{pgm}, start_date:{start_date}, end_date:{end_date}')
     elif save > new and save > close and save > clear:
         # Save was clicked

@@ -62,7 +62,7 @@ def home_page_layout():
                 # User Submission Form Column
                 dbc.Col([
                     html.Div([
-                        dbc.Form(children=[
+                        dbc.Form([
                             html.H2("User Submission Form",
                                     style={'text-align': 'center'}),
                             # Email input field
@@ -101,6 +101,9 @@ def home_page_layout():
                                              value='')
                             ]),
                             dbc.FormGroup([
+                                html.Div('0',
+                                         id='reset-div',
+                                         style={'visibility': 'hidden'}),
                                 dbc.Button("Submit",
                                            id='submit',
                                            n_clicks=0,
@@ -140,8 +143,7 @@ def send_mail(from_addr, subject, body):
     port = 25
     smtp_server = "frxsv-globemaster"
     relay_addr = "FRX Analytics Page"
-    to_addrs = ['stephen.french@l3harris.com',
-                'gary.haag@l3harris.com',
+    to_addrs = ['Gary.Haag@L3Harris.com',
                 from_addr]
     msg = EmailMessage()
     msg['from'] = relay_addr
@@ -149,7 +151,12 @@ def send_mail(from_addr, subject, body):
     msg['subject'] = subject
     msg.set_content(body)
 
-    server = smtplib.SMTP(smtp_server, port)
-    server.login("FRX.EmailRelay@iss.l3t.com", "N)QQH3hppTrthKQN")
-    server.send_message(msg)
-    server.quit()
+    try:
+        server = smtplib.SMTP(smtp_server, port)
+        server.login("FRX.EmailRelay@iss.l3t.com", "N)QQH3hppTrthKQN")
+        server.send_message(msg)
+        server.quit()
+        return None
+    except TimeoutError as e:
+        msg = f'{e.errno} :: {e.strerror}'
+        return msg
