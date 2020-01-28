@@ -139,9 +139,11 @@ def register_user(username, emp_num, password, password2):
         except AttributeError:
             empnum = None
         if uname is not None:
+            app.logger.info(f'INFO :: Registration Failed :: Username, {uname}, already exists.')
             return 'Username already exists, please try a different username.'
         elif emp_num is None or emp_num == '':
             # No employee number has been selected
+            app.logger.info('INFO :: Registration Failed :: No employee number selected.')
             return 'Please select an employee number to continue.'
         elif empnum is not None:
             # employee number already has an account
@@ -149,9 +151,11 @@ def register_user(username, emp_num, password, password2):
         elif ((password is None or password is '') and
               (password2 is None or password2 is '')):
             # One or both passwords are blank
+            app.logger.info('INFO :: Registration Failed :: One or both password fields were blank.')
             return 'Password cannot be blank, please try again.'
         elif password != password2:
             # Password entries do not match
+            app.logger.info('INFO :: Registration Failed :: Entered passwords did not match.')
             return 'Passwords do not match, please try again.'
         else:
             # Hash the submitted password
@@ -160,12 +164,12 @@ def register_user(username, emp_num, password, password2):
             add_user(username, pwdhash, emp_num)
     else:
         # Username is blank
-        return """Username can not be blank, please enter a username
-            and try again. """
+        app.logger.info('INFO :: Registration Failed :: Username was blank.')
+        return 'Username can not be blank, please enter a username and try again.'
 
     # Account successfully added to database
-    return """User account {0} has been successfully created, you may now
-        log in""".format(username)
+    app.logger.info(f'INFO :: Registration Success :: Account created for {username} with employee number {emp_num}.')
+    return f'User account {username} has been successfully created, you may now log in'
 
 
 def add_user(username, password, emp_num):
@@ -177,10 +181,10 @@ def add_user(username, password, emp_num):
     :return: None
     """
     empnum = session.query(EmployeeNumber).filter(EmployeeNumber.id == emp_num).first()
-    query = EmployeeFunctionLink.c.employee_number == empnum.number
+    query = EmployeeFunctionLink.employee_number == empnum.number
     func = get_rows(EmployeeFunctionLink, query)
 
-    submission = RegisteredUser(username=username, employee_number=empnum, function=func[0][1], password=password)
+    submission = RegisteredUser(username=username, employee_number=empnum, function=func[0].employee_function, password=password)
     session.add(submission)
     session.commit()
 
@@ -206,7 +210,7 @@ def add_employee(first_name, last_name, employee_number, job_code, level, func, 
         session.commit()
     except Exception as e:
         if 'Cannot insert duplicate key' in e.args[0]:
-            app.logger.error(f'ERROR: Attempted insertion of new employee number, {employee_number} which already exists in the table EmployeeNumber.')
+            app.logger.error(f'ERROR :: Add Employee Failed :: {employee_number} already exists in the table EmployeeNumber.')
         session.rollback()
         raise
     finally:
@@ -229,7 +233,7 @@ def add_employee(first_name, last_name, employee_number, job_code, level, func, 
             session.execute(q)
             session.commit()
         except Exception as e:
-            app.logger.error(f'ERROR: {e}')
+            app.logger.error(f'ERROR :: [{e.errno}] :: {e.strerror}')
             session.rollback()
             raise
         finally:
@@ -241,7 +245,7 @@ def add_employee(first_name, last_name, employee_number, job_code, level, func, 
         session.add(employee)
         session.commit()
     except Exception as e:
-        app.logger.error(f'ERROR: {e}')
+        app.logger.error(f'ERROR :: [{e.errno}] :: {e.strerror}')
         session.rollback()
         raise
     finally:

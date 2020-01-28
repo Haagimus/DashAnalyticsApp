@@ -280,8 +280,6 @@ def employee_page_layout(data=None):
                 dbc.Col(
                     employee_editor(),
                     style={'height': 'auto'}
-                    #        'display': display[2],
-                    #        'height': 'calc(1vh - 150px)'}),
                 ),
                 className='sidebar',
                 id='employee-editor'

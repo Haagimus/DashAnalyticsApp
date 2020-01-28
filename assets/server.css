@@ -12,6 +12,17 @@ H2 {
 	margin-top: 15px;
 }
 
+#work-in-progress{
+    background-image: url('/assets/Images/cat_peel.jpg');
+    background-repeat: no-repeat;
+    background-position-y: top;
+    background-position-x: right;
+    background-color: rgb( 85, 121, 135);
+    /*position: fixed;*/
+    min-width: 95vw;
+    min-height: 90vh;
+}
+
 /* Home Page Styling*/
 .card {
     border-radius:12px;

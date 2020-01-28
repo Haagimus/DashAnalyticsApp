@@ -1,2 +1,3 @@
 Programs page
+Capacity page
 Employee quick close feature
