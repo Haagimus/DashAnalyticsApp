@@ -44,6 +44,7 @@ def get_rows(class_name, filter_text=None):
     :param filter_text: str
     :return: list[]
     """
+    session.rollback()
     if filter_text is None:
         results = session.query(class_name).all()
     else:
@@ -265,6 +266,7 @@ def update_employee(employee_number, **kwargs):
     :keyword date_start: date
     :keyword date_end: date
     """
+    session.rollback()
     employee = session.query(EmployeeData).filter(EmployeeData.employee_number_number == employee_number).first()
 
     if kwargs.__contains__('name_first'):
@@ -306,9 +308,12 @@ def update_employee(employee_number, **kwargs):
 
     if kwargs.__contains__('programs'):
         if kwargs['programs']:
-            session.query(EmployeeProgramLink).filter(EmployeeProgramLink.employee_number == employee_number).delete()
+            try:
+                session.query(EmployeeProgramLink).filter(EmployeeProgramLink.employee_number == employee_number).delete()
+            except Exception as e:
+                print(e)
             for pgm in kwargs['programs']:
-                c_pgm = get_rows(Program, Program.name == pgm)
+                c_pgm = get_rows(Program, Program.id == pgm)
                 session.merge(EmployeeProgramLink(employee_number=employee_number, employee_program=c_pgm[0].name))
                 session.commit()
         else:
