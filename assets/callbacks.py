@@ -329,90 +329,25 @@ def load_employee_data(row, row_idx, func_op, pgm_op):
                State('end-date', 'date'),
                State('session-store', 'data')])
 def employee_editor_buttons(search_click, search_clear, new, save, close, clear, table_data, row_idx, search_text, first_name, last_name, employee_number,
-                            job_code,
-                            level, func, pgm, start_date, end_date, data):
-    if func != (0 or None):
-        func = sql.get_rows(Functions, Functions.id == func)[0].function
-    else:
-        func = None
-
-    if pgm != (0 or None):
-        pgm_list = []
-        for p in pgm:
-            pgm_list.append(sql.get_rows(Program, Program.id == p)[0].name)
-    else:
-        pgm_list = None
-
-    editor_fields = [first_name,
-                     last_name,
-                     # employee_number,
-                     job_code,
-                     level,
-                     func,
-                     pgm_list,
-                     start_date,
-                     end_date]
-
-    # https://community.plot.ly/t/input-two-or-more-button-how-to-tell-which-button-is-pressed/5788/29
-    new = 0 if new is None else new
-    save = 0 if save is None else save
-    close = 0 if close is None else close
-    clear = 0 if clear is None else clear
-
-    if new > save and new > close and new > clear:
-        # New was clicked
-        print('new clicked: adding new database entry')
-        if first_name is '' or last_name is '' or not isinstance(employee_number, int) or job_code is '' or start_date is '':
-            pass
-        sql.add_employee(first_name, last_name, employee_number, job_code, level, func, pgm, start_date, end_date)
-        app.logger.info(
-            f'INFO: The user {data["login_user"]} added a new employee using the following information: first_name:{first_name}, last_name:{last_name}, '
-            f'employee_number:\
-            {employee_number}, job_code:{job_code}, level:{level}, function:{func}, program:{pgm}, start_date:{start_date}, end_date:{end_date}')
-    elif save > new and save > close and save > clear:
-        # Save was clicked
-        print('save clicked: updating database entry')
-        updates_exist = False
-        updated_indices = ''
-        update_args = {}
-
-        for i in range(len(data_fields)):
-            if table_data[row_idx[0]][data_fields[i]] != editor_fields[i]:
-                updates_exist = True
-                update_args[data_fields[i]] = editor_fields[i]
-                updated_indices += f', {data_fields[i]}: {table_data[row_idx[0]][data_fields[i]]} >> {editor_fields[i]}'
-        if updates_exist:
-            sql.update_employee(table_data[row_idx[0]]['employee_number'], **update_args)
-            app.logger.info(
-                f'INFO: The user {data["login_user"]} updated the employee record for {table_data[row_idx[0]]["name_first"]} {table_data[row_idx[0]]["name_last"]} '
-                f'with the following information {updated_indices}')
-    elif close > new and close > save and close > clear:
-        # Close was clicked
-        print('close clicked: duplicating selected database entry, closing the original and loading the duplicate')
-        # TODO: Prompt the user for a date to close the selected entry
-        # TODO: Create a new entry with the selected entry data, replace the start date with the selected close date and clear the close date
-    elif clear > new and clear > close and clear > close:
-        # Clear was clicked
-        print('clear clicked: deselecting currently active row')
-        return [], [], table_data, search_text
-    else:
-        # Nothing was clicked
-        print('nothing clicked: doing nothing')
-
+                            job_code, level, func, pgm, start_date, end_date, data):
+    search_btns = False
     if search_click > search_clear:
         data_set = sql.query_rows(search_text)
+        row_idx = []
+        search_btns = True
     elif search_clear > search_click:
         data_set = sql.get_rows(EmployeeData)
+        row_idx = []
         search_text = ''
+        search_btns = True
     else:
         data_set = sql.get_rows(EmployeeData)
         search_text = ''
 
     # TODO: Add ability to comma separate multiple search criteria
-
     data = [{'name_first': i.name_first,
              'name_last': i.name_last,
-             'employee_number': i.employee_number.number,
+             'employee_number': i.employee_number_number,
              'job_code': i.job_code,
              'job_title': i.job_title,
              'level': i.level,
@@ -425,7 +360,79 @@ def employee_editor_buttons(search_click, search_clear, new, save, close, clear,
              if len(sql.get_rows(class_name=EmployeeProgramLink,
                                  filter_text=EmployeeProgramLink.employee_number == i.employee_number_number)) > 0 else '',
              'date_start': i.date_start,
-             'date_end': i.date_end} for i in data_set]
+             'date_end': i.date_end if i.date_end is not None else None} for i in data_set]
+
+    if search_btns:
+        pass
+    else:
+        # https://community.plot.ly/t/input-two-or-more-button-how-to-tell-which-button-is-pressed/5788/29
+        new = 0 if new is None else new
+        save = 0 if save is None else save
+        close = 0 if close is None else close
+        clear = 0 if clear is None else clear
+
+        if row_idx is []:
+            if func != (0 or None):
+                func = sql.get_rows(Functions, Functions.id == func)[0].function
+            else:
+                func = None
+
+            if pgm != (0 or None):
+                pgm_list = []
+                for p in pgm:
+                    pgm_list.append(sql.get_rows(Program, Program.id == p)[0].name)
+            else:
+                pgm_list = None
+
+            editor_fields = [first_name,
+                             last_name,
+                             # employee_number,
+                             job_code,
+                             level,
+                             func,
+                             pgm_list,
+                             start_date,
+                             end_date]
+
+        if new > save and new > close and new > clear:
+            # New was clicked
+            print('new clicked: adding new database entry')
+            if first_name is '' or last_name is '' or not isinstance(employee_number, int) or job_code is '' or start_date is '':
+                pass
+            sql.add_employee(first_name, last_name, employee_number, job_code, level, func, pgm, start_date, end_date)
+            app.logger.info(
+                f'INFO: The user {data["login_user"]} added a new employee using the following information: first_name:{first_name}, last_name:{last_name}, '
+                f'employee_number:\
+                {employee_number}, job_code:{job_code}, level:{level}, function:{func}, program:{pgm}, start_date:{start_date}, end_date:{end_date}')
+        elif save > new and save > close and save > clear:
+            # Save was clicked
+            print('save clicked: updating database entry')
+            updates_exist = False
+            updated_indices = ''
+            update_args = {}
+
+            for i in range(len(data_fields)):
+                if table_data[row_idx[0]][data_fields[i]] != editor_fields[i]:
+                    updates_exist = True
+                    update_args[data_fields[i]] = editor_fields[i]
+                    updated_indices += f', {data_fields[i]}: {table_data[row_idx[0]][data_fields[i]]} >> {editor_fields[i]}'
+            if updates_exist:
+                sql.update_employee(table_data[row_idx[0]]['employee_number'], **update_args)
+                app.logger.info(
+                    f'INFO: The user {data["login_user"]} updated the employee record for {table_data[row_idx[0]]["name_first"]} {table_data[row_idx[0]]["name_last"]} '
+                    f'with the following information {updated_indices}')
+        elif close > new and close > save and close > clear:
+            # Close was clicked
+            print('close clicked: duplicating selected database entry, closing the original and loading the duplicate')
+            # TODO: Prompt the user for a date to close the selected entry
+            # TODO: Create a new entry with the selected entry data, replace the start date with the selected close date and clear the close date
+        elif clear > new and clear > close and clear > close:
+            # Clear was clicked
+            print('clear clicked: deselecting currently active row')
+            return [], [], table_data, search_text
+        else:
+            # Nothing was clicked
+            print('nothing clicked: doing nothing')
 
     return row_idx, [], data, search_text
 
