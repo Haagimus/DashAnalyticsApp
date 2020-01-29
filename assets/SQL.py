@@ -309,7 +309,9 @@ def update_employee(employee_number, **kwargs):
     if kwargs.__contains__('programs'):
         if kwargs['programs']:
             try:
+                session.rollback()
                 session.query(EmployeeProgramLink).filter(EmployeeProgramLink.employee_number == employee_number).delete()
+                session.commit()
             except Exception as e:
                 print(e)
             for pgm in kwargs['programs']:

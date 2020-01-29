@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1277e24a-518e-4c91-a5df-90ef4a8586e2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/SQL.py" beforeDir="false" afterPath="$PROJECT_DIR$/assets/SQL.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/callbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/assets/callbacks.py" afterDir="false" />
     </list>
     <list id="3428cc0c-6334-466d-81ab-07179f1c98b2" name="Revert &quot;initial commit for rope package (vs code support package)&quot;" comment="Revert &quot;initial commit for rope package (vs code support package)&quot;&#10;&#10;This reverts commit 3514cdff" />
@@ -19,48 +20,65 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/callbacks.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="881">
-              <caret line="362" column="71" selection-start-line="362" selection-start-column="71" selection-end-line="362" selection-end-column="71" />
+            <state relative-caret-position="74">
+              <caret line="304" selection-start-line="304" selection-end-line="304" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
-                <element signature="e#13138#16750#0" />
-                <element signature="e#16900#16938#0" />
+                <element signature="e#754#784#0" />
+                <element signature="e#1896#1924#0" />
+                <element signature="e#12947#13087#0" />
+                <element signature="e#13150#13868#0" />
+                <element signature="e#14967#15330#0" />
+                <element signature="e#16314#16348#0" />
+                <element signature="e#19938#19979#0" />
+                <element signature="e#18904#18950#0" />
+                <element signature="e#21131#21163#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/dash/dash.py">
+        <entry file="file://$PROJECT_DIR$/assets/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="1250" selection-start-line="1250" selection-end-line="1250" />
+            <state relative-caret-position="688">
+              <caret line="154" column="28" selection-start-line="154" selection-start-column="28" selection-end-line="154" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#89#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/SQL.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3536">
-              <caret line="92" selection-start-line="92" selection-end-line="92" />
+            <state relative-caret-position="74">
+              <caret line="312" column="66" lean-forward="true" selection-start-line="312" selection-start-column="66" selection-end-line="312" selection-end-column="66" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
+                <element signature="e#1769#3515#0" />
+                <element signature="e#3553#3864#0" />
+                <element signature="e#3902#4202#0" />
+                <element signature="e#4268#6721#0" />
+                <element signature="e#6771#7306#0" />
+                <element signature="e#7422#9352#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app.py">
+        <entry file="file://$PROJECT_DIR$/pages/employees.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
+            <state relative-caret-position="493">
+              <caret line="262" column="54" selection-start-line="262" selection-start-column="54" selection-end-line="262" selection-end-column="54" />
               <folding>
-                <element signature="e#7#46#0" expanded="true" />
+                <element signature="e#0#39#0" expanded="true" />
+                <element signature="e#352#2811#0" />
               </folding>
             </state>
           </provider>
@@ -77,7 +95,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>db.Model</find>
       <find>Integer</find>
       <find>backref</find>
       <find>backref=</find>
@@ -107,6 +124,7 @@
       <find>comm</find>
       <find>: *</find>
       <find>disabled</find>
+      <find>and</find>
     </findStrings>
     <replaceStrings>
       <replace>db.String</replace>
@@ -123,6 +141,7 @@
       <replace>backref=backref(</replace>
       <replace>back_populates=</replace>
       <replace>: (required)</replace>
+      <replace>,</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -185,9 +204,9 @@
         <option value="$PROJECT_DIR$/assets/Files/Upcoming_Features.txt" />
         <option value="$PROJECT_DIR$/assets/Files/Active_Features.txt" />
         <option value="$PROJECT_DIR$/TODO.md" />
-        <option value="$PROJECT_DIR$/assets/SQL.py" />
         <option value="$PROJECT_DIR$/run.py" />
         <option value="$PROJECT_DIR$/server.py" />
+        <option value="$PROJECT_DIR$/assets/SQL.py" />
         <option value="$PROJECT_DIR$/assets/callbacks.py" />
       </list>
     </option>
@@ -196,8 +215,8 @@
     <scope name="Project" pattern="file[Resources_App]:assets//*||file[Resources_App]:pages//*" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1373" />
-    <option name="y" value="-536" />
+    <option name="x" value="-867" />
+    <option name="y" value="280" />
     <option name="width" value="1038" />
     <option name="height" value="646" />
   </component>
@@ -628,7 +647,21 @@
       <option name="project" value="LOCAL" />
       <updated>1580247579915</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="fixed search function from employee page">
+      <created>1580317517871</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1580317517871</updated>
+    </task>
+    <task id="LOCAL-00042" summary="fixed search function from employee page">
+      <created>1580327893741</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1580327893741</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -641,7 +674,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1088" y="-536" width="1096" height="1896" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Repositories" order="0" weight="0.19072708" />
@@ -650,18 +683,18 @@
       <window_info id="Favorites" order="3" sideWeight="0.50277007" side_tool="true" weight="0.28667954" />
       <window_info anchor="bottom" id="Python Console" order="0" weight="0.32898468" />
       <window_info anchor="bottom" id="Terminal" order="1" sideWeight="0.49733475" weight="0.27339762" />
-      <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5026652" side_tool="true" weight="0.36511377" />
+      <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5019305" side_tool="true" weight="0.37039137" />
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="bottom" id="Find" order="4" weight="0.16903006" />
       <window_info anchor="bottom" id="Run" order="5" sideWeight="0.49946696" weight="0.3601815" />
-      <window_info active="true" anchor="bottom" x="-1079" y="-497" width="1078" height="908" id="Debug" order="6" visible="true" weight="0.37039137" />
+      <window_info anchor="bottom" x="-1079" y="-497" width="1078" height="908" id="Debug" order="6" sideWeight="0.4980695" weight="0.7074756" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="9" weight="0.24446966" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Version Control" order="3" side_tool="true" weight="0.49413645" />
+      <window_info anchor="right" id="Version Control" order="3" side_tool="true" weight="0.49324325" />
     </layout>
     <layout-to-restore>
       <window_info id="Repositories" order="0" weight="0.19072708" />
@@ -711,7 +744,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/master" />
+                        <option value="feat/programs-page" />
                       </list>
                     </value>
                   </entry>
@@ -737,17 +770,22 @@
             <list>
               <RecentGroup>
                 <option name="FILTER_VALUES">
+                  <option value="feat/programs-page" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/feat" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
                   <option value="origin/master" />
                 </option>
               </RecentGroup>
               <RecentGroup>
                 <option name="FILTER_VALUES">
                   <option value="origin/dev" />
-                </option>
-              </RecentGroup>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="origin/feat" />
                 </option>
               </RecentGroup>
               <RecentGroup>
@@ -793,7 +831,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="updated the navbar layout so login/register are right aligned, added a text file for implemented features so it can be parsed to update the data card on the homepage" />
     <MESSAGE value="more layout refactoring, finished home page and capacity, started work on employees page" />
     <MESSAGE value="refactoring, working on implementing dcc.Store for admin login" />
     <MESSAGE value="rename branch to login feature" />
@@ -818,8 +855,16 @@
     <MESSAGE value="removed unneeded code" />
     <MESSAGE value="fixed the email form section and callbacks" />
     <MESSAGE value="initial commit to new branch" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial commit to new branch" />
+    <MESSAGE value="fixed search function from employee page" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed search function from employee page" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="employee[0].employee_number" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateCodeFragment">
@@ -965,60 +1010,53 @@ else:
     </expressions>
     <expressions id="evaluateExpression">
       <expression>
-        <expression-string>data_set[0].date_end != None</expression-string>
+        <expression-string>session.query(EmployeeProgramLink).filter(EmployeeProgramLink.employee_number == employee_number).delete()</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>data_set[0].date_end != ''</expression-string>
+        <expression-string>session.query(EmployeeProgramLink).filter(EmployeeProgramLink.employee_number==employee_number).all()</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>data_set[0].date_end</expression-string>
+        <expression-string>session.rollback()</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>row_idx == []</expression-string>
+        <expression-string>session.qury(EmployeeProgramLink).filter(EmployeeProgramLink.employee_number==employee_number).all()</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>row_idx == None</expression-string>
+        <expression-string>EmployeeProgramLink.query.filter_by(employee_number=employee_number)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>row_idx is []</expression-string>
+        <expression-string>EmployeeProgramLink.query</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>row_idx is None</expression-string>
+        <expression-string>EmployeeProgramLink.__table__</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>func[0].employee_function</expression-string>
+        <expression-string>EmployeeProgramLink.__table__.where()</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>func[0]</expression-string>
+        <expression-string>EmployeeProgramLink.__table__.filter(EmployeeProgramLink.employee_number == employee_number)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/dash_table/DataTable.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="734" column="21" lean-forward="true" selection-start-line="734" selection-start-column="21" selection-end-line="734" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.PyCharmCE2018.3/system/python_stubs/-1109865891/builtins.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="317">
@@ -1039,13 +1077,6 @@ else:
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
           <caret line="195" selection-start-line="195" selection-end-line="195" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/orm/session.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="1543" selection-start-line="1543" selection-end-line="1543" />
         </state>
       </provider>
     </entry>
@@ -1074,13 +1105,6 @@ else:
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1241">
           <caret line="89" selection-start-line="89" selection-end-line="89" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/orm/instrumentation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="499">
-          <caret line="365" selection-start-line="365" selection-end-line="365" />
         </state>
       </provider>
     </entry>
@@ -1204,26 +1228,6 @@ else:
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/employees.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="205" column="36" selection-start-line="205" selection-start-column="36" selection-end-line="205" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-            <element signature="e#352#2811#0" />
-            <element signature="e#2841#8831#0" />
-            <element signature="e#8875#11762#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/orm/attributes.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="277" selection-start-line="277" selection-end-line="277" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/pool/impl.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
@@ -1291,13 +1295,17 @@ else:
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/models.py">
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/orm/session.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-          <folding>
-            <element signature="e#0#89#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="465">
+          <caret line="1543" selection-start-line="1543" selection-end-line="1543" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/werkzeug/debug/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="333" selection-start-line="333" selection-end-line="333" />
         </state>
       </provider>
     </entry>
@@ -1305,20 +1313,6 @@ else:
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="490">
           <caret line="426" selection-start-line="426" selection-end-line="426" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Continuum/anaconda3/Lib/threading.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="775">
-          <caret line="892" lean-forward="true" selection-start-line="892" selection-end-line="892" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Continuum/anaconda3/Lib/socketserver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="653" selection-start-line="653" selection-end-line="653" />
         </state>
       </provider>
     </entry>
@@ -1332,36 +1326,61 @@ else:
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/werkzeug/debug/__init__.py">
+    <entry file="file://$USER_HOME$/AppData/Local/Continuum/anaconda3/Lib/socketserver.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="333" selection-start-line="333" selection-end-line="333" />
+        <state relative-caret-position="422">
+          <caret line="653" selection-start-line="653" selection-end-line="653" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/flask/app.py">
+    <entry file="file://$USER_HOME$/AppData/Local/Continuum/anaconda3/Lib/threading.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="892">
-          <caret line="2462" selection-start-line="2462" selection-end-line="2462" />
+        <state relative-caret-position="299">
+          <caret line="864" selection-start-line="864" selection-end-line="864" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/orm/instrumentation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="499">
+          <caret line="365" selection-start-line="365" selection-end-line="365" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="e#7#46#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="102">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/SQL.py">
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/orm/attributes.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3536">
-          <caret line="92" selection-start-line="92" selection-end-line="92" />
+        <state relative-caret-position="375">
+          <caret line="275" selection-start-line="275" selection-end-line="275" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/flask/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="603">
+          <caret line="2445" selection-start-line="2445" selection-end-line="2445" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/sql/operators.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="364" selection-start-line="364" selection-end-line="364" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="688">
+          <caret line="154" column="28" selection-start-line="154" selection-start-column="28" selection-end-line="154" selection-end-column="28" />
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#0#89#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1373,14 +1392,48 @@ else:
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pages/employees.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="262" column="54" selection-start-line="262" selection-start-column="54" selection-end-line="262" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+            <element signature="e#352#2811#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/assets/callbacks.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="881">
-          <caret line="362" column="71" selection-start-line="362" selection-start-column="71" selection-end-line="362" selection-end-column="71" />
+        <state relative-caret-position="74">
+          <caret line="304" selection-start-line="304" selection-end-line="304" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#13138#16750#0" />
-            <element signature="e#16900#16938#0" />
+            <element signature="e#754#784#0" />
+            <element signature="e#1896#1924#0" />
+            <element signature="e#12947#13087#0" />
+            <element signature="e#13150#13868#0" />
+            <element signature="e#14967#15330#0" />
+            <element signature="e#16314#16348#0" />
+            <element signature="e#19938#19979#0" />
+            <element signature="e#18904#18950#0" />
+            <element signature="e#21131#21163#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/SQL.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="74">
+          <caret line="312" column="66" lean-forward="true" selection-start-line="312" selection-start-column="66" selection-end-line="312" selection-end-column="66" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#1769#3515#0" />
+            <element signature="e#3553#3864#0" />
+            <element signature="e#3902#4202#0" />
+            <element signature="e#4268#6721#0" />
+            <element signature="e#6771#7306#0" />
+            <element signature="e#7422#9352#0" />
           </folding>
         </state>
       </provider>

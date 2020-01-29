@@ -17,7 +17,6 @@ page_list = ['',
 
 data_fields = ['name_first',
                'name_last',
-               # 'employee_number',
                'job_code',
                'level',
                'function',
@@ -266,7 +265,7 @@ def send_email(submit, reset, from_addr, msg_type, body):
               [Input('Employees', 'data'),
                Input('Employees', 'selected_rows')],
               [State('function', 'options'),
-               State('program-name', 'options')])
+               State('program-name', 'value')])
 def load_employee_data(row, row_idx, func_op, pgm_op):
     """
     This loads selected employee data into the edit fields
@@ -283,13 +282,20 @@ def load_employee_data(row, row_idx, func_op, pgm_op):
         emp_num = row[row_idx[0]]['employee_number']
         job_code = row[row_idx[0]]['job_code']
         level = row[row_idx[0]]['level']
+        pgms = []
+
+        employee = sql.get_rows(EmployeeData, EmployeeData.employee_number_number == emp_num)
+        for pgm in employee[0].employee_number.employee_pgm_assoc:
+            pgms.append(sql.get_rows(Program, Program.name == pgm.employee_program)[0].id)
+
         try:
             func = [f for f in func_op if row[row_idx[0]]['function'] == f['label']][0]['value']
         except IndexError:
             func = None
 
         try:
-            pgm = [f for f in pgm_op if row[row_idx[0]]['programs'] == f['label']][0]['value']
+            # pgm = [f for f in pgm_op if row[row_idx[0]]['programs'] == f['label']][0]['value']
+            pgm = pgms
         except IndexError:
             pgm = None
 
@@ -463,83 +469,6 @@ def add_employee_button_state(first_name, last_name, employee_number, job_code, 
 # endregion
 
 
-# region Employee data table filtering
-# @app.callback([Output('Employees', 'data'),
-#                Output('search', 'value')],
-#               [Input('search-button', 'n_clicks_timestamp'),
-#                Input('clear-search', 'n_clicks_timestamp'),
-#                Input('new-employee', 'n_clicks_timestamp'),
-#                Input('save-employee', 'n_clicks_timestamp'),
-#                Input('quick-close-employee', 'n_clicks_timestamp')],
-#               [State('search', 'value')])
-# def filter_employee_data_table(search_click, search_clear, new, save, close, filter_text):
-#     """
-#     Runs a filter query against the employees table
-#     :param search_click: int
-#     :param search_clear: int
-#     :param new: int
-#     :param save: int
-#     :param close: int
-#     :param filter_text: str
-#     :return: DataTable
-#     """
-#     new = 0 if new is None else new
-#     save = 0 if save is None else save
-#     close = 0 if close is None else close
-#
-#     if new > save and new > close:
-#         # New was clicked
-#         print('new clicked: reloading data')
-#
-#         pass
-#     elif save > new and save > close:
-#         # Save was clicked
-#         print('save clicked: reloading data')
-#
-#         pass
-#     elif close > new and close > save:
-#         # Close was clicked
-#         print('close clicked: reloading data')
-#
-#         pass
-#     # else:
-#     #     # Nothing was clicked
-#     #     print('nothing clicked')
-#
-#     if search_click > search_clear:
-#         data_set = sql.query_rows(filter_text)
-#     elif search_clear > search_click:
-#         data_set = sql.get_rows(EmployeeData)
-#         filter_text = ''
-#     else:
-#         data_set = sql.get_rows(EmployeeData)
-#         filter_text = ''
-#
-#     # TODO: Add ability to comma separate multiple search criteria
-#
-#     data = [{'name_first': i.name_first,
-#              'name_last': i.name_last,
-#              'employee_number': i.employee_number.number,
-#              'job_code': i.job_code,
-#              'job_title': i.job_title,
-#              'level': i.level,
-#              'function': sql.get_rows(class_name=EmployeeFunctionLink,
-#                                       filter_text=EmployeeFunctionLink.employee_number == i.employee_number_number)[0].employee_function
-#              if len(sql.get_rows(class_name=EmployeeFunctionLink,
-#                                  filter_text=EmployeeFunctionLink.employee_number == i.employee_number_number)) > 0 else '',
-#              'programs': sql.get_rows(class_name=EmployeeProgramLink,
-#                                       filter_text=EmployeeProgramLink.employee_number == i.employee_number_number)[0].employee_program
-#              if len(sql.get_rows(class_name=EmployeeProgramLink,
-#                                  filter_text=EmployeeProgramLink.employee_number == i.employee_number_number)) > 0 else '',
-#              'date_start': i.date_start,
-#              'date_end': i.date_end} for i in data_set]
-#
-#     return data, filter_text
-
-
-# endregion
-
-
 # region Employee editor display callback
 @app.callback([Output('employee-editor', 'style'),
                Output('data-container', 'style')],
@@ -575,8 +504,6 @@ def employee_editor_control(open_click, close_click, editor_state, container_sta
 def employees_loading_animation(value):
     time.sleep(1)
     return value
-
-
 # endregion
 # endregion
 
