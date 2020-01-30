@@ -385,3 +385,20 @@ def verify_password(username, provided_password):
     else:
         app.logger.error('ERROR: Failed login with invalid password for username {} at {}'.format(username, log_time))
         return 'Invalid Password'
+
+
+def remove_duplicates(source_list):
+    """
+    :param source_list: []
+    :return: List with duplicate values/objects removed
+    """
+    results = []
+    for i in source_list:
+        match = False
+        for j in results:
+            if i.id == j.id:
+                match = True
+        if not match:
+            results.append(i)
+
+    return results

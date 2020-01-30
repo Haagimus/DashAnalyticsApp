@@ -346,18 +346,18 @@ def employee_editor_buttons(search_click, search_clear, new, save, close, clear,
     data_refresh = False
     cells = []
     data_set = table_data
+    multi = False
 
     if row_idx and search_text == '':
         if func != (0 or None):
             func = sql.get_rows(Functions, Functions.id == func)[0].function
-        if pgm != (0 or None):
-            pgm_list = []
-            for p in pgm:
-                pgm_list.append(sql.get_rows(Program, Program.id == p)[0].name)
+        # if pgm != (0 or None):
+        #     pgm_list = []
+        #     for p in pgm:
+        #         pgm_list.append(sql.get_rows(Program, Program.id == p)[0].name)
 
     editor_fields = [first_name,
                      last_name,
-                     # employee_number,
                      job_code,
                      level,
                      func,
@@ -368,20 +368,23 @@ def employee_editor_buttons(search_click, search_clear, new, save, close, clear,
     # https://community.plot.ly/t/input-two-or-more-button-how-to-tell-which-button-is-pressed/5788/29
     if all(search_click > x for x in (search_clear, new, save, close, clear)):
         # Search was clicked
-        # print('Search clicked')
+        # TODO: Add ability to comma separate multiple search criteria
         if search_text is None:
             return row_idx, [], data, search_text
-        data_set = sql.query_rows(search_text)
+        queries = [q.strip() for q in search_text.split(',')]
+        data_set = []
+        if len(queries) > 1:
+            multi = True
+        for q in queries:
+            data_set.append(sql.query_rows(q))
         row_idx = []
     elif all(search_clear > x for x in (search_click, new, save, close, clear)):
         # Search clear was clicked
-        # print('Search clear clicked')
         data_refresh = True
         row_idx = []
         search_text = ''
     elif all(new > x for x in (search_click, search_clear, save, close, clear)):
         # New was clicked
-        # print('new clicked: adding new database entry')
         if first_name is '' or last_name is '' or not isinstance(employee_number, int) or job_code is '' or start_date is '':
             pass
         sql.add_employee(first_name, last_name, employee_number, job_code, level, func, pgm, start_date, end_date)
@@ -392,7 +395,6 @@ def employee_editor_buttons(search_click, search_clear, new, save, close, clear,
         data_refresh = True
     elif all(save > x for x in (search_click, search_clear, new, close, clear)):
         # Save was clicked
-        # print('save clicked: updating database entry')
         updates_exist = False
         updated_indices = ''
         update_args = {}
@@ -416,7 +418,6 @@ def employee_editor_buttons(search_click, search_clear, new, save, close, clear,
         # TODO: Create a new entry with the selected entry data, replace the start date with the selected close date and clear the close date
     elif all(clear > x for x in (search_click, search_clear, new, save, close)):
         # Clear was clicked
-        # print('clear clicked: deselecting currently active row')
         data_refresh = True
         row_idx = []
         cells = []
@@ -428,9 +429,21 @@ def employee_editor_buttons(search_click, search_clear, new, save, close, clear,
         data_set = sql.get_rows(EmployeeData)
         search_text = ''
         # Nothing was clicked
-        # print('nothing clicked: doing nothing')
 
-    # TODO: Add ability to comma separate multiple search criteria
+    if multi:
+        emp_ds = []
+        for i in data_set:
+            if len(i) > 1:
+                for j in i:
+                    emp_ds.append(j)
+            elif len(i) == 0:
+                pass
+            else:
+                emp_ds.append(i[0])
+        emp_ds = sql.remove_duplicates(emp_ds)
+    else:
+        emp_ds = data_set
+
     data = [{'name_first': i.name_first,
              'name_last': i.name_last,
              'employee_number': i.employee_number_number,
@@ -446,7 +459,7 @@ def employee_editor_buttons(search_click, search_clear, new, save, close, clear,
              if len(sql.get_rows(class_name=EmployeeProgramLink,
                                  filter_text=EmployeeProgramLink.employee_number == i.employee_number_number)) > 0 else '',
              'date_start': i.date_start,
-             'date_end': i.date_end if i.date_end is not None else None} for i in data_set]
+             'date_end': i.date_end if i.date_end is not None else None} for i in emp_ds[0]]
     return row_idx, cells, data, search_text
 
 

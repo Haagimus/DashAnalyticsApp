@@ -4,3 +4,4 @@ Employee page filters
 Employee Admin page
 Add new employee function
 Edit existing employee function
+Comma separated searching in Employee page

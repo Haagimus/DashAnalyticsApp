@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="1277e24a-518e-4c91-a5df-90ef4a8586e2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Files/Active_Features.txt" beforeDir="false" afterPath="$PROJECT_DIR$/assets/Files/Active_Features.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/SQL.py" beforeDir="false" afterPath="$PROJECT_DIR$/assets/SQL.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/callbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/assets/callbacks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/employees.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/employees.py" afterDir="false" />
     </list>
     <list id="3428cc0c-6334-466d-81ab-07179f1c98b2" name="Revert &quot;initial commit for rope package (vs code support package)&quot;" comment="Revert &quot;initial commit for rope package (vs code support package)&quot;&#10;&#10;This reverts commit 3514cdff" />
     <list id="733dff2b-6d78-4ec1-b082-5214378b49f6" name="Revert &quot;initial commit for rope package (vs code support package)&quot;-2" comment="Revert &quot;initial commit for rope package (vs code support package)&quot;&#10;&#10;This reverts commit 3514cdff" />
@@ -20,23 +22,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/callbacks.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="74">
-              <caret line="304" selection-start-line="304" selection-end-line="304" />
+            <state relative-caret-position="1037">
+              <caret line="461" column="91" selection-start-line="461" selection-start-column="91" selection-end-line="461" selection-end-column="91" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
-                <element signature="e#754#784#0" />
-                <element signature="e#1896#1924#0" />
-                <element signature="e#12947#13087#0" />
-                <element signature="e#13150#13868#0" />
-                <element signature="e#14967#15330#0" />
-                <element signature="e#16314#16348#0" />
-                <element signature="e#19938#19979#0" />
-                <element signature="e#18904#18950#0" />
-                <element signature="e#21131#21163#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/dash/dash.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="979">
+              <caret line="1284" column="54" lean-forward="true" selection-start-line="1284" selection-start-column="54" selection-end-line="1284" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -44,8 +46,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="688">
-              <caret line="154" column="28" selection-start-line="154" selection-start-column="28" selection-end-line="154" selection-end-column="28" />
+            <state relative-caret-position="933">
+              <caret line="130" column="36" lean-forward="true" selection-start-line="130" selection-start-column="36" selection-end-line="130" selection-end-column="36" />
               <folding>
                 <element signature="e#0#89#0" expanded="true" />
               </folding>
@@ -53,19 +55,13 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/SQL.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="74">
-              <caret line="312" column="66" lean-forward="true" selection-start-line="312" selection-start-column="66" selection-end-line="312" selection-end-column="66" />
+            <state relative-caret-position="6579">
+              <caret line="396" column="21" selection-start-line="396" selection-start-column="21" selection-end-line="396" selection-end-column="21" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
-                <element signature="e#1769#3515#0" />
-                <element signature="e#3553#3864#0" />
-                <element signature="e#3902#4202#0" />
-                <element signature="e#4268#6721#0" />
-                <element signature="e#6771#7306#0" />
-                <element signature="e#7422#9352#0" />
               </folding>
             </state>
           </provider>
@@ -74,8 +70,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/employees.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="262" column="54" selection-start-line="262" selection-start-column="54" selection-end-line="262" selection-end-column="54" />
+            <state relative-caret-position="-1583">
+              <caret line="122" column="43" lean-forward="true" selection-start-line="122" selection-start-column="43" selection-end-line="122" selection-end-column="43" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
                 <element signature="e#352#2811#0" />
@@ -95,11 +91,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Integer</find>
-      <find>backref</find>
-      <find>backref=</find>
-      <find>schema_name</find>
-      <find>schema</find>
       <find>employee_numbers.number</find>
       <find>text-decoration: none;</find>
       <find>employe</find>
@@ -125,6 +116,11 @@
       <find>: *</find>
       <find>disabled</find>
       <find>and</find>
+      <find>pgm_list</find>
+      <find>func</find>
+      <find>tooltip</find>
+      <find>t</find>
+      <find>try:</find>
     </findStrings>
     <replaceStrings>
       <replace>db.String</replace>
@@ -143,6 +139,10 @@
       <replace>: (required)</replace>
       <replace>,</replace>
     </replaceStrings>
+    <dirStrings>
+      <dir>C:\Users\ghaag\Programming\Python Projects\Resource Tracker\Resources_App</dir>
+      <dir>C:\Users\ghaag\Programming\Python Projects\Resource Tracker\Resources_App\assets</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="UPDATE_TYPE" value="MERGE" />
@@ -200,13 +200,13 @@
         <option value="$PROJECT_DIR$/assets/server.css" />
         <option value="$PROJECT_DIR$/pages/programs.py" />
         <option value="$PROJECT_DIR$/pages/capacity.py" />
-        <option value="$PROJECT_DIR$/pages/employees.py" />
         <option value="$PROJECT_DIR$/assets/Files/Upcoming_Features.txt" />
-        <option value="$PROJECT_DIR$/assets/Files/Active_Features.txt" />
         <option value="$PROJECT_DIR$/TODO.md" />
         <option value="$PROJECT_DIR$/run.py" />
         <option value="$PROJECT_DIR$/server.py" />
         <option value="$PROJECT_DIR$/assets/SQL.py" />
+        <option value="$PROJECT_DIR$/assets/Files/Active_Features.txt" />
+        <option value="$PROJECT_DIR$/pages/employees.py" />
         <option value="$PROJECT_DIR$/assets/callbacks.py" />
       </list>
     </option>
@@ -237,6 +237,12 @@
               <item name="Resources_App" type="b2602c69:ProjectViewProjectNode" />
               <item name="Resources_App" type="462c0819:PsiDirectoryNode" />
               <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Resources_App" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Resources_App" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="Files" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Resources_App" type="b2602c69:ProjectViewProjectNode" />
@@ -661,7 +667,14 @@
       <option name="project" value="LOCAL" />
       <updated>1580327893741</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="updated employee editor to populate all assigned programs in the drop down on load">
+      <created>1580335825289</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1580335825289</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -674,7 +687,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-1088" y="-536" width="1096" height="1896" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Repositories" order="0" weight="0.19072708" />
@@ -687,7 +700,7 @@
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="bottom" id="Find" order="4" weight="0.16903006" />
       <window_info anchor="bottom" id="Run" order="5" sideWeight="0.49946696" weight="0.3601815" />
-      <window_info anchor="bottom" x="-1079" y="-497" width="1078" height="908" id="Debug" order="6" sideWeight="0.4980695" weight="0.7074756" />
+      <window_info active="true" anchor="bottom" x="-1079" y="-497" width="1078" height="908" id="Debug" order="6" sideWeight="0.4980695" visible="true" weight="0.30232558" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="9" weight="0.24446966" />
@@ -831,7 +844,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="more layout refactoring, finished home page and capacity, started work on employees page" />
     <MESSAGE value="refactoring, working on implementing dcc.Store for admin login" />
     <MESSAGE value="rename branch to login feature" />
     <MESSAGE value="added dynamic view for employee page based on login of admin or not" />
@@ -856,85 +868,92 @@
     <MESSAGE value="fixed the email form section and callbacks" />
     <MESSAGE value="initial commit to new branch" />
     <MESSAGE value="fixed search function from employee page" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed search function from employee page" />
+    <MESSAGE value="updated employee editor to populate all assigned programs in the drop down on load" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated employee editor to populate all assigned programs in the drop down on load" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="XDebuggerManager">
-    <watches-manager>
-      <configuration name="PythonConfigurationType">
-        <watch expression="employee[0].employee_number" />
-      </configuration>
-    </watches-manager>
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/assets/callbacks.py</url>
+          <line>446</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateCodeFragment">
       <expression>
-        <expression-string>if kwargs['programs']:
-    print('programs')
-else:
-    print('no programs')</expression-string>
+        <expression-string>for i in source_list:
+    match = False
+    for j in results:
+        if i.id == j.id:
+            match = True
+    if not match:
+        results.append(i)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>if kwargs['programs']:
-    print('no programs')
-else:
-    print('programs')</expression-string>
+        <expression-string>results=[]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>if kwargs['programs'] is not None:
-    print('no programs')
-else:
-    print('programs')</expression-string>
+        <expression-string>for i in source_list:
+    match = False
+    for j in results:
+        if i == j:
+            match = True
+    if not match:
+        results.append(i)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>if kwargs['programs']:
-    print('yes')
-else:
-    print('no')</expression-string>
+        <expression-string>for i in source_list:
+    match == False
+    for j in results:
+        if i == j:
+            match == True
+    if not match:
+        results.append(i)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>if not kwargs['level']: 
-    print('yes') 
-else: 
-    print('no')</expression-string>
+        <expression-string>for i in source_list:
+    for j in results:
+        print(i == j)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>if not kwargs['function']: 
-    print('yes') 
-else: 
-    print('no')</expression-string>
+        <expression-string>for i in source_list:
+    for r in results:
+        print(i, r)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>if kwargs['level']: 
-    print('yes') 
-else: 
-    print('no')</expression-string>
+        <expression-string>for i in source_list:
+    for r in results:
+        print(i)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>for f in data_fields:
-    print(row[row_idx[0]][f])</expression-string>
+        <expression-string>for i in source_list:
+    if i.employee_number_number not in results:
+        print(i)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>for p in EmployeeData.__table__.columns:
-    p.split(',')
-    for c in row[row_idx[0][p]]:
-        print(c)</expression-string>
+        <expression-string>for i in source_list:
+    print(i.employee_number_number)</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
@@ -1010,60 +1029,53 @@ else:
     </expressions>
     <expressions id="evaluateExpression">
       <expression>
-        <expression-string>session.query(EmployeeProgramLink).filter(EmployeeProgramLink.employee_number == employee_number).delete()</expression-string>
+        <expression-string>emp_ds[0]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>session.query(EmployeeProgramLink).filter(EmployeeProgramLink.employee_number==employee_number).all()</expression-string>
+        <expression-string>emp_ds</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>session.rollback()</expression-string>
+        <expression-string>emp_ds[0][0]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>session.qury(EmployeeProgramLink).filter(EmployeeProgramLink.employee_number==employee_number).all()</expression-string>
+        <expression-string>emp_ds[0][0].name_first</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>EmployeeProgramLink.query.filter_by(employee_number=employee_number)</expression-string>
+        <expression-string>data_set[0][0].name_first</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>EmployeeProgramLink.query</expression-string>
+        <expression-string>data_set[0].name_first</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>EmployeeProgramLink.__table__</expression-string>
+        <expression-string>data_set[0]</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>EmployeeProgramLink.__table__.where()</expression-string>
+        <expression-string>data_set</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>EmployeeProgramLink.__table__.filter(EmployeeProgramLink.employee_number == employee_number)</expression-string>
+        <expression-string>emp_ds[0].name_first</expression-string>
         <language-id>Python</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/.PyCharmCE2018.3/system/python_stubs/-1109865891/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="4472" column="8" selection-start-line="4472" selection-start-column="8" selection-end-line="4472" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/err.txt.1" />
     <entry file="file://$PROJECT_DIR$/err.txt" />
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/sql/base.py">
@@ -1192,13 +1204,6 @@ else:
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/Files/Active_Features.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="11" selection-start-column="11" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TODO.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -1206,13 +1211,6 @@ else:
             <caret line="39" column="29" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
           </first_editor>
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/server.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="18" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -1302,37 +1300,6 @@ else:
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/werkzeug/debug/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="333" selection-start-line="333" selection-end-line="333" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Continuum/anaconda3/Lib/http/server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
-          <caret line="426" selection-start-line="426" selection-end-line="426" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/werkzeug/serving.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="490">
-          <caret line="334" selection-start-line="334" selection-end-line="334" />
-          <folding>
-            <element signature="e#1366#1375#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Continuum/anaconda3/Lib/socketserver.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="653" selection-start-line="653" selection-end-line="653" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Continuum/anaconda3/Lib/threading.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
@@ -1361,13 +1328,6 @@ else:
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/flask/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="603">
-          <caret line="2445" selection-start-line="2445" selection-end-line="2445" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/sqlalchemy/sql/operators.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="361">
@@ -1375,27 +1335,89 @@ else:
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Continuum/anaconda3/Lib/http/server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="473">
+          <caret line="425" selection-start-line="425" selection-end-line="425" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Continuum/anaconda3/Lib/socketserver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="394">
+          <caret line="649" selection-start-line="649" selection-end-line="649" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/werkzeug/serving.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="394">
+          <caret line="326" selection-start-line="326" selection-end-line="326" />
+          <folding>
+            <element signature="e#1366#1375#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/werkzeug/debug/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="329" selection-start-line="329" selection-end-line="329" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/flask/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1012">
+          <caret line="2462" selection-start-line="2462" selection-end-line="2462" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/Files/Active_Features.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="42" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/server.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="18" selection-start-line="22" selection-start-column="18" selection-end-line="22" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/dash_bootstrap_components/_components/Tooltip.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="39" column="8" selection-start-line="39" selection-start-column="8" selection-end-line="39" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/SQL.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6579">
+          <caret line="396" column="21" selection-start-line="396" selection-start-column="21" selection-end-line="396" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/assets/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="688">
-          <caret line="154" column="28" selection-start-line="154" selection-start-column="28" selection-end-line="154" selection-end-column="28" />
+        <state relative-caret-position="933">
+          <caret line="130" column="36" lean-forward="true" selection-start-line="130" selection-start-column="36" selection-end-line="130" selection-end-column="36" />
           <folding>
             <element signature="e#0#89#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/dash/dash.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="1250" selection-start-line="1250" selection-end-line="1250" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/employees.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="262" column="54" selection-start-line="262" selection-start-column="54" selection-end-line="262" selection-end-column="54" />
+        <state relative-caret-position="-1583">
+          <caret line="122" column="43" lean-forward="true" selection-start-line="122" selection-start-column="43" selection-end-line="122" selection-end-column="43" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
             <element signature="e#352#2811#0" />
@@ -1403,37 +1425,19 @@ else:
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/callbacks.py">
+    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/dash/dash.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="304" selection-start-line="304" selection-end-line="304" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#754#784#0" />
-            <element signature="e#1896#1924#0" />
-            <element signature="e#12947#13087#0" />
-            <element signature="e#13150#13868#0" />
-            <element signature="e#14967#15330#0" />
-            <element signature="e#16314#16348#0" />
-            <element signature="e#19938#19979#0" />
-            <element signature="e#18904#18950#0" />
-            <element signature="e#21131#21163#0" />
-          </folding>
+        <state relative-caret-position="979">
+          <caret line="1284" column="54" lean-forward="true" selection-start-line="1284" selection-start-column="54" selection-end-line="1284" selection-end-column="54" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/SQL.py">
+    <entry file="file://$PROJECT_DIR$/assets/callbacks.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
-          <caret line="312" column="66" lean-forward="true" selection-start-line="312" selection-start-column="66" selection-end-line="312" selection-end-column="66" />
+        <state relative-caret-position="1037">
+          <caret line="461" column="91" selection-start-line="461" selection-start-column="91" selection-end-line="461" selection-end-column="91" />
           <folding>
-            <element signature="e#0#15#0" expanded="true" />
-            <element signature="e#1769#3515#0" />
-            <element signature="e#3553#3864#0" />
-            <element signature="e#3902#4202#0" />
-            <element signature="e#4268#6721#0" />
-            <element signature="e#6771#7306#0" />
-            <element signature="e#7422#9352#0" />
+            <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>

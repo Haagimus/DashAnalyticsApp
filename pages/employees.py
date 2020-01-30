@@ -241,7 +241,9 @@ def employee_page_layout(data=None):
                     # Search field
                     dbc.Input(id='search',
                               placeholder='search employees'),
-
+                    dbc.Tooltip('''Filter displayed employees. Comma separated search parameters can be used to refine results. eg. "name, position, title"''',
+                                placement='auto-start',
+                                target='search'),
                     # Clear and Search buttons
                     dbc.InputGroupAddon([
                         dbc.Button('Clear',
