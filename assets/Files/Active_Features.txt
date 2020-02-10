@@ -1,3 +1,5 @@
+Employee page now displays multiple programs in the data table if employee is
+assigned to more than one
 User email submission form
 User registration form
 Employee page filters
