@@ -3,10 +3,10 @@ import hashlib
 import os
 from collections import defaultdict
 
-from sqlalchemy import create_engine, MetaData, inspect, update
+from sqlalchemy import create_engine, MetaData, inspect
 from sqlalchemy.orm import sessionmaker
 
-from assets.models import RegisteredUser, EmployeeData, ProjectData, Functions, Program, EmployeeNumber, EmployeeFunctionLink, EmployeeProgramLink
+from assets.models import RegisteredUser, EmployeeData, Functions, Program, EmployeeNumber, EmployeeFunctionLink, EmployeeProgramLink
 from server import app, log_time
 
 server = 'FRXSV-DAUPHIN'
@@ -42,6 +42,8 @@ def get_rows(class_name, filter_text=None):
     Returns all rows from selected columns in a table
     :param class_name: str
     :param filter_text: str
+    :param sortargs: [bool, property]
+    :param reversed: bool
     :return: list[]
     """
     session.rollback()
@@ -49,6 +51,7 @@ def get_rows(class_name, filter_text=None):
         results = session.query(class_name).all()
     else:
         results = session.query(class_name).filter(filter_text).all()
+
     return results
 
 

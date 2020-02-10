@@ -6,7 +6,6 @@ from dash_table import DataTable
 import assets.SQL as sql
 import datetime as dt
 from assets.models import Program, EmployeeData, Functions
-from assets import callbacks
 
 employees = sql.get_rows(EmployeeData)
 
@@ -21,7 +20,7 @@ def employee_table(data):
                    # {'name': 'Job Title', 'id': 'job_title', "hideable": True},
                    {'name': 'Level', 'id': 'level', "hideable": True},
                    {'name': 'Assigned Function', 'id': 'function', "hideable": True},
-                   {'name': 'Assigned Program(s)', 'id': 'programs', "hideable": True, 'presentation': 'dropdown'},
+                   {'name': 'Assigned Program(s)', 'id': 'programs', "hideable": True},
                    {'name': 'Start Date', 'id': 'date_start', "hideable": True},
                    {'name': 'End Date', 'id': 'date_end', "hideable": True}]
     else:
@@ -30,7 +29,7 @@ def employee_table(data):
                    {'name': 'Employee #', 'id': 'employee_number', "hideable": True},
                    {'name': 'Job Code', 'id': 'job_code', "hideable": True},
                    {'name': 'Assigned Function', 'id': 'function', "hideable": True},
-                   {'name': 'Assigned Program(s)', 'id': 'programs', "hideable": True, 'presentation': 'dropdown'},
+                   {'name': 'Assigned Program(s)', 'id': 'programs', "hideable": True},
                    {'name': 'Start Date', 'id': 'date_start', "hideable": True}]
     table = DataTable(
         id='Employees',

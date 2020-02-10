@@ -2,6 +2,7 @@ import smtplib
 from email.message import EmailMessage
 
 import dash_bootstrap_components as dbc
+import dash_core_components as dcc
 import dash_html_components as html
 import pandas as pd
 
@@ -30,11 +31,56 @@ def read_upcoming_features():
     ])
 
 
+def read_logfile():
+    """
+    Parses the text from the log text file
+    :return: dbc.CardBody
+    """
+    af = pd.read_csv('log.txt', sep="\n", header=None)
+
+    content = ''
+    for line in af[0]:
+        if str.startswith(line, 'Running on http://127.0.0.1:8080') or \
+                str.startswith(line, 'Debugger PIN'):
+            pass
+        else:
+            content = f'{line}\n{content}'
+
+    return content
+
+
 # TODO: Make page content reload each time the site is visited
-def home_page_layout():
+def home_page_layout(data=None):
+    if data is None:
+        data = {'isadmin': False,
+                'logged_in': False,
+                'login_user': None}
+
+    if data['logged_in']:
+        if data['login_user'] == 'Haag, Gary':
+            log_display = 'grid'
+        else:
+            log_display = 'none'
+    else:
+        log_display = 'none'
+
     content = html.Div(
-        html.Content(
+        html.Content([
             dbc.Row([
+                dbc.Col(
+                    dbc.Card([
+                        dbc.CardHeader(
+                            html.H5('Log Output',
+                                    className='card-title')),
+                        dcc.Textarea(
+                            value=read_logfile(),
+                            style={'border': 'none',
+                                   'padding': '5px',
+                                   'height': '35vh'})
+                    ]),
+                    style={'display': log_display},
+                    width=12
+                ),
                 # In Development Features Column
                 dbc.Col(
                     dbc.Card([
@@ -127,7 +173,7 @@ def home_page_layout():
                     width=12
                 )
             ])
-        )
+        ])
     )
     return content
 

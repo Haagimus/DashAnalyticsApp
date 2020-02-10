@@ -2,11 +2,10 @@ import time
 
 from dash.dependencies import Output, Input, State
 from dash.exceptions import PreventUpdate
-from dash_table import DataTable
 
 import assets.SQL as sql
 from assets.navbar import navbar
-from assets.models import EmployeeData, RegisteredUser, Functions, Program, EmployeeFunctionLink, EmployeeProgramLink, EmployeeNumber
+from assets.models import EmployeeData, RegisteredUser, Functions, Program, EmployeeFunctionLink, EmployeeProgramLink
 from pages import home, employees, programs, capacity
 from server import app, log_time
 
@@ -32,7 +31,7 @@ data_fields = ['name_first',
               [State('session-store', 'data')])
 def display_page(pathname, data):
     if pathname == '/':
-        return home.home_page_layout()
+        return home.home_page_layout(data)
     if pathname == '/employees':
         return employees.employee_page_layout(data)
     if pathname == '/programs':
@@ -310,7 +309,7 @@ def load_employee_data(row, row_idx, func_op, pgm_op):
 # endregion
 
 
-# region Employee editor button functions callback
+# region Employee data table and editor button functions callback
 @app.callback([Output('Employees', 'selected_rows'),
                Output('Employees', 'selected_cells'),
                Output('Employees', 'data'),
@@ -351,10 +350,6 @@ def employee_editor_buttons(search_click, search_clear, new, save, close, clear,
     if row_idx and search_text == '':
         if func != (0 or None):
             func = sql.get_rows(Functions, Functions.id == func)[0].function
-        # if pgm != (0 or None):
-        #     pgm_list = []
-        #     for p in pgm:
-        #         pgm_list.append(sql.get_rows(Program, Program.id == p)[0].name)
 
     editor_fields = [first_name,
                      last_name,
@@ -403,12 +398,23 @@ def employee_editor_buttons(search_click, search_clear, new, save, close, clear,
             if table_data[row_idx[0]][data_fields[i]] != editor_fields[i]:
                 updates_exist = True
                 update_args[data_fields[i]] = editor_fields[i]
-                updated_indices += f', {data_fields[i]}: {table_data[row_idx[0]][data_fields[i]]} >> {editor_fields[i]}'
+                if data_fields[i] == 'function' and not editor_fields[i] == []:
+                    f = sql.get_rows(Functions, Functions.id == editor_fields[i])[0].function
+                    updated_indices += f', {data_fields[i]}: {table_data[row_idx[0]][data_fields[i]]} >> {f}'
+                elif data_fields[i] == 'programs' and not editor_fields[i] == []:
+                    # TODO: read the entries on the employee programs and skip this update if its unchanged
+                    pgms = ''
+                    for s in editor_fields[i]:
+                        p = sql.get_rows(Program, Program.id == s)[0].name
+                        pgms += f'{p}, '
+                    updated_indices += f', {data_fields[i]}: {table_data[row_idx[0]][data_fields[i]]} >> {pgms[:-2]}'
+                else:
+                    updated_indices += f', {data_fields[i]}: {table_data[row_idx[0]][data_fields[i]]} >> {editor_fields[i]}'
         if updates_exist:
             sql.update_employee(table_data[row_idx[0]]['employee_number'], **update_args)
             app.logger.info(
-                f'INFO: The user {data["login_user"]} updated the employee record for {table_data[row_idx[0]]["name_first"]} {table_data[row_idx[0]]["name_last"]} '
-                f'with the following information {updated_indices}')
+                f'INFO: The user {data["login_user"]} updated the employee record for {table_data[row_idx[0]]["name_first"]} '
+                f'{table_data[row_idx[0]]["name_last"]} with the following information{updated_indices}')
             data_set = sql.query_rows(search_text)
     elif all(close > x for x in (search_click, search_clear, new, save, clear)):
         # Close was clicked
@@ -444,6 +450,11 @@ def employee_editor_buttons(search_click, search_clear, new, save, close, clear,
     else:
         emp_ds = data_set
 
+    if len(emp_ds) > 1:
+        results = emp_ds
+    else:
+        results = emp_ds[0]
+
     data = [{'name_first': i.name_first,
              'name_last': i.name_last,
              'employee_number': i.employee_number_number,
@@ -454,12 +465,13 @@ def employee_editor_buttons(search_click, search_clear, new, save, close, clear,
                                       filter_text=EmployeeFunctionLink.employee_number == i.employee_number_number)[0].employee_function
              if len(sql.get_rows(class_name=EmployeeFunctionLink,
                                  filter_text=EmployeeFunctionLink.employee_number == i.employee_number_number)) > 0 else '',
-             'programs': sql.get_rows(class_name=EmployeeProgramLink,
-                                      filter_text=EmployeeProgramLink.employee_number == i.employee_number_number)[0].employee_program
+             'programs': ', '.join([p.employee_program for p in
+                                    sql.get_rows(class_name=EmployeeProgramLink,
+                                                 filter_text=EmployeeProgramLink.employee_number == i.employee_number_number)])
              if len(sql.get_rows(class_name=EmployeeProgramLink,
                                  filter_text=EmployeeProgramLink.employee_number == i.employee_number_number)) > 0 else '',
              'date_start': i.date_start,
-             'date_end': i.date_end if i.date_end is not None else None} for i in emp_ds[0]]
+             'date_end': i.date_end if i.date_end is not None else None} for i in results]
     return row_idx, cells, data, search_text
 
 
@@ -517,6 +529,8 @@ def employee_editor_control(open_click, close_click, editor_state, container_sta
 def employees_loading_animation(value):
     time.sleep(1)
     return value
+
+
 # endregion
 # endregion
 

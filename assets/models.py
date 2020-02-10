@@ -82,7 +82,7 @@ class ProjectData(Base):
     charge_number = relationship('ChargeNumber', back_populates='project', uselist=False)
 
     # Program (Many-to-One)
-    program_name = Column(String(50), ForeignKey('programs.name'))
+    program_name = Column(String(50), ForeignKey('programs.name', ondelete='CASCADE', onupdate='CASCADE'))
     program = relationship('Program', back_populates='project')
 
     # Usage Entry (One-to-Many)
@@ -96,7 +96,7 @@ class ChargeNumber(Base):
     charge_number = Column(String(50), nullable=False, unique=True)
 
     # Project (One-to-One)
-    project_name = Column(String(50), ForeignKey('projects.name'))
+    project_name = Column(String(50), ForeignKey('projects.name', ondelete='CASCADE', onupdate='CASCADE'))
     project = relationship('ProjectData', back_populates='charge_number', uselist=False)
 
 
@@ -105,12 +105,12 @@ class Program(Base):
 
     id = Column(Integer(), primary_key=True)
     name = Column(String(50), unique=True, nullable=False)
+    comments = Column(String(), nullable=True)
 
     # Projects (One-to-Many)
     project = relationship('ProjectData', back_populates='program')
 
     # Employee Numbers (Many-to-One)
-    # employee_number_number = Column(Integer(), ForeignKey('employee_numbers.number'))
     employees = relationship(EmployeeNumber, secondary='employee_program_link')
 
 
@@ -125,7 +125,7 @@ class ResourceUsage(Base):
     hours = Column(Numeric(3, 2), nullable=False)
 
     # Project (Many-to-One)
-    project_name = Column(String(50), ForeignKey('projects.name'))
+    project_name = Column(String(50), ForeignKey('projects.name', ondelete='CASCADE', onupdate='CASCADE'))
     project = relationship('ProjectData', back_populates='time_entry')
 
     # Employee Numbers (Many-to-One)
@@ -138,6 +138,7 @@ class Functions(Base):
 
     id = Column(Integer(), primary_key=True)
     function = Column(String(50), unique=True, nullable=False, index=True)
+    finance_function = Column(String(50), unique=True, nullable=True, index=True)
 
     # Employees Assigned (Many-to-Many)
     employees = relationship(EmployeeNumber, secondary='employee_function_link')
@@ -152,7 +153,7 @@ class EmployeeFunctionLink(Base):
 
     id = Column(Integer(), primary_key=True)
     employee_number = Column(Integer(), ForeignKey('employee_numbers.number'))
-    employee_function = Column(String(50), ForeignKey('functions.function'))
+    employee_function = Column(String(50), ForeignKey('functions.function', ondelete='CASCADE', onupdate='CASCADE'))
 
     number = relationship(EmployeeNumber, backref=backref('employee_func_assoc'))
     function = relationship(Functions, backref=backref('function_assoc'))
@@ -163,7 +164,7 @@ class EmployeeProgramLink(Base):
 
     id = Column(Integer(), primary_key=True)
     employee_number = Column(Integer(), ForeignKey('employee_numbers.number'))
-    employee_program = Column(String(50), ForeignKey('programs.name'))
+    employee_program = Column(String(50), ForeignKey('programs.name', ondelete='CASCADE', onupdate='CASCADE'))
 
     number = relationship(EmployeeNumber, backref=backref('employee_pgm_assoc'))
     program = relationship(Program, backref=backref('program_assoc'))
