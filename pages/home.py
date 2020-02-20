@@ -9,6 +9,7 @@ import pandas as pd
 admin_name = 'Haag, Gary'
 admin_email = 'Gary.Haag@L3Harris.com'
 
+
 def read_active_features():
     """
     Parses the text from the Active_Features text file and generates bullet points for the home page
@@ -112,15 +113,15 @@ def home_page_layout(data=None):
                 dbc.Col([
                     html.Div([
                         dbc.Form([
-                            html.H2("User Submission Form",
+                            html.H2('User Submission Form',
                                     style={'text-align': 'center'}),
                             # Email input field
                             dbc.FormGroup([
                                 dbc.Label('Email:', width=2),
                                 dbc.Col(
                                     dbc.Input(id='from_addr',
-                                              type="email",
-                                              placeholder="Enter your L3Harris email address",
+                                              type='email',
+                                              placeholder='Enter your L3Harris email address',
                                               value=''),
                                     width=10
                                 ),
@@ -129,12 +130,12 @@ def home_page_layout(data=None):
                             ],
                                 row=True),
                             dbc.FormGroup([
-                                dbc.Label("Choose one", width=4),
+                                dbc.Label('Choose one', width=4),
                                 dbc.Col(
                                     dbc.Select(options=[
-                                        {"label": "Report a Bug", "value": "1"},
-                                        {"label": "Feature Request", "value": "2"},
-                                        {"label": "Request Admin", "value": "3"}
+                                        {'label': 'Report a Bug', 'value': '1'},
+                                        {'label': 'Feature Request', 'value': '2'},
+                                        {'label': 'Request Admin', 'value': '3'}
                                     ],
                                         id='msgType',
                                         value=1
@@ -144,8 +145,8 @@ def home_page_layout(data=None):
                                 row=True
                             ),
                             dbc.FormGroup([
-                                dbc.Textarea(id="body", bs_size="lg",
-                                             placeholder="Enter comments/suggestions",
+                                dbc.Textarea(id='body', bs_size='lg',
+                                             placeholder='Enter comments/suggestions',
                                              style={'height': '200px'},
                                              value='')
                             ]),
@@ -153,13 +154,13 @@ def home_page_layout(data=None):
                                 html.Div('0',
                                          id='reset-div',
                                          style={'visibility': 'hidden'}),
-                                dbc.Button("Submit",
+                                dbc.Button('Submit',
                                            id='submit',
                                            n_clicks=0,
                                            size='lg',
                                            color='success',
                                            style={'width': '100px'}),
-                                dbc.Button("Reset",
+                                dbc.Button('Reset',
                                            id='reset',
                                            n_clicks=0,
                                            size='lg',
@@ -190,8 +191,9 @@ def send_mail(from_addr, subject, body):
     :return: bool
     """
     port = 25
-    smtp_server = "frxsv-globemaster"
-    relay_addr = "FRX Analytics Page"
+    smtp_server = 'frxsv-globemaster'
+    relay_addr = 'FRX Analytics Page'
+    relay_email = 'FRX.EmailRelay@iss.l3t.com'
     to_addrs = [admin_email,
                 from_addr]
     msg = EmailMessage()
@@ -202,7 +204,7 @@ def send_mail(from_addr, subject, body):
 
     try:
         server = smtplib.SMTP(smtp_server, port)
-        server.login("FRX.EmailRelay@iss.l3t.com", "N)QQH3hppTrthKQN")
+        server.login(relay_email, 'N)QQH3hppTrthKQN')
         server.send_message(msg)
         server.quit()
         return None
