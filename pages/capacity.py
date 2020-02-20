@@ -3,11 +3,14 @@ import dash_html_components as html
 import dash_bootstrap_components as dbc
 import dash_table as dt
 import pandas as pd
+from datetime import date
+from dateutil.relativedelta import relativedelta
 
 import assets.SQL as sql
 from assets.models import EmployeeFunctionLink, EmployeeData
 
 functions = sql.get_rows(EmployeeFunctionLink)
+dfmt = '%b-%y'
 
 
 def get_counts():
@@ -36,7 +39,23 @@ def function_totals():
 
     results = pd.DataFrame({
         'Functions': list(count.keys()),
-        'Head Count': list(count.values())
+        # 'Head Count': list(count.values()),
+        (date.today() + relativedelta(months=-3)).strftime(dfmt).upper(): 'test',
+        (date.today() + relativedelta(months=-2)).strftime(dfmt).upper(): '',
+        (date.today() + relativedelta(months=-1)).strftime(dfmt).upper(): '',
+        (date.today()).strftime(dfmt).upper(): '',
+        (date.today() + relativedelta(months=+1)).strftime(dfmt).upper(): '',
+        (date.today() + relativedelta(months=+2)).strftime(dfmt).upper(): '',
+        (date.today() + relativedelta(months=+3)).strftime(dfmt).upper(): '',
+        (date.today() + relativedelta(months=+4)).strftime(dfmt).upper(): '',
+        (date.today() + relativedelta(months=+5)).strftime(dfmt).upper(): '',
+        (date.today() + relativedelta(months=+6)).strftime(dfmt).upper(): '',
+        (date.today() + relativedelta(months=+7)).strftime(dfmt).upper(): '',
+        (date.today() + relativedelta(months=+8)).strftime(dfmt).upper(): '',
+        (date.today() + relativedelta(months=+9)).strftime(dfmt).upper(): '',
+        (date.today() + relativedelta(months=+10)).strftime(dfmt).upper(): '',
+        (date.today() + relativedelta(months=+11)).strftime(dfmt).upper(): '',
+        (date.today() + relativedelta(months=+12)).strftime(dfmt).upper(): ''
     })
 
     return results
@@ -69,35 +88,36 @@ def capacity_page_layout():
                 id='capacity',
                 columns=[{'name': i, 'id': i} for i in totals],
                 data=totals.to_dict("rows"),
-                    style_header={
-                        'backgroundColor': 'white',
-                        'fontWeight': 'bolder',
-                        'fontSize': '16px',
-                        'textAlign': 'center'
-                    },
-                    style_data_conditional=[
-                        {'if': {'row_index': 'odd'},
-                         'backgroundColor': 'rgb(248, 248, 248)'},
-                        {'if': {'row_index': len(totals) - 1},
-                         'fontWeight': 'bolder',
-                         'fontSize': '16px'},
-                        {'if': {'column_id': 'Functions'},
-                         'textAlign': 'right',
-                         'padding': '2px 15px 2px 0px'},
-                        {'if': {'column_id': 'Head Count'},
-                         'textAlign': 'left',
-                         'padding': '2px 0px 2px 15px'}
-                    ]
+                style_header={
+                    'backgroundColor': 'white',
+                    'fontWeight': 'bolder',
+                    'fontSize': '16px',
+                    'textAlign': 'center'
+                },
+                style_data={
+                    'textAlign': 'center',
+                    'fontSize': '12px',
+                    'fontWeight': 'bold',
+                    'height': 'auto',
+                    'width': 'auto'
+                },
+                style_data_conditional=[
+                    {'if': {'row_index': 'odd'},
+                     'backgroundColor': 'rgb(248, 248, 248)'},
+                    {'if': {'row_index': len(totals) - 1},
+                     'fontWeight': 'bolder',
+                     'fontSize': '16px'},
+                    {'if': {'column_id': 'Functions'},
+                     'textAlign': 'right',
+                     'padding': '0px 15px 0px 0px',
+                     'fontSize': '12px'}
+                ]
             ),
-            xs={'size': 12, 'order': 1},
-            md={'size': 6, 'order': 2},
-            lg={'size': 5, 'order': 1}
+            width=12
         ),
         dbc.Col(
             functions_chart(),
-            xs={'size': 12, 'order': 2},
-            md={'size': 6, 'order': 1},
-            lg={'size': 6, 'order': 2}
+            width=12
         )
     ])
     return layout
