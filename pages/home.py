@@ -6,6 +6,8 @@ import dash_core_components as dcc
 import dash_html_components as html
 import pandas as pd
 
+admin_name = 'Haag, Gary'
+admin_email = 'Gary.Haag@L3Harris.com'
 
 def read_active_features():
     """
@@ -57,7 +59,8 @@ def home_page_layout(data=None):
                 'login_user': None}
 
     if data['logged_in']:
-        if data['login_user'] == 'Haag, Gary':
+        # If you are the application admin show the log window otherwise leave it hidden
+        if data['login_user'] == admin_name:
             log_display = 'grid'
         else:
             log_display = 'none'
@@ -189,7 +192,7 @@ def send_mail(from_addr, subject, body):
     port = 25
     smtp_server = "frxsv-globemaster"
     relay_addr = "FRX Analytics Page"
-    to_addrs = ['Gary.Haag@L3Harris.com',
+    to_addrs = [admin_email,
                 from_addr]
     msg = EmailMessage()
     msg['from'] = relay_addr
