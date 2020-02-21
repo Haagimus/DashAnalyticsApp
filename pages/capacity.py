@@ -40,7 +40,7 @@ def function_totals():
     results = pd.DataFrame({
         'Functions': list(count.keys()),
         # 'Head Count': list(count.values()),
-        (date.today() + relativedelta(months=-3)).strftime(dfmt).upper(): 'test',
+        (date.today() + relativedelta(months=-3)).strftime(dfmt).upper(): list(count.values()),
         (date.today() + relativedelta(months=-2)).strftime(dfmt).upper(): '',
         (date.today() + relativedelta(months=-1)).strftime(dfmt).upper(): '',
         (date.today()).strftime(dfmt).upper(): '',
@@ -62,14 +62,14 @@ def function_totals():
 
 
 def functions_chart():
-    count = get_counts()
+    count=get_counts()
     count.pop('Total')
 
-    results = pd.DataFrame({
+    results=pd.DataFrame({
         'Functions': list(count.keys()),
         'Head Count': list(count.values())
     })
-    graph = dcc.Graph(id='functions-graph',
+    graph=dcc.Graph(id='functions-graph',
                       figure={
                           'data': [{'x': results['Functions'], 'type': 'bar',
                                     'y': results['Head Count'], 'type': 'bar'}]
@@ -80,9 +80,9 @@ def functions_chart():
 
 
 def capacity_page_layout():
-    totals = function_totals()
+    totals=function_totals()
 
-    layout = dbc.Row([
+    layout=dbc.Row([
         dbc.Col(
             dt.DataTable(
                 id='capacity',

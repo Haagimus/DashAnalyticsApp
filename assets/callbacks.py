@@ -396,19 +396,31 @@ def employee_editor_buttons(search_click, search_clear, new, save, close, clear,
 
         for i in range(len(data_fields)):
             if table_data[row_idx[0]][data_fields[i]] != editor_fields[i]:
-                updates_exist = True
-                update_args[data_fields[i]] = editor_fields[i]
-                if data_fields[i] == 'function' and not editor_fields[i] == []:
+                if i == 4:
+                    # The function entered has changed
                     f = sql.get_rows(Functions, Functions.id == editor_fields[i])[0].function
-                    updated_indices += f', {data_fields[i]}: {table_data[row_idx[0]][data_fields[i]]} >> {f}'
-                elif data_fields[i] == 'programs' and not editor_fields[i] == []:
-                    # TODO: read the entries on the employee programs and skip this update if its unchanged
-                    pgms = ''
-                    for s in editor_fields[i]:
-                        p = sql.get_rows(Program, Program.id == s)[0].name
-                        pgms += f'{p}, '
-                    updated_indices += f', {data_fields[i]}: {table_data[row_idx[0]][data_fields[i]]} >> {pgms[:-2]}'
+                    if not table_data[row_idx[0]][data_fields[i]] == f:
+                        updates_exist = True
+                        update_args[data_fields[i]] = f
+                        updated_indices += f', {data_fields[i]}: {table_data[row_idx[0]][data_fields[i]]} >> {f}'
+                elif i == 5:
+                    # The program(s) entered have changed
+                    if len(editor_fields[i]) > 0 \
+                            or len(table_data[row_idx[0]][data_fields[i]]) != len(editor_fields[i]) \
+                            or (len(table_data[row_idx[0]][data_fields[i]]) > 0 and len(editor_fields[i]) == 0):
+                        if len(editor_fields[i]) > 0:
+                            for s in editor_fields[i]:
+                                p = sql.get_rows(Program, Program.id == s)[0].name
+                                if p not in table_data[row_idx[0]][data_fields[i]]:
+                                    updates_exist = True
+                                    update_args[data_fields[i]] = pgm
+                        else:
+                            updates_exist = True
+                            update_args[data_fields[i]] = ''
                 else:
+                    # One of the other fields has changed
+                    updates_exist = True
+                    update_args[data_fields[i]] = editor_fields[i]
                     updated_indices += f', {data_fields[i]}: {table_data[row_idx[0]][data_fields[i]]} >> {editor_fields[i]}'
         if updates_exist:
             sql.update_employee(table_data[row_idx[0]]['employee_number'], **update_args)
@@ -421,7 +433,8 @@ def employee_editor_buttons(search_click, search_clear, new, save, close, clear,
         data_refresh = True
         # print('close clicked: duplicating selected database entry, closing the original and loading the duplicate')
         # TODO: Prompt the user for a date to close the selected entry
-        # TODO: Create a new entry with the selected entry data, replace the start date with the selected close date and clear the close date
+        # TODO: Create a new entry with the selected entry data, replace the start
+        # date with the selected close date and clear the close date
     elif all(clear > x for x in (search_click, search_clear, new, save, close)):
         # Clear was clicked
         data_refresh = True
