@@ -4,7 +4,7 @@
     <list default="true" id="1277e24a-518e-4c91-a5df-90ef4a8586e2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/callbacks.py" beforeDir="false" afterPath="$PROJECT_DIR$/assets/callbacks.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/capacity.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/capacity.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/employees.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/employees.py" afterDir="false" />
     </list>
     <list id="3428cc0c-6334-466d-81ab-07179f1c98b2" name="Revert &quot;initial commit for rope package (vs code support package)&quot;" comment="Revert &quot;initial commit for rope package (vs code support package)&quot;&#10;&#10;This reverts commit 3514cdff" />
     <list id="733dff2b-6d78-4ec1-b082-5214378b49f6" name="Revert &quot;initial commit for rope package (vs code support package)&quot;-2" comment="Revert &quot;initial commit for rope package (vs code support package)&quot;&#10;&#10;This reverts commit 3514cdff" />
@@ -23,13 +23,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/callbacks.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="319">
-              <caret line="414" column="48" selection-start-line="414" selection-start-column="48" selection-end-line="414" selection-end-column="48" />
+            <state relative-caret-position="456">
+              <caret line="306" column="30" selection-start-line="306" selection-start-column="30" selection-end-line="306" selection-end-column="30" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
                 <element signature="e#685#715#0" />
                 <element signature="e#716#746#0" />
-                <element signature="e#12714#13119#0" />
                 <element signature="e#13209#13309#0" />
                 <element signature="e#13399#14059#0" />
               </folding>
@@ -40,8 +39,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/SQL.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
-              <caret line="312" column="13" selection-start-line="312" selection-start-column="13" selection-end-line="312" selection-end-column="13" />
+            <state relative-caret-position="284">
+              <caret line="311" selection-start-line="311" selection-end-line="311" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -52,10 +51,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/employees.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2465">
-              <caret line="152" column="25" selection-start-line="152" selection-start-column="25" selection-end-line="152" selection-end-column="25" />
+            <state relative-caret-position="391">
+              <caret line="103" column="40" selection-start-line="103" selection-start-column="40" selection-end-line="103" selection-end-column="40" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
+                <element signature="e#323#2726#0" />
               </folding>
             </state>
           </provider>
@@ -64,7 +64,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/run.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
+            <state relative-caret-position="374">
               <caret line="22" selection-start-line="22" selection-end-line="22" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
@@ -192,7 +192,6 @@
         <option value="$PROJECT_DIR$/pages/home.py" />
         <option value="$PROJECT_DIR$/migrations/versions/47fcc46f7380_added_column_to_functions_for_finance_.py" />
         <option value="$PROJECT_DIR$/log.txt" />
-        <option value="$PROJECT_DIR$/pages/employees.py" />
         <option value="$PROJECT_DIR$/assets/Files/Active_Features.txt" />
         <option value="$PROJECT_DIR$/migrations/versions/494b3da20ada_adding_dates_to_function_link_for_.py" />
         <option value="$PROJECT_DIR$/migrations/versions/75694a838eb1_adding_dates_to_function_link_for_.py" />
@@ -200,6 +199,7 @@
         <option value="$PROJECT_DIR$/migrations/versions/b8846d1f0dde_adding_dates_to_function_and_program_.py" />
         <option value="$PROJECT_DIR$/assets/models.py" />
         <option value="$PROJECT_DIR$/assets/SQL.py" />
+        <option value="$PROJECT_DIR$/pages/employees.py" />
         <option value="$PROJECT_DIR$/assets/callbacks.py" />
       </list>
     </option>
@@ -721,7 +721,14 @@
       <option name="project" value="LOCAL" />
       <updated>1581369886732</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="fixed update employees: date end, date start, program and function">
+      <created>1582306150493</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1582306150494</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -747,10 +754,10 @@
       <window_info anchor="bottom" id="Message" order="3" />
       <window_info anchor="bottom" id="Find" order="4" weight="0.16903006" />
       <window_info anchor="bottom" id="Run" order="5" sideWeight="0.49946696" weight="0.3601815" />
-      <window_info active="true" anchor="bottom" x="-1079" y="-497" width="1078" height="908" id="Debug" order="6" sideWeight="0.4980695" visible="true" weight="0.30119178" />
+      <window_info anchor="bottom" x="-1079" y="-497" width="1078" height="908" id="Debug" order="6" sideWeight="0.4980695" weight="0.30119178" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="9" weight="0.24446966" />
+      <window_info active="true" anchor="bottom" id="TODO" order="9" visible="true" weight="0.24377032" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -891,7 +898,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Got the search function working, need to refactor to work with original table" />
     <MESSAGE value="updated callbacks" />
     <MESSAGE value="finally got search working correctly with strings and integers" />
     <MESSAGE value="employee datatable formatting" />
@@ -916,7 +922,8 @@
     <MESSAGE value="added a duplicate filter for data sets, added a search bar tooltip, added multi critera searching, fixed an issue with returned data sets" />
     <MESSAGE value="added a log window to the home screen for myself, setup employee grid to display multiple programs, added a column to the functions table to support custom finance naming" />
     <MESSAGE value="updated active feature log" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated active feature log" />
+    <MESSAGE value="fixed update employees: date end, date start, program and function" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed update employees: date end, date start, program and function" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -926,26 +933,6 @@
           <url>file://$PROJECT_DIR$/migrations/env.py</url>
           <line>46</line>
           <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/assets/SQL.py</url>
-          <line>312</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/assets/SQL.py</url>
-          <line>311</line>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/assets/callbacks.py</url>
-          <line>417</line>
-          <option name="timeStamp" value="29" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/assets/callbacks.py</url>
-          <line>414</line>
-          <option name="timeStamp" value="30" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -1328,26 +1315,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/employees.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2465">
-          <caret line="152" column="25" selection-start-line="152" selection-start-column="25" selection-end-line="152" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/run.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/Files/Active_Features.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -1387,23 +1354,43 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/SQL.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="312" column="13" selection-start-line="312" selection-start-column="13" selection-end-line="312" selection-end-column="13" />
+        <state relative-caret-position="284">
+          <caret line="311" selection-start-line="311" selection-end-line="311" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pages/employees.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="103" column="40" selection-start-line="103" selection-start-column="40" selection-end-line="103" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+            <element signature="e#323#2726#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/assets/callbacks.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="414" column="48" selection-start-line="414" selection-start-column="48" selection-end-line="414" selection-end-column="48" />
+        <state relative-caret-position="456">
+          <caret line="306" column="30" selection-start-line="306" selection-start-column="30" selection-end-line="306" selection-end-column="30" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
             <element signature="e#685#715#0" />
             <element signature="e#716#746#0" />
-            <element signature="e#12714#13119#0" />
             <element signature="e#13209#13309#0" />
             <element signature="e#13399#14059#0" />
           </folding>

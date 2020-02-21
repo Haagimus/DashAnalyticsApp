@@ -253,6 +253,7 @@ def send_email(submit, reset, from_addr, msg_type, body):
 @app.callback([Output('first-name', 'value'),
                Output('last-name', 'value'),
                Output('employee-number', 'value'),
+               Output('employee-number', 'disabled'),
                Output('job-code', 'value'),
                Output('level', 'value'),
                Output('function', 'value'),
@@ -301,9 +302,9 @@ def load_employee_data(row, row_idx, func_op, pgm_op):
         start = row[row_idx[0]]['date_start']
         end = row[row_idx[0]]['date_end']
 
-        return f_name, l_name, emp_num, job_code, level, func, pgm, start, end, quick_close_disabled, save_button_disabled
+        return f_name, l_name, emp_num, True, job_code, level, func, pgm, start, end, quick_close_disabled, save_button_disabled
     else:
-        return '', '', '', '', '', 0, 0, None, None, True, True
+        return '', '', False, '', '', '', 0, 0, None, None, True, True
 
 
 # endregion

@@ -101,7 +101,7 @@ def employee_editor():
                 dbc.Input(id='employee-number',
                           type='number',
                           className='required',
-                          disabled=True,
+                          disabled=False,
                           placeholder='Employee Number')])),
         dbc.Row(
             dbc.Col([
