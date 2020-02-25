@@ -151,6 +151,7 @@ class Functions(Base):
 class EmployeeFunctionLink(Base):
     __tablename__ = 'employee_function_link'
 
+    # TODO: Add relationship to display the employee start and end dates here to speed up relational searches and comparisons
     id = Column(Integer(), primary_key=True)
     employee_number = Column(Integer(), ForeignKey('employee_numbers.number'))
     employee_function = Column(String(50), ForeignKey('functions.function', ondelete='CASCADE', onupdate='CASCADE'))

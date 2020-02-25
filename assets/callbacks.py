@@ -1,11 +1,16 @@
 import time
+from datetime import date
 
+import dash_core_components as dcc
+import dash_table as dt
+import pandas as pd
 from dash.dependencies import Output, Input, State
 from dash.exceptions import PreventUpdate
+from dateutil.relativedelta import relativedelta
 
 import assets.SQL as sql
-from assets.navbar import navbar
 from assets.models import EmployeeData, RegisteredUser, Functions, Program, EmployeeFunctionLink, EmployeeProgramLink
+from assets.navbar import navbar
 from pages import home, employees, programs, capacity
 from server import app, log_time
 
@@ -362,8 +367,8 @@ def employee_editor_buttons(search_click, search_clear, new, save, close, clear,
                      end_date]
 
     # https://community.plot.ly/t/input-two-or-more-button-how-to-tell-which-button-is-pressed/5788/29
+    # Search was clicked
     if all(search_click > x for x in (search_clear, new, save, close, clear)):
-        # Search was clicked
         # TODO: Add ability to comma separate multiple search criteria
         if search_text is None:
             return row_idx, [], data, search_text
@@ -374,13 +379,13 @@ def employee_editor_buttons(search_click, search_clear, new, save, close, clear,
         for q in queries:
             data_set.append(sql.query_rows(q))
         row_idx = []
+    # Search clear was clicked
     elif all(search_clear > x for x in (search_click, new, save, close, clear)):
-        # Search clear was clicked
         data_refresh = True
         row_idx = []
         search_text = ''
+    # New was clicked
     elif all(new > x for x in (search_click, search_clear, save, close, clear)):
-        # New was clicked
         if first_name is '' or last_name is '' or not isinstance(employee_number, int) or job_code is '' or start_date is '':
             pass
         sql.add_employee(first_name, last_name, employee_number, job_code, level, func, pgm, start_date, end_date)
@@ -389,8 +394,8 @@ def employee_editor_buttons(search_click, search_clear, new, save, close, clear,
             f'employee_number:\
             {employee_number}, job_code:{job_code}, level:{level}, function:{func}, program:{pgm}, start_date:{start_date}, end_date:{end_date}')
         data_refresh = True
+    # Save was clicked
     elif all(save > x for x in (search_click, search_clear, new, close, clear)):
-        # Save was clicked
         updates_exist = False
         updated_indices = ''
         update_args = {}
@@ -429,26 +434,26 @@ def employee_editor_buttons(search_click, search_clear, new, save, close, clear,
                 f'INFO: The user {data["login_user"]} updated the employee record for {table_data[row_idx[0]]["name_first"]} '
                 f'{table_data[row_idx[0]]["name_last"]} with the following information{updated_indices}')
             data_set = sql.query_rows(search_text)
+    # Close was clicked
     elif all(close > x for x in (search_click, search_clear, new, save, clear)):
-        # Close was clicked
         data_refresh = True
         # print('close clicked: duplicating selected database entry, closing the original and loading the duplicate')
         # TODO: Prompt the user for a date to close the selected entry
         # TODO: Create a new entry with the selected entry data, replace the start
         # date with the selected close date and clear the close date
+    # Clear was clicked
     elif all(clear > x for x in (search_click, search_clear, new, save, close)):
-        # Clear was clicked
         data_refresh = True
         row_idx = []
         cells = []
         search_text = ''
+    # Nothing was clicked
     else:
         data_refresh = True
 
     if data_refresh:
         data_set = sql.get_rows(EmployeeData)
         search_text = ''
-        # Nothing was clicked
 
     if multi:
         emp_ds = []
@@ -550,11 +555,68 @@ def employees_loading_animation(value):
 
 
 # region Capacity page callbacks
-# region Capacity page loading animation
-@app.callback([Output('capacity-loading-output', 'children')],
-              [Input('page-content', 'value')])
-def capacity_loading_animation(value):
+# region Employee data table and editor button functions callback
+@app.callback(Output('capacity-tabs-content', 'children'),
+              [Input('capacity-tabs', 'value')])
+def capacity_data_loading(tab):
     time.sleep(1)
-    return value
+    date_range = [date.today() + relativedelta(months=i) for i in range(-3, 13)]
+    columns = [{'name': 'Functions', 'id': 'Functions'}]
+    for i in range(16):
+        columns.append({'name': (date_range[i]).strftime('%b-%y').upper(), 'id': (date_range[i]).strftime('%b-%y').upper()})
+
+    func_rows = [x.function for x in [f for f in sql.get_rows(Functions)] if x.finance_function is not None]
+    func_rows.append('Totals')
+
+    data = [func_rows]
+
+    results = pd.DataFrame({columns[0]['name']: data[0]})
+
+    # TODO: Figure out a way to make the get_counts process faster, this is super slow because its digging n3 into the database relationships
+    for i in range(16):
+        col = sql.get_counts(date_range[i]).values()
+        data.append(col)
+        results = results.join(pd.DataFrame({(date_range[i]).strftime('%b-%y').upper(): list(col)}))
+
+    if tab == 'capacity-table':
+        return dt.DataTable(
+            id='capacity',
+            columns=columns,
+            data=results.to_dict('records'),
+            style_as_list_view=True,
+            style_header={
+                'backgroundColor': 'white',
+                'fontWeight': 'bolder',
+                'fontSize': '16px',
+                'textAlign': 'center'
+            },
+            style_data={
+                'textAlign': 'center',
+                'fontSize': '14px',
+                'fontWeight': 'bold',
+                'height': 'auto',
+                'width': 'auto'
+            },
+            style_data_conditional=[
+                {'if': {'row_index': 'odd'},
+                 'backgroundColor': 'rgb(248, 248, 248)'},
+                {'if': {'row_index': len(func_rows) - 1},
+                 'backgroundColor': 'rgb(175, 175, 175)',
+                 'fontSize': '16px'},
+                {'if': {'column_id': 'Functions'},
+                 'textAlign': 'right',
+                 'padding': '0px 15px 0px 0px',
+                 'fontSize': '12px'}
+            ]
+        )
+    elif tab == 'capacity-chart':
+        # https://pbpython.com/plotly-dash-intro.html
+        return dcc.Graph(
+            id='capacity-graph',
+            figure={
+                'data': [{'x': results['NOV-19'], 'type': 'bar'},
+                         {'y': results['NOV-19'], 'type': 'bar'}]
+            }
+        )
 # endregion
 # endregion

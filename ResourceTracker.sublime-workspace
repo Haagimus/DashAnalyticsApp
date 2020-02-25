@@ -1,0 +1,722 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"iso",
+				"isoformat()\tfunction ⟠"
+			],
+			[
+				"s",
+				"ScaleConverter(…)\ttype ⟠"
+			],
+			[
+				"i1",
+				"i18nCatalog\tunknown ⟠"
+			],
+			[
+				"selected",
+				"selected_nodes\tunknown ⟠"
+			],
+			[
+				"i18",
+				"i18n_catalog\tunknown ⟠"
+			],
+			[
+				"from",
+				"from_records"
+			],
+			[
+				"date",
+				"date"
+			],
+			[
+				"em",
+				"employee_function"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "pages/programs.py",
+			"settings":
+			{
+				"buffer_size": 1094,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "pages/capacity.py",
+			"settings":
+			{
+				"buffer_size": 4264,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "assets/callbacks.py",
+			"settings":
+			{
+				"buffer_size": 20530,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/ghaag/AppData/Roaming/Sublime Text 3/Packages/User/HighlightWords.sublime-settings",
+			"settings":
+			{
+				"buffer_size": 847,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "assets/SQL.py",
+			"settings":
+			{
+				"buffer_size": 14819,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "Packages/User/MyPy.sublime-build",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Anaconda Python Builder",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				],
+				[
+					"Packages/Virtualenv/Python + Virtualenv.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/Virtualenv/Python + Virtualenv.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Anaconda Python Builder",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				],
+				[
+					"Packages/Virtualenv/Python + Virtualenv.sublime-build",
+					""
+				],
+				[
+					"Packages/User/MyPy.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/User/MyPy.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/VBScript/VBScript.sublime-build",
+					""
+				],
+				[
+					"Packages/VBScript/VBScript.sublime-build",
+					"Run with WScript"
+				],
+				[
+					"Packages/VBScript/VBScript.sublime-build",
+					"Debug with CScript"
+				]
+			],
+			[
+				"Packages/VBScript/VBScript.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"lint",
+				"SublimeLinter: Lint This View"
+			],
+			[
+				"fold",
+				"Code Folding: Unfold All"
+			],
+			[
+				"install\t",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 417.0,
+		"history":
+		[
+			"view.scope_name(view.sel()[0].begin())",
+			"alembic",
+			"python run.py debug",
+			"clearscreen",
+			"clear",
+			"cls",
+			"help",
+			"hep",
+			"helkp",
+			"Help",
+			"dir .",
+			"dir",
+			"ls",
+			"help()",
+			"help",
+			"wget",
+			"git",
+			"urllib.request.ProxyHandler({\"http\":\"http://ii.proxy.l-3com.com:4713/files/ii.pac\"})",
+			"by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read();",
+			"urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) );",
+			"ipp = sublime.installed_packages_path(); ",
+			"pf = 'Package Control.sublime-package'",
+			"h = '7183a2d3e96f11eeadd761d777e62404e330c659d4bb41d3bdf022e94cab3cd0';",
+			"'7183a2d3e96f11eeadd761d777e62404e330c659d4bb41d3bdf022e94cab3cd0';",
+			"import urllib.request,os,hashlib;",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"package control:"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/ghaag/Programming/Python Projects/Resource Tracker/Resources_App",
+		"/C/Users/ghaag/Programming/Python Projects/Resource Tracker/Resources_App/assets",
+		"/C/Users/ghaag/Programming/Python Projects/Resource Tracker/Resources_App/pages"
+	],
+	"file_history":
+	[
+		"/C/Users/ghaag/Programming/Python Projects/Resource Tracker/Resources_App/venv/Lib/site-packages/dash_table/DataTable.py",
+		"/C/Users/ghaag/AppData/Roaming/Sublime Text 3/Packages/User/HighlightWords.sublime-settings",
+		"/C/Users/ghaag/AppData/Roaming/Sublime Text 3/Packages/HighlightWords/HighlightWords.sublime-settings",
+		"/C/Users/ghaag/Programming/Python Projects/Resource Tracker/Resources_App/pages/home.py",
+		"/C/Users/ghaag/Programming/Python Projects/Resource Tracker/Resources_App/assets/models.py",
+		"/C/Users/ghaag/Programming/Python Projects/Resource Tracker/Resources_App/pages/employees.py",
+		"/C/Users/ghaag/Programming/Python Projects/Resource Tracker/Resources_App/assets/SQL.py",
+		"/C/Users/ghaag/AppData/Roaming/Sublime Text 3/Packages/Fold Python/FoldPython.sublime-settings",
+		"/C/Users/ghaag/AppData/Roaming/Sublime Text 3/Packages/User/FoldPython.sublime-settings",
+		"/C/Users/ghaag/AppData/Roaming/Sublime Text 3/Packages/Fold Python/Default (Windows).sublime-keymap",
+		"/C/Users/ghaag/AppData/Roaming/Sublime Text 3/Packages/Anaconda/Anaconda.sublime-settings",
+		"/C/Users/ghaag/AppData/Roaming/Sublime Text 3/Packages/User/Anaconda.sublime-settings",
+		"/C/Users/ghaag/AppData/Roaming/Sublime Text 3/Packages/User/MyPy.sublime-build",
+		"/C/Users/ghaag/AppData/Roaming/Sublime Text 3/Installed Packages/Virtualenv.sublime-package",
+		"/C/Users/ghaag/Programming/Python Projects/Resource Tracker/Resources_App/run.py",
+		"/C/Users/ghaag/Programming/Python Projects/Resource Tracker/Resources_App/ResourceTracker.sublime-project",
+		"/C/Users/ghaag/Programming/Python Projects/Resource Tracker/Resources_App/pages/programs.py",
+		"/C/Users/ghaag/AppData/Roaming/Sublime Text 3/Packages/User/View In Browser.sublime-settings",
+		"/C/Users/ghaag/Programming/.sublime-project",
+		"/C/Users/ghaag/AppData/Roaming/Sublime Text 3/Packages/Virtualenv/README.md",
+		"/C/Users/ghaag/AppData/Local/Continuum/anaconda3/lib/site-packages/dash/dash.py",
+		"/C/Users/ghaag/AppData/Local/Continuum/anaconda3/lib/socketserver.py",
+		"/C/Users/ghaag/AppData/Local/Continuum/anaconda3/lib/site-packages/sqlalchemy/pool/impl.py",
+		"/C/Users/ghaag/Programming/vba test.cls",
+		"/C/Users/ghaag/PythonEditorWrapper_034a345f-e44a-4811-bbd3-f19702cacf6b/PythonEditorWrapper.PY",
+		"/C/Users/ghaag/AppData/Roaming/cura/4.4/plugins/__init__.py",
+		"/C/Users/ghaag/AppData/Roaming/cura/4.4/plugins/ScaleConverter.py",
+		"/C/Users/ghaag/Programming/test.py",
+		"/C/Users/ghaag/PythonEditorWrapper_ab653609-6dcb-4610-9b1b-648bbf9274b2/PythonEditorWrapper.PY",
+		"/C/Users/ghaag/PythonEditorWrapper_8fb8f9d6-d6ed-4896-b0ee-f2964b2a5405/PythonEditorWrapper.PY",
+		"/C/Users/ghaag/PythonEditorWrapper_a855f057-a982-4533-bd01-57d7c4b5214d/PythonEditorWrapper.PY",
+		"/C/Users/ghaag/AppData/Roaming/Sublime Text 3/Packages/User/pep8_autoformat.sublime-settings",
+		"/C/Users/ghaag/AppData/Roaming/Sublime Text 3/Packages/Emmet/Default (Windows).sublime-keymap",
+		"/C/Users/ghaag/AppData/Roaming/Sublime Text 3/Packages/Python PEP8 Autoformat/pep8_autoformat.sublime-settings",
+		"/C/Users/ghaag/PythonEditorWrapper_73999699-dfe3-4cdc-848a-c0c32262cff5/PythonEditorWrapper.PY",
+		"/C/Users/ghaag/PythonEditorWrapper_07b67472-84aa-4912-8e64-465ffbf72a90/PythonEditorWrapper.PY",
+		"/C/Users/ghaag/PythonEditorWrapper_e76ceb86-0020-4f5d-9a93-6ca9627b9e6a/PythonEditorWrapper.PY",
+		"/C/Users/ghaag/PythonEditorWrapper_67ccb7b2-8ae0-4e79-a2a4-559c6de3b882/PythonEditorWrapper.PY",
+		"/C/Users/ghaag/PythonEditorWrapper_c62bf0b2-e73f-4391-8ce8-3bc36281d8c5/PythonEditorWrapper.PY",
+		"/C/Users/ghaag/PythonEditorWrapper_d8255584-02e4-4c7a-a527-0c69e994aaa8/PythonEditorWrapper.PY",
+		"/C/Users/ghaag/PythonEditorWrapper_bf175bfe-a87f-4783-9205-9eff35cb7dc5/PythonEditorWrapper.PY",
+		"/C/Users/ghaag/PythonEditorWrapper_8c160ae2-7cb5-4fc2-8f74-2e6bf484b3ee/PythonEditorWrapper.PY",
+		"/C/Users/ghaag/PythonEditorWrapper_77634437-0f63-4f2d-abc0-7c5fdc7e3e32/PythonEditorWrapper.PY",
+		"/C/Users/ghaag/PythonEditorWrapper_f0adf3e0-d859-4bc5-b684-6b9e2845c345/PythonEditorWrapper.PY",
+		"/C/Users/ghaag/PythonEditorWrapper_4d9be041-3d2f-48df-b8fb-6d8332bf380a/PythonEditorWrapper.PY",
+		"/C/Users/ghaag/PythonEditorWrapper_7e10a718-4aec-4178-969d-595a6b8ab075/PythonEditorWrapper.PY",
+		"/C/Users/ghaag/PythonEditorWrapper_0168d52b-7eee-4936-ad11-4c9e1061fee5/PythonEditorWrapper.PY",
+		"/C/Users/ghaag/AppData/Local/Continuum/anaconda3/lib/site-packages/matplotlib/font_manager.py",
+		"/C/Users/ghaag/AppData/Local/Continuum/anaconda3/lib/site-packages/matplotlib/pyplot.py",
+		"/C/Users/ghaag/AppData/Local/Continuum/anaconda3/lib/site-packages/matplotlib/colorbar.py",
+		"/X/Ghaag/Watchdog-queuetest.py",
+		"/E/FS response.xml",
+		"/E/TMS response.xml",
+		"/E/TMSS response.xml",
+		"/C/Users/ghaag/Programming/Input Error",
+		"/C/Users/ghaag/AppData/Roaming/Sublime Text 3/Packages/User/vbdotnet.tmlanguage",
+		"/C/Users/ghaag/AppData/Roaming/Sublime Text 3/Packages/User/VBDotNetSyntax/vbdotnet.JSON-tmLanguage",
+		"/C/Users/ghaag/Programming/vba test.vbs",
+		"/C/Users/ghaag/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/ghaag/AppData/Local/Temp/20/kite_tutorial.py",
+		"/C/Users/ghaag/AppData/Roaming/Sublime Text 3/Packages/User/Package Control.sublime-settings",
+		"/C/Users/ghaag/Documents/licenses/Serverresponse.xml",
+		"/C/Users/ghaag/Documents/licenses/TMSresponse.xml"
+	],
+	"find":
+	{
+		"height": 39.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"end_date",
+			"style",
+			"\"",
+			"Admin_name"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"'",
+			"admin_name"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "pages/programs.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1094,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1094,
+								1094
+							]
+						],
+						"settings":
+						{
+							"SL.14.region_keys":
+							[
+							],
+							"SL.45.region_keys":
+							[
+							],
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "pages/capacity.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4264,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1209,
+								1209
+							]
+						],
+						"settings":
+						{
+							"SL.14.region_keys":
+							[
+								"SL.pycodestyle.Highlights.|8f410abe1ff58328a8b23ebccdaf08278d9e24821390c8631a6959117e2b9fe4|region.redish markup.error.sublime_linter|32",
+								"sublime_linter.protected_regions",
+								"SL.pycodestyle.Gutter.|region.redish markup.error.sublime_linter|dot"
+							],
+							"SL.15.region_keys":
+							[
+								"sublime_linter.protected_regions"
+							],
+							"SL.33.region_keys":
+							[
+							],
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 324.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "assets/callbacks.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 20530,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								15202,
+								15202
+							]
+						],
+						"settings":
+						{
+							"SL.16.region_keys":
+							[
+								"SL.pycodestyle.Highlights.|417be94b5a05390c49229a216adb01f67ad400bfa2d919e7ed7fa6525c3fd129|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|4474222e81642f57b1f602c64227c989e139afb1258404ee022fafc56cd9ddcb|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|ab198bb6d0d309876ffa3752ff054ad69aa18ee98ca99acf7b5d9033a1b8a75f|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|efe9282ca065dc55db889748d004fd223b31349564b72bbbaa234d69a191ad81|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|a55a4361d5af116f227d2041b08520800f39c3a2bf6086ac8307d0640166e644|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|2d299855e519f6adadc330fb4bad4c2d0a51bf08ccf764e466eb2ce8bc87906b|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|476a82818e42c6aa96527884d646ba5772373d1ae1eb9609b59a31341f8989db|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|7452abae9e069fc6adf01f2d806bfa6f4e87583e685dbf1c4adfe425921e3bc9|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|e901fd9a848223d91ed30f41bab543114f0ca59db8f8a825613d3709607f8b0a|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|315b7f6dfe4b80140954cb881e2864aff32f3a8c652f2e71153f5b8f98b1a5e4|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|158579e2df270a49c26c617daf22b3a2c1e111116cfdd593eb51c5aa5b6035fe|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|5752c60d788681144b5558fcf9c6b523b3e60f9d8af9542ecd79f90a8157cf70|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|3199a8bc7fe33c109e71d7d3b5f4c4e213505fedec11684922e89693c941b33f|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|4c0bf3b625eecadba6aae95e51859d8657af0db19e475cf65dbb3822d3e713c8|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|ac4a5b2eea54313703d60b34178151ead4e59acabdc940289ff13691171504f7|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|3abf919a55757c469a8b133bf2542ab8fb8f37c82ea40c034bf3b33f0216923e|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|78a1d832ea8ef3a9e0364c2d06512e1f8f398eb452a48623ba35c339be175fa7|region.redish markup.error.sublime_linter|32",
+								"sublime_linter.protected_regions",
+								"SL.pycodestyle.Gutter.|region.redish markup.error.sublime_linter|dot"
+							],
+							"SL.17.region_keys":
+							[
+								"SL.pycodestyle.Highlights.|cc3a023bb7cef03718edc64f37c1c86ddea67837a1306091ec21c3d94a6d3c26|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|476a82818e42c6aa96527884d646ba5772373d1ae1eb9609b59a31341f8989db|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|75bf690e2c649c2c23d531e382d1b81b7f99aba7a8c2687f4db7962dbf13d564|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|7452abae9e069fc6adf01f2d806bfa6f4e87583e685dbf1c4adfe425921e3bc9|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|8aece46bf0dffd3722108fa3ffc902179f97809ce959092abe54dd93e3573e20|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|2d299855e519f6adadc330fb4bad4c2d0a51bf08ccf764e466eb2ce8bc87906b|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|4c0bf3b625eecadba6aae95e51859d8657af0db19e475cf65dbb3822d3e713c8|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Gutter.|region.redish markup.error.sublime_linter|dot",
+								"SL.pycodestyle.Highlights.|522f0d0059e1fc3894e19f01ac2094e9d52682928ed0ec269cb40ed47949ede0|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|3abf919a55757c469a8b133bf2542ab8fb8f37c82ea40c034bf3b33f0216923e|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|ecd71ba7e9f879d24d24c10cfb2e130511f8127daffd4753c28d843beb5f37d6|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|c2971988304d632904b9797223684837910693b92ee0ec469f3254cd7482f335|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|958707d512113af7b3c4e2d7eab3c6c7495178cbff1dd3ba8217f4f2a4478b26|region.redish markup.error.sublime_linter|32",
+								"sublime_linter.protected_regions",
+								"SL.pycodestyle.Highlights.|47752c8fb5295adcebcebebfa1cfa25288988bcd8355086581a3d38267071e6d|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|315b7f6dfe4b80140954cb881e2864aff32f3a8c652f2e71153f5b8f98b1a5e4|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|4478a1b4d78daf70259eb3dd082957986e3b0ef675cc05cdf0a71c367c3be05f|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|ac4a5b2eea54313703d60b34178151ead4e59acabdc940289ff13691171504f7|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|5752c60d788681144b5558fcf9c6b523b3e60f9d8af9542ecd79f90a8157cf70|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|352807c5fec8371f4bea33fe0f06ac60a5fc3c3d80df8928651c8a2e145150e0|region.redish markup.error.sublime_linter|32"
+							],
+							"SL.27.region_keys":
+							[
+								"SL.pycodestyle.Highlights.|47752c8fb5295adcebcebebfa1cfa25288988bcd8355086581a3d38267071e6d|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|4c0bf3b625eecadba6aae95e51859d8657af0db19e475cf65dbb3822d3e713c8|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|cc3a023bb7cef03718edc64f37c1c86ddea67837a1306091ec21c3d94a6d3c26|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|ecd71ba7e9f879d24d24c10cfb2e130511f8127daffd4753c28d843beb5f37d6|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|522f0d0059e1fc3894e19f01ac2094e9d52682928ed0ec269cb40ed47949ede0|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|2d299855e519f6adadc330fb4bad4c2d0a51bf08ccf764e466eb2ce8bc87906b|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|352807c5fec8371f4bea33fe0f06ac60a5fc3c3d80df8928651c8a2e145150e0|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|ac4a5b2eea54313703d60b34178151ead4e59acabdc940289ff13691171504f7|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Gutter.|region.redish markup.error.sublime_linter|dot",
+								"SL.pycodestyle.Highlights.|75bf690e2c649c2c23d531e382d1b81b7f99aba7a8c2687f4db7962dbf13d564|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|476a82818e42c6aa96527884d646ba5772373d1ae1eb9609b59a31341f8989db|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|c2971988304d632904b9797223684837910693b92ee0ec469f3254cd7482f335|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|7452abae9e069fc6adf01f2d806bfa6f4e87583e685dbf1c4adfe425921e3bc9|region.redish markup.error.sublime_linter|32",
+								"sublime_linter.protected_regions",
+								"SL.pycodestyle.Highlights.|4478a1b4d78daf70259eb3dd082957986e3b0ef675cc05cdf0a71c367c3be05f|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|3abf919a55757c469a8b133bf2542ab8fb8f37c82ea40c034bf3b33f0216923e|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|315b7f6dfe4b80140954cb881e2864aff32f3a8c652f2e71153f5b8f98b1a5e4|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|958707d512113af7b3c4e2d7eab3c6c7495178cbff1dd3ba8217f4f2a4478b26|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|8aece46bf0dffd3722108fa3ffc902179f97809ce959092abe54dd93e3573e20|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|5752c60d788681144b5558fcf9c6b523b3e60f9d8af9542ecd79f90a8157cf70|region.redish markup.error.sublime_linter|32"
+							],
+							"git_gutter_is_enabled": true,
+							"highlight_size": 0,
+							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 6452.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/C/Users/ghaag/AppData/Roaming/Sublime Text 3/Packages/User/HighlightWords.sublime-settings",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 847,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								847,
+								847
+							]
+						],
+						"settings":
+						{
+							"SL.66.region_keys":
+							[
+							],
+							"git_gutter_is_enabled": false,
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "assets/SQL.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 14819,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								10455,
+								10455
+							]
+						],
+						"settings":
+						{
+							"SL.65.region_keys":
+							[
+								"SL.pycodestyle.Highlights.|b8a50bb15ebf354fe7ba078f91dc2da07d2c84f17ed2229d4ae6575a4ead2c6e|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|268b210f660facdc8e8f4fd9f728dcfa316e9b34fcbdfebe814bde3e558e5f8e|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|8c367b8f4c557612371754deb4a357e75fec0282a4c1a37b38114156ec249594|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|367bfcab9b3a7bb84ae1cd4df49791c42333667d1488884433b473e98db0fc80|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|292d6173ec137e4e0d30b1bcc35e3d394ede45ed94f9c9209ccabdc54eb9bf0f|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|e4a0019259e1ceb90b0a708c7001a9dfc4580bb4b32ca43f1b0cf7a72fff5b7b|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|1c65994b43e8c61734c1e91c9fb230dca361b5993dda792d26a021f15d742fb3|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|6ba501738c3813fbe900643d9dc928578b2b25bcc18af82c5626d94139e68d1c|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|ffeea5bc2b6522be11a6492204676ecdad4c7e1935bf7ce9e4bf3a22eb177641|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|aba91e5c93863d6f2f4e4c8b0169287c895aa9cf7d04c526f6c457905b1931e8|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|21efd9c7b667637d34b6f561d18c7096c868a46328179bee70708274dc029b3c|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|95460e4c180efae9df133d87c1003355d751de6d00728213125a97413e464a08|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|ac3f7fa6fc55e1f1ece7d2eb7848d741bbe7b037ef1eb0892e1be6e3781c878d|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|7414b7a104c90ee871208d788099d98ff353fdd8a83409fda71c089a0a10f3c5|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|05128dc3e85f61b1c87c5851628275e6310235d50d7b9553e39cb7b59d967c0c|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|9a041342ca9af80ffb12d4aa4140e9473a351c4a4300bb5c4a04081d682093a6|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|1c75f40bf1bdacc98cbfd9c6a95d28f605fb6b546874d68f20c543b80b603625|region.redish markup.error.sublime_linter|32",
+								"sublime_linter.protected_regions",
+								"SL.pycodestyle.Gutter.|region.redish markup.error.sublime_linter|dot",
+								"SL.pycodestyle.Highlights.|f241cc02b5f18d3034712ef5f3462d3ef5b16c73afd4419811b2f0e9074f3d3d|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|51658c6406663b692c4b9b0ab54a9cde3ba4f1d8fc9a732c061b71ce46fe2166|region.redish markup.error.sublime_linter|32",
+								"SL.pycodestyle.Highlights.|8ca1b6a8fcc90839425d112f5b1a4c82db52d62163fddf381565dd85f77d9ad6|region.redish markup.error.sublime_linter|32"
+							],
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/Djaneiro/Syntaxes/Python Django.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2942.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 39.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.SublimeLinter":
+	{
+		"height": 265.0
+	},
+	"output.exec":
+	{
+		"height": 238.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.mdpopups":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "ResourceTracker.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 69.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"pretty_print"
+			]
+		],
+		"width": 592.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 237.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

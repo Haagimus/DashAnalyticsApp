@@ -9,11 +9,11 @@ from sqlalchemy.orm import sessionmaker
 from assets.models import RegisteredUser, EmployeeData, Functions, Program, EmployeeNumber, EmployeeFunctionLink, EmployeeProgramLink
 from server import app, log_time
 
-server = 'FRXSV-DAUPHIN'
-dbname = 'FRXResourceDemand'
+server = ''
+dbname = ''
 t_conn = 'trusted_connections=yes'
 driver = 'driver=SQL+Server'
-MARS = 'MARS_Connection=Yes'
+MARS = 'MARS_Connection=No'
 echo = False
 pool_size = 20
 engine = create_engine(f'mssql://@{server}/{dbname}?{t_conn}&{driver}&{MARS}',
@@ -405,3 +405,25 @@ def remove_duplicates(source_list):
             results.append(i)
 
     return results
+
+
+def get_counts(date_filter):
+    count = {}
+    employees = get_rows(EmployeeData)
+    ended = []
+    active_employees = []
+
+    for row in employees:
+        if row.date_start < date_filter and (row.date_end is None or row.date_end > date_filter):
+            active_employees.append(row)
+        if row.date_end is not None:
+            ended.append(row)
+
+    # active_employees = [e for e in employees if e not in ended]
+    func_list = [x.function for x in [f for f in get_rows(Functions)] if x.finance_function is not None]
+    emp_func_list = [f.employee_number.assigned_functions[0].function for f in active_employees]
+    for i in func_list:
+        count[i] = emp_func_list.count(i)
+    count.update({'Total': len(active_employees)})
+
+    return count

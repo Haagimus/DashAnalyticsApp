@@ -1,10 +1,11 @@
+import datetime as dt
+
 import dash_bootstrap_components as dbc
-import dash_html_components as html
 import dash_core_components as dcc
+import dash_html_components as html
 from dash_table import DataTable
 
 import assets.SQL as sql
-import datetime as dt
 from assets.models import Program, EmployeeData, Functions
 
 employees = sql.get_rows(EmployeeData)
