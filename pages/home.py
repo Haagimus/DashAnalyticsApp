@@ -191,9 +191,9 @@ def send_mail(from_addr, subject, body):
     :return: bool
     """
     port = 25
-    smtp_server = 'frxsv-globemaster'
+    smtp_server = ''
     relay_addr = 'FRX Analytics Page'
-    relay_email = 'FRX.EmailRelay@iss.l3t.com'
+    relay_email = ''
     to_addrs = [admin_email,
                 from_addr]
     msg = EmailMessage()
@@ -204,7 +204,7 @@ def send_mail(from_addr, subject, body):
 
     try:
         server = smtplib.SMTP(smtp_server, port)
-        server.login(relay_email, 'N)QQH3hppTrthKQN')
+        server.login(relay_email, 'PASSWORD GOES HERE')
         server.send_message(msg)
         server.quit()
         return None

@@ -19,4 +19,4 @@ if __name__ == '__main__':
             app.run_server(debug=True, host='127.0.0.1', port='8080')
     else:
         app.title = 'ForceX Analytics'
-        app.run_server(debug=False, host='166.20.109.188', port='8080')
+        app.run_server(debug=False, host='PRODUCTION IP HERE', port='8080')

@@ -4,10 +4,10 @@
 
 # Project files
 update server.bat
-/.idea
-/.ionide
-/.vs
-/.vscode
+.idea
+.ionide
+.vs
+.vscode
 helpful commands.txt
 log.txt
 ResourceTracker.pyproj

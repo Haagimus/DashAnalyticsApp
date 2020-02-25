@@ -3,8 +3,6 @@ import pandas as pd
 import dash_table as dt
 
 
-# df_excel = pd.read_excel("./assets/Files/Sector_DevOps_Status_FX.xlsx")
-#
 #
 # def make_dash_table(df):
 #     table = []
