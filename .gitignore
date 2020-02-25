@@ -4,6 +4,14 @@
 
 # Project files
 update server.bat
+/.idea
+/.ionide
+/.vs
+/.vscode
+helpful commands.txt
+log.txt
+ResourceTracker.pyproj
+ResourceTracker.sln
 
 
 # Byte-compiled / optimized / DLL files
