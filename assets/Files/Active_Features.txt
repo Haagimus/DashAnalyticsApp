@@ -1,0 +1,11 @@
+Employee page now displays multiple programs in the data table if employee is
+assigned to more than one
+User email submission form
+User registration form
+Employee page filters
+Employee Admin page
+Add new employee function
+Edit existing employee function
+Comma separated searching in Employee page
+Capacity page shows a table or chart of current staffing by department
+Programs page now allows upload of new resource summary sheets and custom filters to load in existing data to a table

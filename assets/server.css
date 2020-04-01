@@ -1,0 +1,240 @@
+/* Main Application Styling*/
+body {
+	 background-color: #f4f3ef;
+}
+
+H2 {
+    color: #66615B;
+}
+
+#page-content {
+	padding: 0px 30px 30px;
+	margin-top: 15px;
+}
+
+#work-in-progress{
+    background-image: url('/assets/Images/cat_peel.jpg');
+    background-repeat: no-repeat;
+    background-position-y: top;
+    background-position-x: right;
+    background-color: rgb( 85, 121, 135);
+    min-width: 95vw;
+    min-height: 90vh;
+}
+
+.Select-menu-outer {
+    display: block !important;
+}
+
+/* Home Page Styling*/
+.card {
+    border-radius:12px;
+    box-shadow:0 6px 10px -4px rgba(0,0,0,.15);
+    height: 100%;
+}
+
+.form-control,
+.custom-select {
+    box-shadow:0 6px 10px -4px rgba(0,0,0,.15);
+}
+
+.card-header {
+    background-color: transparent;
+    color: #252422;
+}
+
+.card-title {
+    margin-bottom: 0px;
+}
+
+#log-output {
+    border: none;
+    border-radius: 0px 0px 12px 12px;
+    resize: none;
+    font: status-bar;
+    padding: 5px;
+    min-height: 30vh;
+    max-height: 30
+    vh;
+}
+
+#site-admin-card {
+    width: auto;
+    padding: 0px;
+    min-height: 30vh;
+}
+
+#admin-editor {
+    margin: 15px;
+}
+
+#save_admin {
+    height: 38px;
+    margin: 5px 15px 5px 0px;
+}
+
+/* Navbar Styling*/
+#logo {
+    margin: 5px 10px;
+    width: 150px;
+    height: 32px;
+}
+
+#navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0.1rem;
+    background-color: transparent !important;
+    box-shadow: none;
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+    z-index: 1000;
+}
+
+#loginMessage,
+#registerMessage {
+    display: block;
+    margin: 5px 0px auto 0px;
+    color: red;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* Employee Page Styling */
+#employee-number {
+    -webkit-appearance: textfield;
+    -mox-appearance: textfield;
+    appearance: textfield;
+}
+
+.DateInput,
+.DateInput_1 {
+    width: auto;
+    padding: 0px 10px;
+}
+
+#data-container{
+    flex-basis: auto;
+    margin-right: 0px;
+    padding-top: 10px;
+}
+
+.sidebar {
+    height: 95%;
+    width: 0px;
+    position: fixed;
+    z-index: 1;
+    top: 48px;
+    right: 0.8%;
+    background-color: gainsboro;
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+.close-editor {
+    font-size: 36px;
+    position: fixed;
+    top: 40px;
+    cursor: pointer;
+}
+
+#data-container {
+    transition: margin-right 0.5s;
+    padding: 16px;
+}
+
+h4 {
+    margin-top: 10px;
+    weight: bold;
+}
+
+/* Capacity Page Styling*/
+#functions-graph,
+#capacity {
+    border-radius:12px;
+    box-shadow:0 6px 10px -4px rgba(0,0,0,.15);
+}
+
+/* Programs Page Styling*/
+#charge_dd,
+#period_dd,
+#sub_pd_dd,
+#quarter_dd,
+#year_dd {
+    width: 120px;
+}
+
+#month_dd {
+    min-width: 120px;
+    max-width: 400px;
+}
+
+#function_dd {
+    width: 250px;
+}
+
+#add_entry,
+#update_entry,
+#delete_entry {
+    margin: 5px;
+    float: right;
+}
+
+#pgm-admin-parent {
+    padding: 5px;
+    margin: 0px;
+    display: flex;
+}
+
+.pgm-admin-dd {
+    border-radius: 10px;
+    padding: 5px;
+    width: 100%;
+    min-width: fit-content;
+    /*width: 250px;*/
+}
+
+#pgm-proj-admin-dd-left,
+#pgm-proj-admin-dd-right,
+#pgm-emp-admin-dd-left,
+#pgm-emp-admin-dd-right {
+    width: 100%;
+}
+
+.pgm-admin-container {
+    /*max-width: 250px;*/
+    width: 100%;
+    display: block;
+}
+
+.pgm-admin-list {
+    /*min-width: 250px;*/
+    width: 100%;
+    padding: 5px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-radius: 5px;
+    outline: none;
+}
+
+.pgm-list-item {
+    margin-bottom: 3px;
+}
+
+.pgm-admin-button {
+    margin: 2px;
+    min-width: 50px;
+    width: 50px;
+    font-weight: bold;
+}
+
+.pgm-admin-button:focus {
+    box-shadow: none;
+}
+
+.pgm-admin-button-container {
+    align-self: center;
+    max-width: 50px;
+    margin: 5px;
+    display: block;
+}
