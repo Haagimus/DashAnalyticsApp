@@ -19,7 +19,7 @@ Flask-Compress==1.4.0
 Flask-Login==0.5.0
 Flask-SeaSurf==0.2.2
 Flask-SQLAlchemy==2.4.1
-future==0.18.2
+future==0.18.3
 idna==2.8
 itsdangerous==1.1.0
 Jinja2==2.11.3
